@@ -1,5 +1,7 @@
 // _components/CategoryGrid.tsx
 
+import Image from "next/image";
+
 const categories = [
   {
     name: "Proteins",
@@ -46,7 +48,7 @@ export default function CategoryGrid() {
               className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition"
             >
               <div className="overflow-hidden">
-                <img
+                <Image
                   src={category.image}
                   alt={category.name}
                   className="h-40 w-full object-cover group-hover:scale-105 transition duration-300 bg-linear-to-t from-black/40 to-transparent"

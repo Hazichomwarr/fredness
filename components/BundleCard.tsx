@@ -1,5 +1,7 @@
 // components/BundleCard.tsx
 
+import Image from "next/image";
+
 type Bundle = {
   id: string;
   name: string;
@@ -14,7 +16,7 @@ export default function BundleCard({ bundle }: { bundle: Bundle }) {
     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden group">
       {/* IMAGE */}
       <div className="relative">
-        <img
+        <Image
           src={bundle.image}
           alt={bundle.name}
           className="h-48 w-full object-cover group-hover:scale-105 transition duration-300"

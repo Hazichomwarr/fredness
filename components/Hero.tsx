@@ -1,5 +1,7 @@
 // components/Hero.tsx
 
+import Image from "next/image";
+
 export default function Hero() {
   return (
     <section className="relative bg-linear-to-br from-green-900 via-green-800 to-green-700 text-white">
@@ -55,22 +57,22 @@ export default function Hero() {
 
         {/* RIGHT (IMAGE GRID) */}
         <div className="grid grid-cols-2 gap-4">
-          <img
+          <Image
             src="/images/fredness-rice.jpeg"
             alt="Rice"
             className="rounded-xl object-cover h-40 w-full"
           />
-          <img
+          <Image
             src="/images/fredness-yam.jpg"
             alt="Yam"
             className="rounded-xl object-cover h-40 w-full"
           />
-          <img
+          <Image
             src="/images/fredness-fish.jpeg"
             alt="Fish"
             className="rounded-xl object-cover h-40 w-full"
           />
-          <img
+          <Image
             src="/images/fredness-malt.jpeg"
             alt="Malt"
             className="rounded-xl object-cover h-40 w-full"

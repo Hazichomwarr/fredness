@@ -1,5 +1,7 @@
 // _components/ProductCard.tsx
 
+import Image from "next/image";
+
 type Product = {
   id: string;
   name: string;
@@ -13,7 +15,7 @@ export default function ProductCard({ product }: { product: Product }) {
     <div className="bg-white rounded-xl shadow-sm hover:shadow-md transition overflow-hidden group">
       {/* IMAGE */}
       <div className="overflow-hidden">
-        <img
+        <Image
           src={product.image}
           alt={product.name}
           className="h-44 w-full object-cover group-hover:scale-105 transition duration-300"
