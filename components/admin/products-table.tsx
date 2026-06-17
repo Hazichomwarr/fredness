@@ -228,7 +228,7 @@ export function ProductsTable({
   return (
     <div className="overflow-hidden rounded-lg border border-neutral-200 bg-white">
       <div className="overflow-x-auto">
-        <table className="w-full min-w-[900px] border-collapse text-left text-sm">
+        <table className="w-full min-w-225 border-collapse text-left text-sm">
           <thead className="bg-neutral-50 text-xs uppercase tracking-wide text-neutral-500">
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id}>

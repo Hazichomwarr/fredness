@@ -1,4 +1,5 @@
 // app/admin/products/page.tsx
+import Link from "next/link";
 import { Prisma } from "@/app/generated/prisma";
 import {
   ProductsTable,
@@ -97,23 +98,31 @@ export default async function ProductsPage({
             </p>
             <h1 className="mt-2 text-3xl font-bold tracking-tight">Products</h1>
           </div>
-          <form
-            action="/api/admin/products/import"
-            method="post"
-            encType="multipart/form-data"
-            className="flex flex-wrap items-center gap-2 rounded-lg border border-neutral-200 bg-white p-3"
-          >
-            <input
-              name="file"
-              type="file"
-              accept=".csv,text/csv"
-              className="max-w-64 text-sm file:mr-3 file:rounded-md file:border-0 file:bg-neutral-950 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
-              required
-            />
-            <button className="rounded-md border border-neutral-300 px-3 py-2 text-sm font-semibold hover:bg-neutral-50">
-              Import CSV
-            </button>
-          </form>
+          <div className="flex flex-wrap items-center gap-3">
+            <Link
+              href="/admin/products/new"
+              className="rounded-md bg-neutral-950 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
+            >
+              Create product
+            </Link>
+            <form
+              action="/api/admin/products/import"
+              method="post"
+              encType="multipart/form-data"
+              className="flex flex-wrap items-center gap-2 rounded-lg border border-neutral-200 bg-white p-3"
+            >
+              <input
+                name="file"
+                type="file"
+                accept=".csv,text/csv"
+                className="max-w-64 text-sm file:mr-3 file:rounded-md file:border-0 file:bg-neutral-950 file:px-3 file:py-2 file:text-sm file:font-semibold file:text-white"
+                required
+              />
+              <button className="rounded-md border border-neutral-300 px-3 py-2 text-sm font-semibold hover:bg-neutral-50">
+                Import CSV
+              </button>
+            </form>
+          </div>
         </div>
 
         <form className="flex flex-wrap gap-3 rounded-lg border border-neutral-200 bg-white p-4">
