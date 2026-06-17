@@ -51,6 +51,8 @@ export default function CategoryGrid() {
                 <Image
                   src={category.image}
                   alt={category.name}
+                  width={200}
+                  height={50}
                   className="h-40 w-full object-cover group-hover:scale-105 transition duration-300 bg-linear-to-t from-black/40 to-transparent"
                 />
               </div>

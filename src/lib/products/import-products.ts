@@ -8,6 +8,8 @@ import {
   ProductImportSummary,
   productImportRowSchema,
 } from "@/src/lib/products/import-schema";
+import type { Category } from "@/app/generated/prisma";
+import { Prisma } from "@/app/generated/prisma";
 
 type ParsedProductRow = {
   rowNumber: number;
@@ -54,10 +56,13 @@ function normalizeHeader(header: string) {
 }
 
 function normalizeRow(row: Record<string, string>) {
-  return Object.entries(row).reduce<Record<string, string>>((normalized, [key, value]) => {
-    normalized[normalizeHeader(key)] = value;
-    return normalized;
-  }, {});
+  return Object.entries(row).reduce<Record<string, string>>(
+    (normalized, [key, value]) => {
+      normalized[normalizeHeader(key)] = value;
+      return normalized;
+    },
+    {},
+  );
 }
 
 export function parseProductCsv(csvText: string) {
@@ -111,16 +116,26 @@ function isUniqueConstraintError(error: unknown) {
     (error as { code?: unknown }).code === "P2002"
   );
 }
-
-async function resolveCategory(row: ProductImportRow) {
+async function resolveCategory(
+  row: ProductImportRow,
+  categoryCache: Map<string, Category>,
+) {
   const slug = row.categorySlug ?? slugify(row.categoryName ?? "");
 
   if (!slug) {
     throw new Error("Category is required");
   }
 
+  const cachedCategory = categoryCache.get(slug);
+
+  if (cachedCategory) {
+    return cachedCategory;
+  }
+
+  let category: Category | null;
+
   if (row.categoryName) {
-    return prisma.category.upsert({
+    category = await prisma.category.upsert({
       where: { slug },
       update: {},
       create: {
@@ -128,27 +143,32 @@ async function resolveCategory(row: ProductImportRow) {
         slug,
       },
     });
+  } else {
+    category = await prisma.category.findUnique({
+      where: { slug },
+    });
   }
-
-  const category = await prisma.category.findUnique({
-    where: { slug },
-  });
 
   if (!category) {
     throw new Error(`Category "${slug}" does not exist`);
   }
 
+  categoryCache.set(slug, category);
+
   return category;
 }
 
-export async function importProductsFromCsv(csvText: string): Promise<ProductImportSummary> {
+export async function importProductsFromCsv(
+  csvText: string,
+): Promise<ProductImportSummary> {
   const parsed = parseProductCsv(csvText);
   const invalidRows = [...parsed.invalidRows];
+  const categoryCache = new Map<string, Category>();
   let created = 0;
 
   for (const { rowNumber, data } of parsed.validRows) {
     try {
-      const category = await resolveCategory(data);
+      const category = await resolveCategory(data, categoryCache);
       const productSlug = data.slug ?? slugify(data.name);
 
       if (!productSlug) {
@@ -163,8 +183,10 @@ export async function importProductsFromCsv(csvText: string): Promise<ProductImp
           description: data.description,
           brand: data.brand,
           weight: data.weight,
-          retailPrice: data.retailPrice,
-          wholesalePrice: data.wholesalePrice,
+          retailPrice: new Prisma.Decimal(data.retailPrice),
+          wholesalePrice: data.wholesalePrice
+            ? new Prisma.Decimal(data.wholesalePrice)
+            : null,
           minimumWholesaleQty: data.minimumWholesaleQty,
           inventory: data.inventory,
           trackInventory: data.trackInventory ?? true,
