@@ -1,3 +1,4 @@
+// app/api/admin/products/import/route.ts
 import { NextResponse } from "next/server";
 import { importProductsFromCsv } from "@/src/lib/products/import-products";
 

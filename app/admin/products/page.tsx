@@ -1,13 +1,23 @@
+// app/admin/products/page.tsx
 import { Prisma } from "@/app/generated/prisma";
-import { ProductsTable, AdminProductRow } from "@/components/admin/products-table";
+import {
+  ProductsTable,
+  AdminProductRow,
+} from "@/components/admin/products-table";
 import { prisma } from "@/src/lib/prisma";
 
 type ProductsPageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
-const pageSize = 10;
-const sortableFields = new Set(["name", "sku", "retailPrice", "inventory", "createdAt"]);
+const pageSize = 25;
+const sortableFields = new Set([
+  "name",
+  "sku",
+  "retailPrice",
+  "inventory",
+  "createdAt",
+]);
 
 function firstParam(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;
@@ -37,7 +47,9 @@ function toProductRow(product: {
   };
 }
 
-export default async function ProductsPage({ searchParams }: ProductsPageProps) {
+export default async function ProductsPage({
+  searchParams,
+}: ProductsPageProps) {
   const params = (await searchParams) ?? {};
   const query = firstParam(params.q)?.trim() ?? "";
   const page = Math.max(Number(firstParam(params.page) ?? "1") || 1, 1);

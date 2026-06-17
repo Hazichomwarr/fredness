@@ -1,3 +1,4 @@
+// components/admin/products-table.tsx
 "use client";
 
 import {
@@ -7,7 +8,10 @@ import {
   useReactTable,
 } from "@tanstack/react-table";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { deleteProductAction, updateProductAction } from "@/app/admin/products/actions";
+import {
+  hideProductAction,
+  updateProductAction,
+} from "@/app/admin/products/actions";
 
 export type AdminProductRow = {
   id: string;
@@ -30,7 +34,13 @@ type ProductsTableProps = {
   direction: "asc" | "desc";
 };
 
-const sortableColumns = new Set(["name", "sku", "retailPrice", "inventory", "createdAt"]);
+const sortableColumns = new Set([
+  "name",
+  "sku",
+  "retailPrice",
+  "inventory",
+  "createdAt",
+]);
 
 function money(value: string | null) {
   if (!value) return "-";
@@ -70,7 +80,9 @@ export function ProductsTable({
       cell: ({ row }) => (
         <div>
           <p className="font-medium text-neutral-950">{row.original.name}</p>
-          <p className="text-xs text-neutral-500">{row.original.categoryName}</p>
+          <p className="text-xs text-neutral-500">
+            {row.original.categoryName}
+          </p>
         </div>
       ),
     },
@@ -187,16 +199,16 @@ export function ProductsTable({
             </div>
           </details>
           <form
-            action={deleteProductAction}
+            action={hideProductAction}
             onSubmit={(event) => {
-              if (!window.confirm(`Delete ${row.original.name}?`)) {
+              if (!window.confirm(`Hide ${row.original.name}?`)) {
                 event.preventDefault();
               }
             }}
           >
             <input type="hidden" name="id" value={row.original.id} />
             <button className="rounded-md border border-red-200 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50">
-              Delete
+              {row.original.isActive ? "Hide" : "Hidden"}
             </button>
           </form>
         </div>
@@ -223,22 +235,40 @@ export function ProductsTable({
                 {headerGroup.headers.map((header) => {
                   const columnId = header.column.id;
                   const isSortable = sortableColumns.has(columnId);
-                  const nextDirection = sort === columnId && direction === "asc" ? "desc" : "asc";
+                  const nextDirection =
+                    sort === columnId && direction === "asc" ? "desc" : "asc";
 
                   return (
-                    <th key={header.id} className="border-b border-neutral-200 px-4 py-3">
+                    <th
+                      key={header.id}
+                      className="border-b border-neutral-200 px-4 py-3"
+                    >
                       {isSortable ? (
                         <button
                           className="font-semibold hover:text-neutral-950"
                           onClick={() =>
-                            setParam({ sort: columnId, direction: nextDirection, page: 1 })
+                            setParam({
+                              sort: columnId,
+                              direction: nextDirection,
+                              page: 1,
+                            })
                           }
                         >
-                          {flexRender(header.column.columnDef.header, header.getContext())}
-                          {sort === columnId ? (direction === "asc" ? " ↑" : " ↓") : ""}
+                          {flexRender(
+                            header.column.columnDef.header,
+                            header.getContext(),
+                          )}
+                          {sort === columnId
+                            ? direction === "asc"
+                              ? " ↑"
+                              : " ↓"
+                            : ""}
                         </button>
                       ) : (
-                        flexRender(header.column.columnDef.header, header.getContext())
+                        flexRender(
+                          header.column.columnDef.header,
+                          header.getContext(),
+                        )
                       )}
                     </th>
                   );
@@ -249,17 +279,29 @@ export function ProductsTable({
           <tbody>
             {table.getRowModel().rows.length ? (
               table.getRowModel().rows.map((row) => (
-                <tr key={row.id} className="border-b border-neutral-100 last:border-0">
+                <tr
+                  key={row.id}
+                  className="border-b border-neutral-100 last:border-0"
+                >
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-4 py-4 align-top text-neutral-700">
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
+                    <td
+                      key={cell.id}
+                      className="px-4 py-4 align-top text-neutral-700"
+                    >
+                      {flexRender(
+                        cell.column.columnDef.cell,
+                        cell.getContext(),
+                      )}
                     </td>
                   ))}
                 </tr>
               ))
             ) : (
               <tr>
-                <td className="px-4 py-10 text-center text-neutral-500" colSpan={columns.length}>
+                <td
+                  className="px-4 py-10 text-center text-neutral-500"
+                  colSpan={columns.length}
+                >
                   No products found.
                 </td>
               </tr>
