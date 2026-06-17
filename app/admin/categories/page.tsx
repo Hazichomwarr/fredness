@@ -32,7 +32,10 @@ export default async function CategoriesPage() {
 
         <section className="rounded-lg border border-neutral-200 bg-white p-4">
           <h2 className="text-lg font-semibold">Create category</h2>
-          <form action={createCategoryAction} className="mt-4 grid gap-4 md:grid-cols-2">
+          <form
+            action={createCategoryAction}
+            className="mt-4 grid gap-4 md:grid-cols-2"
+          >
             <label className="grid gap-1 text-sm font-medium text-neutral-700">
               Name
               <input
@@ -84,14 +87,24 @@ export default async function CategoriesPage() {
 
         <section className="overflow-hidden rounded-lg border border-neutral-200 bg-white">
           <div className="overflow-x-auto">
-            <table className="w-full min-w-[860px] border-collapse text-left text-sm">
+            <table className="w-full min-w-215 border-collapse text-left text-sm">
               <thead className="bg-neutral-50 text-xs uppercase tracking-wide text-neutral-500">
                 <tr>
-                  <th className="border-b border-neutral-200 px-4 py-3">Name</th>
-                  <th className="border-b border-neutral-200 px-4 py-3">Slug</th>
-                  <th className="border-b border-neutral-200 px-4 py-3">Products</th>
-                  <th className="border-b border-neutral-200 px-4 py-3">Sort</th>
-                  <th className="border-b border-neutral-200 px-4 py-3">Updated</th>
+                  <th className="border-b border-neutral-200 px-4 py-3">
+                    Name
+                  </th>
+                  <th className="border-b border-neutral-200 px-4 py-3">
+                    Slug
+                  </th>
+                  <th className="border-b border-neutral-200 px-4 py-3">
+                    Products
+                  </th>
+                  <th className="border-b border-neutral-200 px-4 py-3">
+                    Sort
+                  </th>
+                  <th className="border-b border-neutral-200 px-4 py-3">
+                    Updated
+                  </th>
                   <th className="border-b border-neutral-200 px-4 py-3" />
                 </tr>
               </thead>
@@ -103,7 +116,9 @@ export default async function CategoriesPage() {
                       className="border-b border-neutral-100 last:border-0"
                     >
                       <td className="px-4 py-4 align-top">
-                        <p className="font-medium text-neutral-950">{category.name}</p>
+                        <p className="font-medium text-neutral-950">
+                          {category.name}
+                        </p>
                         {category.description ? (
                           <p className="mt-1 line-clamp-2 text-xs text-neutral-500">
                             {category.description}
@@ -131,7 +146,11 @@ export default async function CategoriesPage() {
                             Edit
                           </Link>
                           <form action={deleteCategoryAction}>
-                            <input type="hidden" name="id" value={category.id} />
+                            <input
+                              type="hidden"
+                              name="id"
+                              value={category.id}
+                            />
                             <CategoryDeleteButton
                               categoryName={category.name}
                               disabled={category._count.products > 0}
@@ -143,7 +162,10 @@ export default async function CategoriesPage() {
                   ))
                 ) : (
                   <tr>
-                    <td className="px-4 py-10 text-center text-neutral-500" colSpan={6}>
+                    <td
+                      className="px-4 py-10 text-center text-neutral-500"
+                      colSpan={6}
+                    >
                       No categories yet.
                     </td>
                   </tr>
