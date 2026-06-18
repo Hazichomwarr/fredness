@@ -135,7 +135,7 @@ export default async function ProductsPage({
           />
           <input type="hidden" name="sort" value={sort} />
           <input type="hidden" name="direction" value={direction} />
-          <button className="rounded-md bg-neutral-950 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800">
+          <button className="rounded-md bg-neutral-950 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800 cursor-pointer">
             Search
           </button>
         </form>

@@ -149,13 +149,16 @@ export function ProductsTable({
                     required
                   />
                 </label>
+
+                {/* TODO: image url input */}
+
                 <div className="grid grid-cols-2 gap-3">
-                  <label className="grid gap-1 text-sm font-medium text-neutral-700">
+                  <label className="grid gap-2 text-sm font-medium text-neutral-700">
                     Retail
                     <input
                       name="retailPrice"
                       defaultValue={row.original.retailPrice}
-                      className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
+                      className="w-[80%] rounded-md border border-neutral-300 px-3 py-2 font-normal"
                       inputMode="decimal"
                       required
                     />
@@ -165,7 +168,7 @@ export function ProductsTable({
                     <input
                       name="wholesalePrice"
                       defaultValue={row.original.wholesalePrice ?? ""}
-                      className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
+                      className="w-[80%] rounded-md border border-neutral-300 px-3 py-2 font-normal"
                       inputMode="decimal"
                     />
                   </label>
@@ -182,6 +185,7 @@ export function ProductsTable({
                       required
                     />
                   </label>
+
                   <label className="flex items-center gap-2 pb-2 text-sm font-medium text-neutral-700">
                     <input
                       name="isActive"
@@ -192,7 +196,7 @@ export function ProductsTable({
                     Active
                   </label>
                 </div>
-                <button className="rounded-md bg-neutral-950 px-3 py-2 text-sm font-semibold text-white hover:bg-neutral-800">
+                <button className="rounded-md bg-neutral-950 px-3 py-2 text-sm font-semibold text-white hover:bg-neutral-700 cursor-pointer">
                   Save product
                 </button>
               </form>
@@ -207,7 +211,7 @@ export function ProductsTable({
             }}
           >
             <input type="hidden" name="id" value={row.original.id} />
-            <button className="rounded-md border border-red-200 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50">
+            <button className="rounded-md border border-red-200 px-3 py-1.5 text-sm font-medium text-red-700 hover:bg-red-50 cursor-pointer">
               {row.original.isActive ? "Hide" : "Hidden"}
             </button>
           </form>
@@ -315,14 +319,14 @@ export function ProductsTable({
         </span>
         <div className="flex items-center gap-2">
           <button
-            className="rounded-md border border-neutral-300 px-3 py-1.5 font-medium disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-md border border-neutral-300 px-3 py-1.5 font-medium disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
             disabled={page <= 1}
             onClick={() => setParam({ page: page - 1 })}
           >
             Previous
           </button>
           <button
-            className="rounded-md border border-neutral-300 px-3 py-1.5 font-medium disabled:cursor-not-allowed disabled:opacity-40"
+            className="rounded-md border border-neutral-300 px-3 py-1.5 font-medium disabled:cursor-not-allowed disabled:opacity-40 cursor-pointer"
             disabled={page >= pageCount}
             onClick={() => setParam({ page: page + 1 })}
           >
