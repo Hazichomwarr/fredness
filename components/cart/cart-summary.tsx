@@ -2,6 +2,7 @@
 "use client";
 
 import Link from "next/link";
+import { CheckoutButton } from "@/components/checkout/checkout-button";
 import { useCartStore } from "@/src/stores/cart-store";
 
 function money(value: number) {
@@ -110,9 +111,9 @@ export function CartSummary() {
             </dd>
           </div>
         </dl>
-        <button className="mt-5 w-full rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white hover:bg-green-800">
-          Continue to Checkout
-        </button>
+        <div className="mt-5">
+          <CheckoutButton />
+        </div>
         <button
           className="mt-3 w-full rounded-lg border border-gray-300 px-5 py-3 text-sm font-semibold text-gray-700 hover:bg-gray-50"
           onClick={clearCart}
