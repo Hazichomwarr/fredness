@@ -19,6 +19,8 @@ export default function BundleCard({ bundle }: { bundle: Bundle }) {
         <Image
           src={bundle.image}
           alt={bundle.name}
+          width={200}
+          height={50}
           className="h-48 w-full object-cover group-hover:scale-105 transition duration-300"
         />
 

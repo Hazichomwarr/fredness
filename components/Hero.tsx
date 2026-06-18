@@ -60,21 +60,29 @@ export default function Hero() {
           <Image
             src="/images/fredness-rice.jpeg"
             alt="Rice"
+            width={200}
+            height={50}
             className="rounded-xl object-cover h-40 w-full"
           />
           <Image
             src="/images/fredness-yam.jpg"
             alt="Yam"
+            width={200}
+            height={50}
             className="rounded-xl object-cover h-40 w-full"
           />
           <Image
             src="/images/fredness-fish.jpeg"
             alt="Fish"
+            width={200}
+            height={50}
             className="rounded-xl object-cover h-40 w-full"
           />
           <Image
             src="/images/fredness-malt.jpeg"
             alt="Malt"
+            width={200}
+            height={50}
             className="rounded-xl object-cover h-40 w-full"
           />
         </div>

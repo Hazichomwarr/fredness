@@ -18,6 +18,8 @@ export default function ProductCard({ product }: { product: Product }) {
         <Image
           src={product.image}
           alt={product.name}
+          width={200}
+          height={50}
           className="h-44 w-full object-cover group-hover:scale-105 transition duration-300"
         />
       </div>
