@@ -1,6 +1,7 @@
 // app/products/page.tsx
 import Link from "next/link";
 import { Prisma } from "@/app/generated/prisma";
+import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { prisma } from "@/src/lib/prisma";
 
 type ProductsPageProps = {
@@ -259,9 +260,18 @@ export default async function ProductsPage({
                         </span>
                       </div>
 
-                      <button className="rounded-lg bg-green-700 px-4 py-2 text-sm font-semibold text-white transition hover:bg-green-800">
-                        Add to Cart
-                      </button>
+                      <AddToCartButton
+                        item={{
+                          productId: product.id,
+                          slug: product.slug,
+                          name: product.name,
+                          imageUrl: image,
+                          price: Number(product.retailPrice),
+                          inventory: product.inventory,
+                          trackInventory: product.trackInventory,
+                        }}
+                        disabled={product.trackInventory && product.inventory <= 0}
+                      />
                     </div>
                   </article>
                 );

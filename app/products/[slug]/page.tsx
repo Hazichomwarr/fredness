@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Prisma } from "@/app/generated/prisma";
+import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { prisma } from "@/src/lib/prisma";
 
 type ProductDetailsPageProps = {
@@ -226,12 +227,19 @@ export default async function ProductDetailsPage({
           )}
 
           <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            <button
-              className="rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-50"
+            <AddToCartButton
+              item={{
+                productId: product.id,
+                slug: product.slug,
+                name: product.name,
+                imageUrl: primaryImage.url,
+                price: Number(product.retailPrice),
+                inventory: product.inventory,
+                trackInventory: product.trackInventory,
+              }}
+              className="rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
               disabled={isOutOfStock}
-            >
-              Add to Cart
-            </button>
+            />
             <Link
               href={`/quote?product=${product.slug}`}
               className="rounded-lg border border-green-700 px-5 py-3 text-center text-sm font-semibold text-green-800 transition hover:bg-green-50"

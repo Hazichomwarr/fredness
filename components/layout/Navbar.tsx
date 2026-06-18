@@ -1,6 +1,7 @@
 // components/Navbar.tsx
 
 import Link from "next/link";
+import { CartLink } from "@/components/cart/cart-link";
 
 export default function Navbar() {
   return (
@@ -38,8 +39,7 @@ export default function Navbar() {
             />
           </form>
 
-          {/* CART */}
-          <button className="text-xl">🛒</button>
+          <CartLink />
 
           {/* WHOLESALE CTA */}
           <button className="hidden md:block bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-800 transition">
