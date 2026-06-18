@@ -208,20 +208,24 @@ export default async function ProductsPage({
                     key={product.id}
                     className="group overflow-hidden rounded-xl bg-white shadow-sm transition hover:shadow-md"
                   >
-                    <div
-                      className="h-52 bg-gray-100 bg-cover bg-center transition duration-300 group-hover:scale-[1.02]"
-                      style={{ backgroundImage: `url("${image}")` }}
-                      role="img"
-                      aria-label={product.images[0]?.altText ?? product.name}
-                    />
+                    <Link href={`/products/${product.slug}`} aria-label={product.name}>
+                      <div
+                        className="h-52 bg-gray-100 bg-cover bg-center transition duration-300 group-hover:scale-[1.02]"
+                        style={{ backgroundImage: `url("${image}")` }}
+                        role="img"
+                        aria-label={product.images[0]?.altText ?? product.name}
+                      />
+                    </Link>
                     <div className="grid gap-3 p-4">
                       <div>
                         <p className="text-xs font-semibold uppercase tracking-wide text-green-700">
                           {product.category.name}
                         </p>
-                        <h3 className="mt-1 text-lg font-semibold text-gray-900">
-                          {product.name}
-                        </h3>
+                        <Link href={`/products/${product.slug}`}>
+                          <h3 className="mt-1 text-lg font-semibold text-gray-900 hover:text-green-800">
+                            {product.name}
+                          </h3>
+                        </Link>
                         {product.brand || product.weight ? (
                           <p className="mt-1 text-sm text-gray-500">
                             {[product.brand, product.weight]
