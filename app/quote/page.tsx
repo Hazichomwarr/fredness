@@ -1,6 +1,6 @@
 // app/quote/page.tsx
 import Link from "next/link";
-import { Prisma } from "@/app/generated/prisma";
+import { Prisma } from "@prisma/client";
 import {
   QuoteRequestForm,
   QuoteRequestProduct,
