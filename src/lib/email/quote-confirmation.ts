@@ -18,6 +18,7 @@ type QuoteConfirmationEmail = {
 type QuoteOwnerNotificationEmail = Omit<QuoteConfirmationEmail, "to"> & {
   email: string;
   phone: string | null;
+  message: string | null;
 };
 
 function escapeHtml(value: string) {
@@ -86,6 +87,7 @@ function ownerSummaryText(payload: QuoteOwnerNotificationEmail) {
     `Email: ${payload.email}`,
     `Phone: ${payload.phone ?? "Not provided"}`,
     `Business: ${payload.businessName}`,
+    `Message: ${payload.message ?? "No message provided"}`,
     "",
     "Requested products:",
     ...lines,
@@ -112,6 +114,9 @@ function ownerSummaryHtml(payload: QuoteOwnerNotificationEmail) {
       <p><strong>Email:</strong> ${escapeHtml(payload.email)}</p>
       <p><strong>Phone:</strong> ${escapeHtml(payload.phone ?? "Not provided")}</p>
       <p><strong>Business:</strong> ${escapeHtml(payload.businessName)}</p>
+      <p><strong>Message:</strong> ${escapeHtml(
+        payload.message ?? "No message provided",
+      )}</p>
       <p><strong>Requested products:</strong></p>
       <ul>${items}</ul>
     </div>

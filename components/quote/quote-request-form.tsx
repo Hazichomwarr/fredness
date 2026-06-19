@@ -189,7 +189,7 @@ export function QuoteRequestForm({
                   <input
                     {...register(`items.${index}.selected`)}
                     type="checkbox"
-                    className="mt-1 size-4 rounded border-gray-300 text-green-700"
+                    className="mt-1 size-5 rounded border-gray-300 text-green-700"
                   />
                   <span>
                     <span className="block font-semibold text-gray-950">

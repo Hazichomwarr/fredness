@@ -42,9 +42,12 @@ export default function Navbar() {
           <CartLink />
 
           {/* WHOLESALE CTA */}
-          <button className="hidden md:block bg-green-700 text-white px-4 py-2 rounded-lg text-sm font-medium hover:bg-green-800 transition">
+          <Link
+            href="/quote"
+            className="hidden md:block rounded-lg bg-green-700 px-4 py-2 text-sm font-medium text-white transition hover:bg-green-800"
+          >
             Bulk Orders
-          </button>
+          </Link>
         </div>
       </div>
     </header>
