@@ -23,7 +23,7 @@ export default function AboutPage() {
     <main className="bg-white text-gray-950">
       <section className="bg-gray-50 px-6 py-12 md:py-16">
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="relative aspect-[4/3] overflow-hidden rounded-lg bg-gray-200 shadow-sm">
+          <div className="relative aspect-4/3 overflow-hidden rounded-lg bg-gray-200 shadow-sm">
             <Image
               src="/images/fredness-rice.jpeg"
               alt="Frednes International Market grocery selection"
@@ -190,10 +190,16 @@ export default function AboutPage() {
             <div className="rounded-lg border border-gray-200 bg-white p-6">
               <h3 className="font-semibold">Phone</h3>
               <div className="mt-2 space-y-2 text-gray-700">
-                <a className="block hover:text-green-700" href="tel:+19736724566">
+                <a
+                  className="block hover:text-green-700"
+                  href="tel:+19736724566"
+                >
                   (973) 672-4566
                 </a>
-                <a className="block hover:text-green-700" href="tel:+18625203114">
+                <a
+                  className="block hover:text-green-700"
+                  href="tel:+18625203114"
+                >
                   (862) 520-3114
                 </a>
               </div>
