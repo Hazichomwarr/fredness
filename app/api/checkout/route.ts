@@ -1,7 +1,7 @@
 // app/api/checkout/route.ts
 import { NextResponse } from "next/server";
 import { z } from "zod";
-import { Prisma } from "@/app/generated/prisma";
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/src/lib/prisma";
 import { getStripe } from "@/src/lib/stripe/server";
 

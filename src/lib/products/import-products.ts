@@ -8,8 +8,8 @@ import {
   ProductImportSummary,
   productImportRowSchema,
 } from "@/src/lib/products/import-schema";
-import type { Category } from "@/app/generated/prisma";
-import { Prisma } from "@/app/generated/prisma";
+import type { Category } from "@prisma/client";
+import { Prisma } from "@prisma/client";
 
 type ParsedProductRow = {
   rowNumber: number;

@@ -5,7 +5,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { prisma } from "@/src/lib/prisma";
-import { Prisma } from "@/app/generated/prisma";
+import { Prisma } from "@prisma/client";
 import { productFormSchema } from "@/src/lib/products/product-form-schema";
 
 const productUpdateSchema = z.object({
