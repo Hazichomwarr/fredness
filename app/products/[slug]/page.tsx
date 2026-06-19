@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Prisma } from "@/app/generated/prisma";
+import { Prisma } from "@prisma/client";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { prisma } from "@/src/lib/prisma";
 

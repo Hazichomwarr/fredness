@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Prisma } from "@/app/generated/prisma";
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/src/lib/prisma";
 
 const storeTimeZone = "America/New_York";

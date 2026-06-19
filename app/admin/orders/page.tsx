@@ -1,5 +1,5 @@
 // app/admin/orders/page.tsx
-import { OrderStatus, Prisma } from "@/app/generated/prisma";
+import { OrderStatus, Prisma } from "@prisma/client";
 import { updateOrderStatusAction } from "@/app/admin/orders/actions";
 import { prisma } from "@/src/lib/prisma";
 

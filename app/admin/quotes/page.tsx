@@ -1,5 +1,5 @@
 // app/admin/quotes/page.tsx
-import { Prisma, QuoteStatus } from "@/app/generated/prisma";
+import { Prisma, QuoteStatus } from "@prisma/client";
 import { updateQuoteStatusAction } from "@/app/admin/quotes/actions";
 import { prisma } from "@/src/lib/prisma";
 

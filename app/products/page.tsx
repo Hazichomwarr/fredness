@@ -1,6 +1,6 @@
 // app/products/page.tsx
 import Link from "next/link";
-import { Prisma } from "@/app/generated/prisma";
+import { Prisma } from "@prisma/client";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
 import { prisma } from "@/src/lib/prisma";
 
@@ -209,7 +209,10 @@ export default async function ProductsPage({
                     key={product.id}
                     className="group overflow-hidden rounded-xl bg-white shadow-sm transition hover:shadow-md"
                   >
-                    <Link href={`/products/${product.slug}`} aria-label={product.name}>
+                    <Link
+                      href={`/products/${product.slug}`}
+                      aria-label={product.name}
+                    >
                       <div
                         className="h-52 bg-gray-100 bg-cover bg-center transition duration-300 group-hover:scale-[1.02]"
                         style={{ backgroundImage: `url("${image}")` }}
@@ -270,7 +273,9 @@ export default async function ProductsPage({
                           inventory: product.inventory,
                           trackInventory: product.trackInventory,
                         }}
-                        disabled={product.trackInventory && product.inventory <= 0}
+                        disabled={
+                          product.trackInventory && product.inventory <= 0
+                        }
                       />
                     </div>
                   </article>

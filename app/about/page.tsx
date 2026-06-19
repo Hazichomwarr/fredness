@@ -66,7 +66,7 @@ export default function AboutPage() {
 
       <section className="px-6 py-14">
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
-          <div className="relative aspect-[5/4] overflow-hidden rounded-lg bg-gray-200">
+          <div className="relative aspect-5/4 overflow-hidden rounded-lg bg-gray-200">
             <Image
               src="/images/fredness-yam.jpg"
               alt="Fresh grocery products available at Frednes International Market"
@@ -105,7 +105,7 @@ export default function AboutPage() {
 
       <section className="bg-green-950 px-6 py-14 text-white">
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
-          <div className="relative aspect-[4/5] overflow-hidden rounded-lg bg-green-900">
+          <div className="relative aspect-4/5 overflow-hidden rounded-lg bg-green-900">
             <Image
               src="/images/fredness-malt2.jpg"
               alt="Frednes International Market products"
