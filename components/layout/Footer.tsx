@@ -23,22 +23,34 @@ export default function Footer() {
             <h4 className="font-semibold text-white">Quick Links</h4>
             <ul className="mt-4 space-y-2 text-sm">
               <li>
-                <Link href="/products" className="hover:text-white">
+                <Link
+                  href="/products"
+                  className="inline-flex min-h-10 items-center hover:text-white"
+                >
                   Shop
                 </Link>
               </li>
               <li>
-                <Link href="/products" className="hover:text-white">
+                <Link
+                  href="/products"
+                  className="inline-flex min-h-10 items-center hover:text-white"
+                >
                   Categories
                 </Link>
               </li>
               <li>
-                <Link href="/quote" className="hover:text-white">
+                <Link
+                  href="/quote"
+                  className="inline-flex min-h-10 items-center hover:text-white"
+                >
                   Wholesale quote
                 </Link>
               </li>
               <li>
-                <Link href="/contact" className="hover:text-white">
+                <Link
+                  href="/contact"
+                  className="inline-flex min-h-10 items-center hover:text-white"
+                >
                   Contact
                 </Link>
               </li>
@@ -58,7 +70,7 @@ export default function Footer() {
               href="https://www.google.com/maps/search/?api=1&query=Frednes+International+Market+Orange+NJ"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-block mt-4 text-sm underline hover:text-white"
+              className="mt-4 inline-flex min-h-10 items-center text-sm underline hover:text-white"
             >
               View on Google Maps
             </a>
@@ -73,13 +85,22 @@ export default function Footer() {
               rights reserved.
             </p>
             <nav className="flex flex-wrap justify-center gap-4">
-              <Link href="/privacy-policy" className="hover:text-white">
+              <Link
+                href="/privacy-policy"
+                className="inline-flex min-h-10 items-center hover:text-white"
+              >
                 Privacy Policy
               </Link>
-              <Link href="/terms" className="hover:text-white">
+              <Link
+                href="/terms"
+                className="inline-flex min-h-10 items-center hover:text-white"
+              >
                 Terms
               </Link>
-              <Link href="/refund-policy" className="hover:text-white">
+              <Link
+                href="/refund-policy"
+                className="inline-flex min-h-10 items-center hover:text-white"
+              >
                 Refund Policy
               </Link>
             </nav>

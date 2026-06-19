@@ -250,7 +250,7 @@ export default async function AdminQuotesPage({
                             <select
                               name="status"
                               defaultValue={quote.status}
-                              className="rounded-md border border-neutral-300 px-2 py-1.5 text-xs"
+                              className="min-h-10 rounded-md border border-neutral-300 px-2 py-2 text-sm"
                             >
                               {quoteStatuses.map((item) => (
                                 <option key={item} value={item}>
@@ -258,7 +258,7 @@ export default async function AdminQuotesPage({
                                 </option>
                               ))}
                             </select>
-                            <button className="rounded-md border border-neutral-300 px-2 py-1.5 text-xs font-semibold text-neutral-800 hover:bg-neutral-50">
+                            <button className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-50">
                               Update
                             </button>
                           </form>
