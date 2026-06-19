@@ -84,9 +84,18 @@ export async function POST(request: Request) {
       );
     }
 
-    const quantity = product.trackInventory
-      ? Math.min(item.quantity, product.inventory)
-      : item.quantity;
+    if (product.trackInventory && item.quantity > product.inventory) {
+      return NextResponse.json(
+        {
+          error: `Only ${product.inventory} ${
+            product.inventory === 1 ? "unit" : "units"
+          } of ${product.name} available`,
+        },
+        { status: 400 },
+      );
+    }
+
+    const quantity = item.quantity;
     const lineTotal = Number(product.retailPrice) * quantity;
 
     orderItems.push({

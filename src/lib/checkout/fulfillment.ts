@@ -51,7 +51,7 @@ async function markPaidForInventoryReview(
       return null;
     }
 
-    if (order.status === "PAID") {
+    if (order.status !== "PENDING") {
       return order;
     }
 
@@ -120,16 +120,14 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
         return null;
       }
 
-      if (order.status === "PAID") {
+      if (order.status !== "PENDING") {
         return order;
       }
 
       const claimedOrder = await tx.order.updateMany({
         where: {
           id: order.id,
-          status: {
-            not: "PAID",
-          },
+          status: "PENDING",
         },
         data: {
           status: "PROCESSING",
