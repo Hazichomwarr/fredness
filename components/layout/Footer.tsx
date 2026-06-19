@@ -54,6 +54,14 @@ export default function Footer() {
                   Contact
                 </Link>
               </li>
+              <li>
+                <Link
+                  href="/admin"
+                  className="inline-flex min-h-10 items-center hover:text-white"
+                >
+                  Admin
+                </Link>
+              </li>
             </ul>
           </div>
 
