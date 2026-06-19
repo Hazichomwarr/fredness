@@ -17,9 +17,7 @@ export default function Navbar() {
           <Link href="/products" className="hover:text-green-700">
             Shop
           </Link>
-          <Link href="/products" className="hover:text-green-700">
-            Categories
-          </Link>
+
           <Link href="#" className="hover:text-green-700">
             Best Sellers
           </Link>
