@@ -121,6 +121,7 @@ export async function createQuoteAction(formData: FormData) {
     email: quote.email,
     phone: quote.phone,
     businessName: quote.businessName,
+    message: quote.message,
     items: quote.items.map((item) => ({
       productName: item.productName,
       sku: item.sku,

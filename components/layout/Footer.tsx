@@ -1,5 +1,7 @@
 // components/Footer.tsx
 
+import Link from "next/link";
+
 export default function Footer() {
   return (
     <footer className="bg-green-900 text-green-100">
@@ -20,10 +22,26 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white">Quick Links</h4>
             <ul className="mt-4 space-y-2 text-sm">
-              <li className="hover:text-white cursor-pointer">Shop</li>
-              <li className="hover:text-white cursor-pointer">Categories</li>
-              <li className="hover:text-white cursor-pointer">Best Sellers</li>
-              <li className="hover:text-white cursor-pointer">Bundles</li>
+              <li>
+                <Link href="/products" className="hover:text-white">
+                  Shop
+                </Link>
+              </li>
+              <li>
+                <Link href="/products" className="hover:text-white">
+                  Categories
+                </Link>
+              </li>
+              <li>
+                <Link href="/quote" className="hover:text-white">
+                  Wholesale quote
+                </Link>
+              </li>
+              <li>
+                <Link href="/contact" className="hover:text-white">
+                  Contact
+                </Link>
+              </li>
             </ul>
           </div>
 
@@ -48,9 +66,24 @@ export default function Footer() {
         </div>
 
         {/* BOTTOM */}
-        <div className="border-t border-green-800 mt-10 pt-6 text-center text-sm text-green-300">
-          © {new Date().getFullYear()} Fredness International Market. All rights
-          reserved.
+        <div className="border-t border-green-800 mt-10 pt-6 text-sm text-green-300">
+          <div className="flex flex-col items-center justify-between gap-4 md:flex-row">
+            <p>
+              © {new Date().getFullYear()} Fredness International Market. All
+              rights reserved.
+            </p>
+            <nav className="flex flex-wrap justify-center gap-4">
+              <Link href="/privacy-policy" className="hover:text-white">
+                Privacy Policy
+              </Link>
+              <Link href="/terms" className="hover:text-white">
+                Terms
+              </Link>
+              <Link href="/refund-policy" className="hover:text-white">
+                Refund Policy
+              </Link>
+            </nav>
+          </div>
         </div>
       </div>
     </footer>
