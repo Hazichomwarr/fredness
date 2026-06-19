@@ -1,6 +1,7 @@
 // app/admin/quotes/page.tsx
 import { Prisma, QuoteStatus } from "@prisma/client";
 import { updateQuoteStatusAction } from "@/app/admin/quotes/actions";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 type QuotesPageProps = {
@@ -67,6 +68,8 @@ export const dynamic = "force-dynamic";
 export default async function AdminQuotesPage({
   searchParams,
 }: QuotesPageProps) {
+  await requireAdmin();
+
   const params = (await searchParams) ?? {};
   const query = firstParam(params.q)?.trim() ?? "";
   const statusParam = firstParam(params.status)?.trim() ?? "";

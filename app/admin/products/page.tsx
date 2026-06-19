@@ -5,6 +5,7 @@ import {
   ProductsTable,
   AdminProductRow,
 } from "@/components/admin/products-table";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 type ProductsPageProps = {
@@ -51,6 +52,8 @@ function toProductRow(product: {
 export default async function ProductsPage({
   searchParams,
 }: ProductsPageProps) {
+  await requireAdmin();
+
   const params = (await searchParams) ?? {};
   const query = firstParam(params.q)?.trim() ?? "";
   const page = Math.max(Number(firstParam(params.page) ?? "1") || 1, 1);

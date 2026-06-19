@@ -1,5 +1,7 @@
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
+import { SignOutButton } from "@/components/admin/sign-out-button";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 const storeTimeZone = "America/New_York";
@@ -62,6 +64,8 @@ function storeLocalTimeToUtc(year: number, month: number, day: number) {
 export const dynamic = "force-dynamic";
 
 export default async function AdminDashboardPage() {
+  await requireAdmin();
+
   const todayParts = storeDateParts(new Date());
   const today = storeLocalTimeToUtc(
     todayParts.year,
@@ -150,15 +154,20 @@ export default async function AdminDashboardPage() {
   return (
     <main className="min-h-screen bg-neutral-50 px-4 py-10 text-neutral-950 sm:px-6 lg:px-8">
       <div className="mx-auto grid max-w-7xl gap-6">
-        <div>
-          <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
-            Admin
-          </p>
-          <h1 className="mt-2 text-3xl font-bold tracking-tight">Dashboard</h1>
-          <p className="mt-2 text-sm text-neutral-600">
-            Quick numbers for orders, wholesale leads, catalog health, and
-            monthly retail revenue.
-          </p>
+        <div className="flex flex-wrap items-start justify-between gap-4">
+          <div>
+            <p className="text-sm font-semibold uppercase tracking-wide text-emerald-700">
+              Admin
+            </p>
+            <h1 className="mt-2 text-3xl font-bold tracking-tight">
+              Dashboard
+            </h1>
+            <p className="mt-2 text-sm text-neutral-600">
+              Quick numbers for orders, wholesale leads, catalog health, and
+              monthly retail revenue.
+            </p>
+          </div>
+          <SignOutButton />
         </div>
 
         <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">

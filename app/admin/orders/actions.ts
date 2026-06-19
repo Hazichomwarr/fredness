@@ -3,6 +3,7 @@
 
 import { revalidatePath } from "next/cache";
 import { z } from "zod";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 const orderStatusSchema = z.enum([
@@ -14,6 +15,8 @@ const orderStatusSchema = z.enum([
 ]);
 
 export async function updateOrderStatusAction(formData: FormData) {
+  await requireAdmin();
+
   const parsed = z
     .object({
       id: z.string().min(1),

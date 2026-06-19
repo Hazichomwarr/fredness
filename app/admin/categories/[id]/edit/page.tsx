@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { updateCategoryAction } from "@/app/admin/categories/actions";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 type EditCategoryPageProps = {
@@ -10,6 +11,8 @@ type EditCategoryPageProps = {
 };
 
 export default async function EditCategoryPage({ params }: EditCategoryPageProps) {
+  await requireAdmin();
+
   const { id } = await params;
   const category = await prisma.category.findUnique({
     where: { id },

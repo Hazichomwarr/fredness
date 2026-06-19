@@ -6,6 +6,7 @@ import { redirect } from "next/navigation";
 import { z } from "zod";
 import { prisma } from "@/src/lib/prisma";
 import { Prisma } from "@prisma/client";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { productFormSchema } from "@/src/lib/products/product-form-schema";
 
 const productUpdateSchema = z.object({
@@ -70,6 +71,8 @@ function parseProductForm(formData: FormData) {
 }
 
 export async function createProductAction(formData: FormData) {
+  await requireAdmin();
+
   const parsed = parseProductForm(formData);
 
   await prisma.product.create({
@@ -104,6 +107,8 @@ export async function createProductAction(formData: FormData) {
 }
 
 export async function updateProductAction(formData: FormData) {
+  await requireAdmin();
+
   const parsed = productUpdateSchema.parse({
     id: formData.get("id"),
     name: formData.get("name"),
@@ -132,6 +137,8 @@ export async function updateProductAction(formData: FormData) {
 }
 
 export async function hideProductAction(formData: FormData) {
+  await requireAdmin();
+
   const id = z.string().min(1).parse(formData.get("id"));
 
   await prisma.product.update({

@@ -4,11 +4,14 @@ import {
   deleteCategoryAction,
 } from "@/app/admin/categories/actions";
 import { CategoryDeleteButton } from "@/components/admin/category-delete-button";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
 export default async function CategoriesPage() {
+  await requireAdmin();
+
   const categories = await prisma.category.findMany({
     orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
     include: {

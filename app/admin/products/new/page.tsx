@@ -1,11 +1,14 @@
 // app/admin/products/new/page.tsx
 import Link from "next/link";
 import { ProductForm } from "@/components/admin/product-form";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 export const dynamic = "force-dynamic";
 
 export default async function NewProductPage() {
+  await requireAdmin();
+
   const categories = await prisma.category.findMany({
     orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
     select: {

@@ -3,6 +3,7 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 const optionalText = z
@@ -47,6 +48,8 @@ function parseCategoryForm(formData: FormData) {
 }
 
 export async function createCategoryAction(formData: FormData) {
+  await requireAdmin();
+
   const parsed = parseCategoryForm(formData);
 
   await prisma.category.create({
@@ -57,6 +60,8 @@ export async function createCategoryAction(formData: FormData) {
 }
 
 export async function updateCategoryAction(formData: FormData) {
+  await requireAdmin();
+
   const id = z.string().min(1).parse(formData.get("id"));
   const parsed = parseCategoryForm(formData);
 
@@ -71,6 +76,8 @@ export async function updateCategoryAction(formData: FormData) {
 }
 
 export async function deleteCategoryAction(formData: FormData) {
+  await requireAdmin();
+
   const id = z.string().min(1).parse(formData.get("id"));
 
   const productCount = await prisma.product.count({

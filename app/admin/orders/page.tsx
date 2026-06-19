@@ -1,6 +1,7 @@
 // app/admin/orders/page.tsx
 import { OrderStatus, Prisma } from "@prisma/client";
 import { updateOrderStatusAction } from "@/app/admin/orders/actions";
+import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
 
 type OrdersPageProps = {
@@ -78,6 +79,8 @@ export const dynamic = "force-dynamic";
 export default async function AdminOrdersPage({
   searchParams,
 }: OrdersPageProps) {
+  await requireAdmin();
+
   const params = (await searchParams) ?? {};
   const query = firstParam(params.q)?.trim() ?? "";
   const statusParam = firstParam(params.status)?.trim() ?? "";
