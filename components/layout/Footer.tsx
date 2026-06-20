@@ -32,14 +32,6 @@ export default function Footer() {
               </li>
               <li>
                 <Link
-                  href="/products"
-                  className="inline-flex min-h-10 items-center hover:text-white"
-                >
-                  Categories
-                </Link>
-              </li>
-              <li>
-                <Link
                   href="/quote"
                   className="inline-flex min-h-10 items-center hover:text-white"
                 >
