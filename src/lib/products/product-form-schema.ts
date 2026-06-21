@@ -26,6 +26,15 @@ const optionalInteger = z
   .transform((value) => (value ? Number(value) : null))
   .pipe(z.number().int().min(0).nullable());
 
+const publicImagePath = z
+  .string()
+  .regex(/^\/(?!\/)\S+$/, "Enter a full URL or a public path like /products/product.jpeg");
+
+const imageUrlOrPublicPath = z.union([
+  z.string().url("Enter a full URL or a public path like /products/product.jpeg"),
+  publicImagePath,
+]);
+
 const imageUrls = z
   .string()
   .trim()
@@ -38,7 +47,7 @@ const imageUrls = z
           .filter(Boolean)
       : [],
   )
-  .pipe(z.array(z.string().url("Enter valid image URLs")));
+  .pipe(z.array(imageUrlOrPublicPath));
 
 export const productFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),

@@ -66,7 +66,6 @@ export function ProductForm({ categories }: ProductFormProps) {
       ref={formRef}
       action={createProductAction}
       onSubmit={handleSubmit}
-      encType="multipart/form-data"
       className="grid gap-5 rounded-lg border border-neutral-200 bg-white p-4"
     >
       <div className="grid gap-4 md:grid-cols-2">
@@ -197,12 +196,12 @@ export function ProductForm({ categories }: ProductFormProps) {
         </label>
 
         <label className="grid gap-1 text-sm font-medium text-neutral-700 md:col-span-2">
-          Image URLs
+          Image URLs or public paths
           <textarea
             {...register("imageUrls")}
             rows={3}
             className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
-            placeholder="https://example.com/product-front.jpg&#10;https://example.com/product-back.jpg"
+            placeholder="https://example.com/product-front.jpg&#10;/products/product.jpeg"
           />
           {errors.imageUrls ? (
             <span className="text-xs text-red-600">
