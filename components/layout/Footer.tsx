@@ -62,8 +62,8 @@ export default function Footer() {
             <h4 className="font-semibold text-white">Contact</h4>
             <ul className="mt-4 space-y-2 text-sm">
               <li>📍 51 Park St, Orange, NJ</li>
-              <li>📞 (973) 672-4566</li>
-              <li>📞 (862) 520-3114</li>
+              <li>📞 (862) 224-1499</li>
+              <li>📞 (862) 224-1628</li>
             </ul>
 
             <a
