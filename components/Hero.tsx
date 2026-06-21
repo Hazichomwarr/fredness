@@ -118,7 +118,7 @@ export default function Hero() {
             Shop authentic African and Caribbean foods including rice, yam,
             spices, beverages, frozen products, and wholesale essentials.
             Serving families, restaurants, convenience stores, and resellers
-            throughout New Jersey.
+            throughout New Jersey, and out-of-state.
           </p>
           {/* CTA */}
           <div className="mt-8 flex flex-wrap gap-4">

@@ -101,7 +101,11 @@ export default async function AdminDashboardPage() {
       },
     }),
     prisma.quote.count(),
-    prisma.product.count(),
+    prisma.product.count({
+      where: {
+        isActive: true,
+      },
+    }),
     prisma.category.count(),
     prisma.order.aggregate({
       where: {

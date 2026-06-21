@@ -13,7 +13,7 @@ export async function requireAdmin() {
   const session = await getAdminSession();
 
   if (!session) {
-    redirect("/admin/login");
+    redirect("/admin/login?callbackUrl=%2Fadmin");
   }
 
   return session;

@@ -38,11 +38,18 @@ export default async function AdminLoginPage({ searchParams }: LoginPageProps) {
   async function loginAction(formData: FormData) {
     "use server";
 
+    const redirectTo = adminCallbackUrl(String(formData.get("redirectTo") ?? ""));
+
     try {
       await signIn("credentials", formData);
     } catch (error) {
       if (error instanceof AuthError) {
-        redirect("/admin/login?error=credentials");
+        const params = new URLSearchParams({
+          error: "credentials",
+          callbackUrl: redirectTo,
+        });
+
+        redirect(`/admin/login?${params.toString()}`);
       }
 
       throw error;
