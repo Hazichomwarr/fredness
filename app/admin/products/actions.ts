@@ -100,7 +100,7 @@ function parseProductForm(formData: FormData) {
     categoryId: formData.get("categoryId"),
     description: formData.get("description"),
     brand: formData.get("brand"),
-    weight: formData.get("weight"),
+    weight: "",
     retailPrice: formData.get("retailPrice"),
     wholesalePrice: formData.get("wholesalePrice"),
     minimumWholesaleQty: formData.get("minimumWholesaleQty"),

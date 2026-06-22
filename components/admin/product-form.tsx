@@ -51,7 +51,6 @@ export function ProductForm({ categories }: ProductFormProps) {
       categoryId: "",
       description: "",
       brand: "",
-      weight: "",
       retailPrice: "",
       wholesalePrice: "",
       minimumWholesaleQty: "",
@@ -167,15 +166,6 @@ export function ProductForm({ categories }: ProductFormProps) {
           <input
             {...register("brand")}
             className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
-          />
-        </label>
-
-        <label className="grid gap-1 text-sm font-medium text-neutral-700">
-          Weight
-          <input
-            {...register("weight")}
-            className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
-            placeholder="25 lb, 500 g, 12 pack"
           />
         </label>
 
@@ -300,9 +290,9 @@ export function ProductForm({ categories }: ProductFormProps) {
             {fields.map((field, index) => (
               <div
                 key={field.id}
-                className="grid gap-3 rounded-lg border border-neutral-200 bg-neutral-50 p-3 md:grid-cols-6"
+                className="grid gap-3 rounded-lg border border-neutral-200 bg-neutral-50 p-4 sm:grid-cols-2 xl:grid-cols-4"
               >
-                <label className="grid gap-1 text-sm font-medium text-neutral-700 md:col-span-2">
+                <label className="grid gap-1 text-sm font-medium text-neutral-700">
                   Pack / Size
                   <input
                     {...register(`variants.${index}.label`)}

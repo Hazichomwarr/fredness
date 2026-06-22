@@ -246,14 +246,14 @@ export function ProductsTable({
                     (variant, index) => (
                       <div
                         key={variant?.id ?? `new-${index}`}
-                        className="grid gap-2 rounded-md border border-neutral-200 bg-neutral-50 p-2 md:grid-cols-6"
+                        className="grid gap-3 rounded-md border border-neutral-200 bg-neutral-50 p-3 sm:grid-cols-2 xl:grid-cols-4"
                       >
                         <input
                           type="hidden"
                           name={`variants.${index}.id`}
                           value={variant?.id ?? ""}
                         />
-                        <label className="grid gap-1 text-xs font-medium text-neutral-700 md:col-span-2">
+                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
                           Pack / Size
                           <input
                             name={`variants.${index}.label`}

@@ -197,9 +197,11 @@ export default async function ProductDetailsPage({
             {product.name}
           </h1>
 
-          {product.brand || product.weight ? (
+          {product.brand || (!product.variants.length && product.weight) ? (
             <p className="mt-3 text-gray-600">
-              {[product.brand, product.weight].filter(Boolean).join(" · ")}
+              {[product.brand, product.variants.length ? null : product.weight]
+                .filter(Boolean)
+                .join(" · ")}
             </p>
           ) : null}
 
