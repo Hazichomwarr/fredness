@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { updateCategoryAction } from "@/app/admin/categories/actions";
 import { requireAdmin } from "@/src/lib/auth/admin";
+import { FALLBACK_IMAGE_URL } from "@/src/lib/images";
 import { prisma } from "@/src/lib/prisma";
 
 type EditCategoryPageProps = {
@@ -74,7 +75,7 @@ export default async function EditCategoryPage({ params }: EditCategoryPageProps
             Image URL
             <input
               name="imageUrl"
-              defaultValue={category.imageUrl ?? ""}
+              defaultValue={category.imageUrl ?? FALLBACK_IMAGE_URL}
               className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
             />
           </label>

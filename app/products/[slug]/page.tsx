@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Prisma } from "@prisma/client";
 import { ProductPurchaseOptions } from "@/components/products/product-purchase-options";
+import { FALLBACK_IMAGE_URL } from "@/src/lib/images";
 import { prisma } from "@/src/lib/prisma";
 
 type ProductDetailsPageProps = {
@@ -11,7 +12,7 @@ type ProductDetailsPageProps = {
   }>;
 };
 
-const fallbackImage = "/images/fredness-rice.jpeg";
+const fallbackImage = FALLBACK_IMAGE_URL;
 
 function money(value: Prisma.Decimal) {
   return new Intl.NumberFormat("en-US", {

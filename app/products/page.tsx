@@ -2,6 +2,7 @@
 import Link from "next/link";
 import { Prisma } from "@prisma/client";
 import { AddToCartButton } from "@/components/cart/add-to-cart-button";
+import { FALLBACK_IMAGE_URL } from "@/src/lib/images";
 import { prisma } from "@/src/lib/prisma";
 
 type ProductsPageProps = {
@@ -9,7 +10,7 @@ type ProductsPageProps = {
 };
 
 const pageSize = 24;
-const fallbackImage = "/images/fredness-rice.jpeg";
+const fallbackImage = FALLBACK_IMAGE_URL;
 
 function firstParam(value: string | string[] | undefined) {
   return Array.isArray(value) ? value[0] : value;

@@ -4,6 +4,7 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { z } from "zod";
 import { requireAdmin } from "@/src/lib/auth/admin";
+import { FALLBACK_IMAGE_URL } from "@/src/lib/images";
 import { prisma } from "@/src/lib/prisma";
 
 const optionalText = z
@@ -43,6 +44,7 @@ function parseCategoryForm(formData: FormData) {
 
   return {
     ...parsed,
+    imageUrl: parsed.imageUrl ?? FALLBACK_IMAGE_URL,
     slug: parsed.slug ?? slugify(parsed.name),
   };
 }

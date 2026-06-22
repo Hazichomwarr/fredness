@@ -2,14 +2,22 @@
 
 import Link from "next/link";
 import { CartLink } from "@/components/cart/cart-link";
+import Image from "next/image";
 
 export default function Navbar() {
   return (
     <header className="w-full border-b sticky top-0 z-50 border-neutral-200 bg-white/80 backdrop-blur">
-      <div className="max-w-7xl mx-auto px-6 py-4 flex items-center justify-between">
+      <div className="max-w-7xl mx-auto px-6 py-2 flex items-center justify-between">
         {/* LOGO */}
         <Link href="/" className="text-xl font-bold text-green-800">
-          Frednes Market
+          <Image
+            src="/images/fred_logo.png"
+            alt="African Best"
+            width={0}
+            height={0}
+            sizes="100vw"
+            className="h-12 w-auto"
+          />
         </Link>
 
         {/* NAV LINKS */}

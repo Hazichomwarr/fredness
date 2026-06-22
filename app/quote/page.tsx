@@ -5,13 +5,14 @@ import {
   QuoteRequestForm,
   QuoteRequestProduct,
 } from "@/components/quote/quote-request-form";
+import { FALLBACK_IMAGE_URL } from "@/src/lib/images";
 import { prisma } from "@/src/lib/prisma";
 
 type QuotePageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
 };
 
-const fallbackImage = "/images/fredness-rice.jpeg";
+const fallbackImage = FALLBACK_IMAGE_URL;
 const pageSize = 80;
 
 function firstParam(value: string | string[] | undefined) {
