@@ -1,16 +1,16 @@
-import BestSellers from "@/components/BestSellers";
-import BundlesSection from "@/components/BundlesSection";
 import CategoryGrid from "@/components/CategoryGrid";
+import FeaturedProducts from "@/components/FeaturedProducts";
 import Hero from "@/components/Hero";
 import WhyUs from "@/components/WhyUs";
 
-export default function page() {
+export const dynamic = "force-dynamic";
+
+export default function Page() {
   return (
     <main>
       <Hero />
       <CategoryGrid />
-      <BestSellers />
-      <BundlesSection />
+      <FeaturedProducts />
       <WhyUs />
     </main>
   );

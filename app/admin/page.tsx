@@ -191,7 +191,7 @@ export default async function AdminDashboardPage() {
           ))}
         </section>
 
-        <section className="grid gap-3 rounded-lg border border-neutral-200 bg-white p-5 sm:grid-cols-3">
+        <section className="grid gap-3 rounded-lg border border-neutral-200 bg-white p-5 sm:grid-cols-2 lg:grid-cols-4">
           <Link
             href="/admin/orders"
             className="rounded-md border border-neutral-200 px-4 py-3 text-sm font-semibold hover:bg-neutral-50"
@@ -209,6 +209,12 @@ export default async function AdminDashboardPage() {
             className="rounded-md border border-neutral-200 px-4 py-3 text-sm font-semibold hover:bg-neutral-50"
           >
             Manage products
+          </Link>
+          <Link
+            href="/admin/categories"
+            className="rounded-md border border-neutral-200 px-4 py-3 text-sm font-semibold hover:bg-neutral-50"
+          >
+            Manage categories
           </Link>
         </section>
       </div>

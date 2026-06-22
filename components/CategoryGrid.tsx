@@ -1,35 +1,45 @@
-// _components/CategoryGrid.tsx
+import Link from "next/link";
+import { FALLBACK_IMAGE_URL } from "@/src/lib/images";
+import { prisma } from "@/src/lib/prisma";
 
-import Image from "next/image";
+export default async function CategoryGrid() {
+  const activeProductCount = await prisma.product.count({
+    where: {
+      isActive: true,
+    },
+  });
+  const categories = await prisma.category.findMany({
+    where: activeProductCount
+      ? {
+          products: {
+            some: {
+              isActive: true,
+            },
+          },
+        }
+      : undefined,
+    orderBy: [{ sortOrder: "asc" }, { name: "asc" }],
+    select: {
+      id: true,
+      name: true,
+      slug: true,
+      imageUrl: true,
+      _count: {
+        select: {
+          products: {
+            where: {
+              isActive: true,
+            },
+          },
+        },
+      },
+    },
+  });
 
-const categories = [
-  {
-    name: "Proteins",
-    image: "/images/categories/fredness-proteins.jpg",
-  },
-  {
-    name: "Grains & Rice",
-    image: "/images/categories/fredness-bulk-rice.jpg",
-  },
-  {
-    name: "Spices",
-    image: "/images/categories/fredness-spices.jpg",
-  },
-  {
-    name: "Drinks",
-    image: "/images/categories/fredness-drinks.jpg",
-  },
-  {
-    name: "Vegetables",
-    image: "/images/categories/fredness-vegetables.jpg",
-  },
-  {
-    name: "Snacks",
-    image: "/images/categories/fredness-snacks.jpg",
-  },
-];
+  if (!categories.length) {
+    return null;
+  }
 
-export default function CategoryGrid() {
   return (
     <section className="bg-gray-50 py-16">
       <div className="max-w-7xl mx-auto px-6">
@@ -42,18 +52,20 @@ export default function CategoryGrid() {
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-3 gap-6 mt-12">
-          {categories.map((category, index) => (
-            <div
-              key={index}
+          {categories.map((category) => (
+            <Link
+              key={category.id}
+              href={`/products?category=${category.slug}`}
               className="group cursor-pointer bg-white rounded-xl overflow-hidden shadow-sm hover:shadow-md transition"
             >
               <div className="overflow-hidden">
-                <Image
-                  src={category.image}
-                  alt={category.name}
-                  width={200}
-                  height={50}
-                  className="h-40 w-full object-cover group-hover:scale-105 transition duration-300 bg-linear-to-t from-black/40 to-transparent"
+                <div
+                  role="img"
+                  aria-label={category.name}
+                  style={{
+                    backgroundImage: `url("${category.imageUrl ?? FALLBACK_IMAGE_URL}")`,
+                  }}
+                  className="h-40 w-full bg-gray-100 bg-cover bg-center transition duration-300 group-hover:scale-105"
                 />
               </div>
 
@@ -61,8 +73,14 @@ export default function CategoryGrid() {
                 <h3 className="text-lg font-semibold text-gray-800">
                   {category.name}
                 </h3>
+                {activeProductCount ? (
+                  <p className="mt-1 text-sm text-gray-500">
+                    {category._count.products}{" "}
+                    {category._count.products === 1 ? "product" : "products"}
+                  </p>
+                ) : null}
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
