@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { Prisma } from "@prisma/client";
-import { AddToCartButton } from "@/components/cart/add-to-cart-button";
+import { ProductPurchaseOptions } from "@/components/products/product-purchase-options";
 import { prisma } from "@/src/lib/prisma";
 
 type ProductDetailsPageProps = {
@@ -90,6 +90,20 @@ export default async function ProductDetailsPage({
           altText: true,
         },
       },
+      variants: {
+        where: { isActive: true },
+        orderBy: [{ sortOrder: "asc" }, { label: "asc" }],
+        select: {
+          id: true,
+          label: true,
+          sku: true,
+          retailPrice: true,
+          wholesalePrice: true,
+          inventory: true,
+          sortOrder: true,
+          isActive: true,
+        },
+      },
     },
   });
 
@@ -101,7 +115,6 @@ export default async function ProductDetailsPage({
     ? product.images
     : [{ url: fallbackImage, altText: product.name }];
   const primaryImage = images[0];
-  const isOutOfStock = product.trackInventory && product.inventory <= 0;
   const relatedProducts = await prisma.product.findMany({
     where: {
       isActive: true,
@@ -190,31 +203,6 @@ export default async function ProductDetailsPage({
             </p>
           ) : null}
 
-          <div className="mt-6 flex flex-wrap items-end justify-between gap-4 border-y border-gray-200 py-5">
-            <div>
-              <p className="text-3xl font-bold text-green-700">
-                {money(product.retailPrice)}
-              </p>
-              {product.wholesalePrice ? (
-                <p className="mt-1 text-sm text-gray-600">
-                  Wholesale pricing from {money(product.wholesalePrice)}
-                  {product.minimumWholesaleQty
-                    ? ` at ${product.minimumWholesaleQty}+ units`
-                    : ""}
-                </p>
-              ) : null}
-            </div>
-            <span
-              className={`rounded-full px-3 py-1.5 text-sm font-medium ${
-                isOutOfStock
-                  ? "bg-red-50 text-red-700"
-                  : "bg-emerald-50 text-emerald-700"
-              }`}
-            >
-              {isOutOfStock ? "Out of stock" : "In stock"}
-            </span>
-          </div>
-
           {product.description ? (
             <p className="mt-6 whitespace-pre-line leading-7 text-gray-700">
               {product.description}
@@ -226,40 +214,34 @@ export default async function ProductDetailsPage({
             </p>
           )}
 
-          <div className="mt-8 grid gap-3 sm:grid-cols-2">
-            <AddToCartButton
-              item={{
-                productId: product.id,
-                slug: product.slug,
-                name: product.name,
-                imageUrl: primaryImage.url,
-                price: Number(product.retailPrice),
-                inventory: product.inventory,
-                trackInventory: product.trackInventory,
-              }}
-              className="rounded-lg bg-green-700 px-5 py-3 text-sm font-semibold text-white transition hover:bg-green-800 disabled:cursor-not-allowed disabled:opacity-50 cursor-pointer"
-              disabled={isOutOfStock}
-            />
-            <Link
-              href={`/quote?product=${product.slug}`}
-              className="rounded-lg border border-green-700 px-5 py-3 text-center text-sm font-semibold text-green-800 transition hover:bg-green-50"
-            >
-              Request wholesale quote
-            </Link>
-          </div>
-
-          <dl className="mt-8 grid gap-3 border-t border-gray-200 pt-5 text-sm">
-            <div className="flex justify-between gap-4">
-              <dt className="font-medium text-gray-500">SKU</dt>
-              <dd className="text-gray-900">{product.sku}</dd>
-            </div>
-            {product.trackInventory ? (
-              <div className="flex justify-between gap-4">
-                <dt className="font-medium text-gray-500">Inventory</dt>
-                <dd className="text-gray-900">{product.inventory}</dd>
-              </div>
-            ) : null}
-          </dl>
+          <ProductPurchaseOptions
+            product={{
+              id: product.id,
+              slug: product.slug,
+              name: product.name,
+              sku: product.sku,
+              imageUrl: primaryImage.url,
+              retailPrice: Number(product.retailPrice),
+              wholesalePrice: product.wholesalePrice
+                ? Number(product.wholesalePrice)
+                : null,
+              minimumWholesaleQty: product.minimumWholesaleQty,
+              inventory: product.inventory,
+              trackInventory: product.trackInventory,
+            }}
+            variants={product.variants.map((variant) => ({
+              id: variant.id,
+              label: variant.label,
+              sku: variant.sku,
+              retailPrice: Number(variant.retailPrice),
+              wholesalePrice: variant.wholesalePrice
+                ? Number(variant.wholesalePrice)
+                : null,
+              inventory: variant.inventory,
+              sortOrder: variant.sortOrder,
+              isActive: variant.isActive,
+            }))}
+          />
         </div>
       </section>
 

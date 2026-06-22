@@ -14,6 +14,7 @@ const checkoutSchema = z.object({
     .array(
       z.object({
         productId: z.string().min(1),
+        variantId: z.string().min(1).optional().nullable(),
         quantity: z.coerce.number().int().min(1),
       }),
     )
@@ -61,6 +62,16 @@ export async function POST(request: Request) {
           url: true,
         },
       },
+      variants: {
+        select: {
+          id: true,
+          label: true,
+          sku: true,
+          retailPrice: true,
+          inventory: true,
+          isActive: true,
+        },
+      },
     },
   });
   const productById = new Map(products.map((product) => [product.id, product]));
@@ -77,29 +88,59 @@ export async function POST(request: Request) {
       );
     }
 
-    if (product.trackInventory && product.inventory <= 0) {
+    const activeVariants = product.variants.filter((variant) => variant.isActive);
+    const selectedVariant = item.variantId
+      ? activeVariants.find((variant) => variant.id === item.variantId)
+      : null;
+
+    if (!item.variantId && activeVariants.length > 0) {
       return NextResponse.json(
-        { error: `${product.name} is out of stock` },
+        { error: `Select a Pack / Size for ${product.name}` },
         { status: 400 },
       );
     }
 
-    if (product.trackInventory && item.quantity > product.inventory) {
+    if (item.variantId && !selectedVariant) {
+      return NextResponse.json(
+        { error: "One or more product variants are no longer available" },
+        { status: 400 },
+      );
+    }
+
+    const inventory = selectedVariant?.inventory ?? product.inventory;
+    const unitPrice = selectedVariant?.retailPrice ?? product.retailPrice;
+    const sku = selectedVariant?.sku ?? product.sku;
+    const productName = selectedVariant
+      ? `${product.name} - ${selectedVariant.label}`
+      : product.name;
+
+    if (product.trackInventory && inventory <= 0) {
+      return NextResponse.json(
+        { error: `${productName} is out of stock` },
+        { status: 400 },
+      );
+    }
+
+    if (product.trackInventory && item.quantity > inventory) {
       return NextResponse.json(
         {
-          error: `Only ${product.inventory} ${
-            product.inventory === 1 ? "unit" : "units"
-          } of ${product.name} available`,
+          error: `Only ${inventory} ${
+            inventory === 1 ? "unit" : "units"
+          } of ${productName} available`,
         },
         { status: 400 },
       );
     }
 
     const quantity = item.quantity;
-    const lineTotal = Number(product.retailPrice) * quantity;
+    const lineTotal = Number(unitPrice) * quantity;
 
     orderItems.push({
       product,
+      selectedVariant,
+      sku,
+      unitPrice,
+      productName,
       quantity,
       lineTotal,
     });
@@ -128,14 +169,25 @@ export async function POST(request: Request) {
         shipping: new Prisma.Decimal(0),
         total: new Prisma.Decimal(subtotal),
         items: {
-          create: orderItems.map(({ product, quantity, lineTotal }) => ({
-            productId: product.id,
-            productName: product.name,
-            sku: product.sku,
-            quantity,
-            unitPrice: product.retailPrice,
-            lineTotal: new Prisma.Decimal(lineTotal),
-          })),
+          create: orderItems.map(
+            ({
+              product,
+              selectedVariant,
+              sku,
+              unitPrice,
+              quantity,
+              lineTotal,
+            }) => ({
+              productId: product.id,
+              variantId: selectedVariant?.id,
+              productName: product.name,
+              variantLabel: selectedVariant?.label,
+              sku,
+              quantity,
+              unitPrice,
+              lineTotal: new Prisma.Decimal(lineTotal),
+            }),
+          ),
         },
       },
     });
@@ -151,20 +203,20 @@ export async function POST(request: Request) {
       shipping_address_collection: {
         allowed_countries: ["US"],
       },
-      line_items: orderItems.map(({ product, quantity }) => {
+      line_items: orderItems.map(({ product, productName, quantity, unitPrice, sku }) => {
         const imageUrl = product.images[0]?.url;
 
         return {
           quantity,
           price_data: {
             currency: "usd",
-            unit_amount: toCents(product.retailPrice),
+            unit_amount: toCents(unitPrice),
             product_data: {
-              name: product.name,
+              name: productName,
               images: imageUrl?.startsWith("http") ? [imageUrl] : undefined,
               metadata: {
                 productId: product.id,
-                sku: product.sku,
+                sku,
               },
             },
           },

@@ -6,8 +6,11 @@ import { persist } from "zustand/middleware";
 
 export type CartItem = {
   productId: string;
+  variantId?: string | null;
+  variantLabel?: string | null;
   slug: string;
   name: string;
+  sku: string;
   imageUrl: string;
   price: number;
   inventory: number;
@@ -18,12 +21,16 @@ export type CartItem = {
 type CartState = {
   items: CartItem[];
   addItem: (item: Omit<CartItem, "quantity">, quantity?: number) => void;
-  removeItem: (productId: string) => void;
-  updateQuantity: (productId: string, quantity: number) => void;
+  removeItem: (cartItemId: string) => void;
+  updateQuantity: (cartItemId: string, quantity: number) => void;
   clearCart: () => void;
   totalItems: () => number;
   subtotal: () => number;
 };
+
+export function cartItemId(item: Pick<CartItem, "productId" | "variantId">) {
+  return item.variantId ? `${item.productId}:${item.variantId}` : item.productId;
+}
 
 function clampQuantity(
   quantity: number,
@@ -46,8 +53,9 @@ export const useCartStore = create<CartState>()(
         if (item.trackInventory && item.inventory <= 0) return;
 
         set((state) => {
+          const nextCartItemId = cartItemId(item);
           const existingItem = state.items.find(
-            (cartItem) => cartItem.productId === item.productId,
+            (cartItem) => cartItemId(cartItem) === nextCartItemId,
           );
 
           if (!existingItem) {
@@ -64,7 +72,7 @@ export const useCartStore = create<CartState>()(
 
           return {
             items: state.items.map((cartItem) =>
-              cartItem.productId === item.productId
+              cartItemId(cartItem) === nextCartItemId
                 ? {
                     ...cartItem,
                     ...item,
@@ -77,13 +85,13 @@ export const useCartStore = create<CartState>()(
       },
       removeItem: (productId) => {
         set((state) => ({
-          items: state.items.filter((item) => item.productId !== productId),
+          items: state.items.filter((item) => cartItemId(item) !== productId),
         }));
       },
       updateQuantity: (productId, quantity) => {
         set((state) => ({
           items: state.items.flatMap((item) => {
-            if (item.productId !== productId) return [item];
+            if (cartItemId(item) !== productId) return [item];
             if (quantity <= 0) return [];
 
             return [

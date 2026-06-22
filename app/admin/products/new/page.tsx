@@ -14,6 +14,7 @@ export default async function NewProductPage() {
     select: {
       id: true,
       name: true,
+      slug: true,
     },
   });
 

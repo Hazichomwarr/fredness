@@ -80,6 +80,7 @@ model Product {
   sku            String      @unique
   description    String?
   images         ProductImage[]
+  variants       ProductVariant[]
   weight         String?
   brand          String?
   retailPrice    Decimal     @db.Decimal(10, 2)
@@ -96,6 +97,24 @@ model Product {
 
   @@index([categoryId])
   @@index([name])
+}
+
+model ProductVariant {
+  id             String      @id @default(cuid())
+  productId      String
+  product        Product     @relation(fields: [productId], references: [id], onDelete: Cascade)
+  label          String
+  sku            String      @unique
+  retailPrice    Decimal     @db.Decimal(10, 2)
+  wholesalePrice Decimal?    @db.Decimal(10, 2)
+  inventory      Int         @default(0)
+  sortOrder      Int         @default(0)
+  isActive       Boolean     @default(true)
+  orderItems     OrderItem[]
+  createdAt      DateTime    @default(now())
+  updatedAt      DateTime    @updatedAt
+
+  @@index([productId])
 }
 
 model Bundle {
@@ -161,9 +180,12 @@ model OrderItem {
   id         String  @id @default(cuid())
   orderId    String
   productId  String
+  variantId  String?
   order      Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   product    Product @relation(fields: [productId], references: [id], onDelete: Restrict)
+  variant    ProductVariant? @relation(fields: [variantId], references: [id], onDelete: Restrict)
   productName String
+  variantLabel String?
   sku        String
   quantity   Int
   unitPrice  Decimal @db.Decimal(10, 2)
@@ -173,6 +195,7 @@ model OrderItem {
 
   @@index([orderId])
   @@index([productId])
+  @@index([variantId])
 }
 
 model Quote {

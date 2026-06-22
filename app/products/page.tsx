@@ -96,6 +96,21 @@ export default async function ProductsPage({
             altText: true,
           },
         },
+        variants: {
+          where: {
+            isActive: true,
+          },
+          orderBy: [{ sortOrder: "asc" }, { label: "asc" }],
+          select: {
+            id: true,
+            label: true,
+            sku: true,
+            retailPrice: true,
+            wholesalePrice: true,
+            inventory: true,
+            isActive: true,
+          },
+        },
       },
     }),
     prisma.product.count({ where }),
@@ -203,6 +218,25 @@ export default async function ProductsPage({
             <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 xl:grid-cols-3">
               {products.map((product) => {
                 const image = product.images[0]?.url ?? fallbackImage;
+                const lowestVariant = product.variants
+                  .slice()
+                  .sort(
+                    (left, right) =>
+                      Number(left.retailPrice) - Number(right.retailPrice),
+                  )[0];
+                const displayRetailPrice =
+                  lowestVariant?.retailPrice ?? product.retailPrice;
+                const displayWholesalePrice =
+                  lowestVariant?.wholesalePrice ?? product.wholesalePrice;
+                const displayInventory = lowestVariant
+                  ? product.variants.reduce(
+                      (total, variant) => total + variant.inventory,
+                      0,
+                    )
+                  : product.inventory;
+                const hasVariants = product.variants.length > 0;
+                const isOutOfStock =
+                  product.trackInventory && displayInventory <= 0;
 
                 return (
                   <article
@@ -242,41 +276,48 @@ export default async function ProductsPage({
                       <div className="flex items-end justify-between gap-3">
                         <div>
                           <p className="text-xl font-bold text-green-700">
-                            {money(product.retailPrice)}
+                            {hasVariants ? "From " : ""}
+                            {money(displayRetailPrice)}
                           </p>
-                          {product.wholesalePrice ? (
+                          {displayWholesalePrice ? (
                             <p className="text-xs text-gray-500">
-                              Wholesale from {money(product.wholesalePrice)}
+                              Wholesale from {money(displayWholesalePrice)}
                             </p>
                           ) : null}
                         </div>
                         <span
                           className={`rounded-full px-2 py-1 text-xs font-medium ${
-                            product.trackInventory && product.inventory <= 0
+                            isOutOfStock
                               ? "bg-red-50 text-red-700"
                               : "bg-emerald-50 text-emerald-700"
                           }`}
                         >
-                          {product.trackInventory && product.inventory <= 0
-                            ? "Out of stock"
-                            : "In stock"}
+                          {isOutOfStock ? "Out of stock" : "In stock"}
                         </span>
                       </div>
 
-                      <AddToCartButton
-                        item={{
-                          productId: product.id,
-                          slug: product.slug,
-                          name: product.name,
-                          imageUrl: image,
-                          price: Number(product.retailPrice),
-                          inventory: product.inventory,
-                          trackInventory: product.trackInventory,
-                        }}
-                        disabled={
-                          product.trackInventory && product.inventory <= 0
-                        }
-                      />
+                      {hasVariants ? (
+                        <Link
+                          href={`/products/${product.slug}`}
+                          className="rounded-lg bg-green-700 px-4 py-2 text-center text-sm font-semibold text-white transition hover:bg-green-800"
+                        >
+                          Choose Pack / Size
+                        </Link>
+                      ) : (
+                        <AddToCartButton
+                          item={{
+                            productId: product.id,
+                            slug: product.slug,
+                            name: product.name,
+                            sku: product.sku,
+                            imageUrl: image,
+                            price: Number(product.retailPrice),
+                            inventory: product.inventory,
+                            trackInventory: product.trackInventory,
+                          }}
+                          disabled={isOutOfStock}
+                        />
+                      )}
                     </div>
                   </article>
                 );

@@ -34,18 +34,39 @@ function toProductRow(product: {
   inventory: number;
   isActive: boolean;
   createdAt: Date;
-  category: { name: string };
+  category: { name: string; slug: string };
+  variants: {
+    id: string;
+    label: string;
+    sku: string;
+    retailPrice: Prisma.Decimal;
+    wholesalePrice: Prisma.Decimal | null;
+    inventory: number;
+    sortOrder: number;
+    isActive: boolean;
+  }[];
 }): AdminProductRow {
   return {
     id: product.id,
     name: product.name,
     sku: product.sku,
     categoryName: product.category.name,
+    categorySlug: product.category.slug,
     retailPrice: product.retailPrice.toString(),
     wholesalePrice: product.wholesalePrice?.toString() ?? null,
     inventory: product.inventory,
     isActive: product.isActive,
     createdAt: product.createdAt.toISOString(),
+    variants: product.variants.map((variant) => ({
+      id: variant.id,
+      label: variant.label,
+      sku: variant.sku,
+      retailPrice: variant.retailPrice.toString(),
+      wholesalePrice: variant.wholesalePrice?.toString() ?? null,
+      inventory: variant.inventory,
+      sortOrder: variant.sortOrder,
+      isActive: variant.isActive,
+    })),
   };
 }
 
@@ -79,6 +100,20 @@ export default async function ProductsPage({
         category: {
           select: {
             name: true,
+            slug: true,
+          },
+        },
+        variants: {
+          orderBy: [{ sortOrder: "asc" }, { label: "asc" }],
+          select: {
+            id: true,
+            label: true,
+            sku: true,
+            retailPrice: true,
+            wholesalePrice: true,
+            inventory: true,
+            sortOrder: true,
+            isActive: true,
           },
         },
       },

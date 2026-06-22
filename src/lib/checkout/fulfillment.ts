@@ -111,6 +111,13 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
                   trackInventory: true,
                 },
               },
+              variant: {
+                select: {
+                  id: true,
+                  inventory: true,
+                  label: true,
+                },
+              },
             },
           },
         },
@@ -142,7 +149,8 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
         (item) => item.product.trackInventory,
       );
       const unavailableItems = trackedItems.filter(
-        (item) => item.product.inventory < item.quantity,
+        (item) =>
+          (item.variant?.inventory ?? item.product.inventory) < item.quantity,
       );
 
       if (unavailableItems.length) {
@@ -175,6 +183,33 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
       }
 
       for (const item of trackedItems) {
+        if (item.variantId) {
+          const updatedVariant = await tx.productVariant.updateMany({
+            where: {
+              id: item.variantId,
+              productId: item.productId,
+              inventory: {
+                gte: item.quantity,
+              },
+            },
+            data: {
+              inventory: {
+                decrement: item.quantity,
+              },
+            },
+          });
+
+          if (updatedVariant.count !== 1) {
+            throw new InventoryUnavailableError(order.id, [
+              item.variantLabel
+                ? `${item.productName} - ${item.variantLabel}`
+                : item.productName,
+            ]);
+          }
+
+          continue;
+        }
+
         const updatedProduct = await tx.product.updateMany({
           where: {
             id: item.productId,

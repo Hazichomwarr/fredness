@@ -96,6 +96,11 @@ export default async function CheckoutSuccessPage({
               >
                 <div>
                   <p className="font-medium">{item.productName}</p>
+                  {item.variantLabel ? (
+                    <p className="text-gray-600">
+                      Pack / Size: {item.variantLabel}
+                    </p>
+                  ) : null}
                   <p className="text-gray-500">
                     {item.quantity} × {money(Number(item.unitPrice))}
                   </p>

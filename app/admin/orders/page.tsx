@@ -277,6 +277,11 @@ export default async function AdminOrdersPage({
                               <p className="font-medium text-neutral-900">
                                 {item.productName}
                               </p>
+                              {item.variantLabel ? (
+                                <p className="text-xs font-medium text-neutral-600">
+                                  Pack / Size: {item.variantLabel}
+                                </p>
+                              ) : null}
                               <p className="text-xs text-neutral-500">
                                 SKU {item.sku} | Qty {item.quantity} |{" "}
                                 {money(item.lineTotal)}

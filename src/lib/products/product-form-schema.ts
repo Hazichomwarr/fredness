@@ -49,6 +49,20 @@ const imageUrls = z
   )
   .pipe(z.array(imageUrlOrPublicPath));
 
+export const productVariantFormSchema = z.object({
+  id: z.string().trim().optional(),
+  label: z.string().trim().min(1, "Pack / Size is required"),
+  sku: z.string().trim().min(1, "Variant SKU is required"),
+  retailPrice: z
+    .string()
+    .trim()
+    .regex(/^\d+(\.\d{1,2})?$/, "Enter a valid price"),
+  wholesalePrice: optionalPrice,
+  inventory: z.coerce.number().int().min(0),
+  sortOrder: z.coerce.number().int().min(0),
+  isActive: z.boolean().default(true),
+});
+
 export const productFormSchema = z.object({
   name: z.string().trim().min(1, "Name is required"),
   slug: z
@@ -71,6 +85,7 @@ export const productFormSchema = z.object({
   trackInventory: z.boolean().default(true),
   isActive: z.boolean().default(true),
   imageUrls,
+  variants: z.array(productVariantFormSchema).default([]),
 });
 
 export type ProductFormParsedValues = z.output<typeof productFormSchema>;

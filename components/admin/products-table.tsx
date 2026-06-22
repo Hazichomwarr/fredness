@@ -18,11 +18,22 @@ export type AdminProductRow = {
   name: string;
   sku: string;
   categoryName: string;
+  categorySlug: string;
   retailPrice: string;
   wholesalePrice: string | null;
   inventory: number;
   isActive: boolean;
   createdAt: string;
+  variants: {
+    id: string;
+    label: string;
+    sku: string;
+    retailPrice: string;
+    wholesalePrice: string | null;
+    inventory: number;
+    sortOrder: number;
+    isActive: boolean;
+  }[];
 };
 
 type ProductsTableProps = {
@@ -41,6 +52,18 @@ const sortableColumns = new Set([
   "inventory",
   "createdAt",
 ]);
+const drinkLabels = ["1 unit", "4 pack", "6 pack", "12 pack", "24 pack"];
+const weightLabels = [
+  "1 lb",
+  "2 lb",
+  "4 lb",
+  "5 lb",
+  "8 lb",
+  "10 lb",
+  "16 lb",
+  "25 lb",
+  "50 lb",
+];
 
 function money(value: string | null) {
   if (!value) return "-";
@@ -128,7 +151,7 @@ export function ProductsTable({
             <summary className="cursor-pointer rounded-md border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-800 marker:hidden hover:bg-neutral-50">
               Edit
             </summary>
-            <div className="absolute right-0 z-20 mt-2 w-80 rounded-lg border border-neutral-200 bg-white p-4 shadow-xl">
+            <div className="absolute right-0 z-20 mt-2 max-h-[80vh] w-[min(92vw,760px)] overflow-y-auto rounded-lg border border-neutral-200 bg-white p-4 shadow-xl">
               <form action={updateProductAction} className="grid gap-3">
                 <input type="hidden" name="id" value={row.original.id} />
                 <label className="grid gap-1 text-sm font-medium text-neutral-700">
@@ -195,6 +218,118 @@ export function ProductsTable({
                     />
                     Active
                   </label>
+                </div>
+                <div className="grid gap-3 border-t border-neutral-200 pt-3">
+                  <div>
+                    <p className="text-sm font-semibold text-neutral-950">
+                      Variants
+                    </p>
+                    <p className="mt-1 text-xs text-neutral-500">
+                      Use Pack / Size labels. Leave new rows blank to ignore
+                      them.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {(row.original.categorySlug === "drinks"
+                      ? drinkLabels
+                      : weightLabels
+                    ).map((label) => (
+                      <span
+                        key={label}
+                        className="rounded-full border border-neutral-200 px-2 py-1 text-xs text-neutral-600"
+                      >
+                        {label}
+                      </span>
+                    ))}
+                  </div>
+                  {[...row.original.variants, null, null, null].map(
+                    (variant, index) => (
+                      <div
+                        key={variant?.id ?? `new-${index}`}
+                        className="grid gap-2 rounded-md border border-neutral-200 bg-neutral-50 p-2 md:grid-cols-6"
+                      >
+                        <input
+                          type="hidden"
+                          name={`variants.${index}.id`}
+                          value={variant?.id ?? ""}
+                        />
+                        <label className="grid gap-1 text-xs font-medium text-neutral-700 md:col-span-2">
+                          Pack / Size
+                          <input
+                            name={`variants.${index}.label`}
+                            defaultValue={variant?.label ?? ""}
+                            list={`edit-variant-labels-${row.original.id}-${index}`}
+                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
+                          />
+                          <datalist
+                            id={`edit-variant-labels-${row.original.id}-${index}`}
+                          >
+                            {(row.original.categorySlug === "drinks"
+                              ? drinkLabels
+                              : weightLabels
+                            ).map((label) => (
+                              <option key={label} value={label} />
+                            ))}
+                          </datalist>
+                        </label>
+                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
+                          SKU
+                          <input
+                            name={`variants.${index}.sku`}
+                            defaultValue={variant?.sku ?? ""}
+                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
+                          />
+                        </label>
+                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
+                          Retail
+                          <input
+                            name={`variants.${index}.retailPrice`}
+                            defaultValue={variant?.retailPrice ?? ""}
+                            inputMode="decimal"
+                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
+                          />
+                        </label>
+                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
+                          Wholesale
+                          <input
+                            name={`variants.${index}.wholesalePrice`}
+                            defaultValue={variant?.wholesalePrice ?? ""}
+                            inputMode="decimal"
+                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
+                          />
+                        </label>
+                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
+                          Inventory
+                          <input
+                            name={`variants.${index}.inventory`}
+                            type="number"
+                            min="0"
+                            defaultValue={variant?.inventory ?? 0}
+                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
+                          />
+                        </label>
+                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
+                          Sort
+                          <input
+                            name={`variants.${index}.sortOrder`}
+                            type="number"
+                            min="0"
+                            defaultValue={variant?.sortOrder ?? index}
+                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
+                          />
+                        </label>
+                        <label className="flex items-center gap-2 text-xs font-medium text-neutral-700">
+                          <input
+                            name={`variants.${index}.isActive`}
+                            type="checkbox"
+                            defaultChecked={variant?.isActive ?? true}
+                            className="h-4 w-4"
+                          />
+                          Active
+                        </label>
+                      </div>
+                    ),
+                  )}
                 </div>
                 <button className="rounded-md bg-neutral-950 px-3 py-2 text-sm font-semibold text-white hover:bg-neutral-700 cursor-pointer">
                   Save product

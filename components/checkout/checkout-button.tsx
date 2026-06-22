@@ -28,6 +28,7 @@ export function CheckoutButton() {
           customerName,
           items: items.map((item) => ({
             productId: item.productId,
+            variantId: item.variantId,
             quantity: item.quantity,
           })),
         }),

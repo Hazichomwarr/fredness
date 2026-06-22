@@ -7,7 +7,10 @@ import { z } from "zod";
 import { prisma } from "@/src/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { requireAdmin } from "@/src/lib/auth/admin";
-import { productFormSchema } from "@/src/lib/products/product-form-schema";
+import {
+  productFormSchema,
+  productVariantFormSchema,
+} from "@/src/lib/products/product-form-schema";
 
 const productUpdateSchema = z.object({
   id: z.string().min(1),
@@ -46,6 +49,49 @@ function parseBoolean(value: FormDataEntryValue | null) {
   return value === "on" || value === "true";
 }
 
+function parseVariantRows(formData: FormData) {
+  const indexes = new Set<number>();
+
+  for (const key of formData.keys()) {
+    const match = key.match(/^variants\.(\d+)\./);
+
+    if (match) {
+      indexes.add(Number(match[1]));
+    }
+  }
+
+  return Array.from(indexes)
+    .sort((left, right) => left - right)
+    .flatMap((index) => {
+      const row = {
+        id: String(formData.get(`variants.${index}.id`) ?? "").trim(),
+        label: String(formData.get(`variants.${index}.label`) ?? "").trim(),
+        sku: String(formData.get(`variants.${index}.sku`) ?? "").trim(),
+        retailPrice: String(
+          formData.get(`variants.${index}.retailPrice`) ?? "",
+        ).trim(),
+        wholesalePrice: String(
+          formData.get(`variants.${index}.wholesalePrice`) ?? "",
+        ).trim(),
+        inventory: formData.get(`variants.${index}.inventory`) ?? "0",
+        sortOrder: formData.get(`variants.${index}.sortOrder`) ?? "0",
+        isActive: parseBoolean(formData.get(`variants.${index}.isActive`)),
+      };
+      const isEmptyNewRow =
+        !row.id &&
+        !row.label &&
+        !row.sku &&
+        !row.retailPrice &&
+        !row.wholesalePrice;
+
+      if (isEmptyNewRow) {
+        return [];
+      }
+
+      return [productVariantFormSchema.parse(row)];
+    });
+}
+
 function parseProductForm(formData: FormData) {
   const parsed = productFormSchema.parse({
     name: formData.get("name"),
@@ -62,6 +108,7 @@ function parseProductForm(formData: FormData) {
     trackInventory: parseBoolean(formData.get("trackInventory")),
     isActive: parseBoolean(formData.get("isActive")),
     imageUrls: formData.get("imageUrls"),
+    variants: parseVariantRows(formData),
   });
 
   return {
@@ -99,6 +146,19 @@ export async function createProductAction(formData: FormData) {
           altText: parsed.name,
         })),
       },
+      variants: {
+        create: parsed.variants.map((variant) => ({
+          label: variant.label,
+          sku: variant.sku,
+          retailPrice: new Prisma.Decimal(variant.retailPrice),
+          wholesalePrice: variant.wholesalePrice
+            ? new Prisma.Decimal(variant.wholesalePrice)
+            : null,
+          inventory: variant.inventory,
+          sortOrder: variant.sortOrder,
+          isActive: variant.isActive,
+        })),
+      },
     },
   });
 
@@ -108,6 +168,7 @@ export async function createProductAction(formData: FormData) {
 
 export async function updateProductAction(formData: FormData) {
   await requireAdmin();
+  const variants = parseVariantRows(formData);
 
   const parsed = productUpdateSchema.parse({
     id: formData.get("id"),
@@ -130,6 +191,54 @@ export async function updateProductAction(formData: FormData) {
         : null,
       inventory: parsed.inventory,
       isActive: parsed.isActive,
+    },
+  });
+
+  for (const variant of variants) {
+    const data = {
+      label: variant.label,
+      sku: variant.sku,
+      retailPrice: new Prisma.Decimal(variant.retailPrice),
+      wholesalePrice: variant.wholesalePrice
+        ? new Prisma.Decimal(variant.wholesalePrice)
+        : null,
+      inventory: variant.inventory,
+      sortOrder: variant.sortOrder,
+      isActive: variant.isActive,
+    };
+
+    if (variant.id) {
+      await prisma.productVariant.updateMany({
+        where: {
+          id: variant.id,
+          productId: parsed.id,
+        },
+        data,
+      });
+      continue;
+    }
+
+    await prisma.productVariant.create({
+      data: {
+        productId: parsed.id,
+        ...data,
+      },
+    });
+  }
+
+  const submittedVariantIds = variants
+    .map((variant) => variant.id)
+    .filter((id): id is string => Boolean(id));
+
+  await prisma.productVariant.updateMany({
+    where: {
+      productId: parsed.id,
+      id: {
+        notIn: submittedVariantIds.length ? submittedVariantIds : ["__none__"],
+      },
+    },
+    data: {
+      isActive: false,
     },
   });
 

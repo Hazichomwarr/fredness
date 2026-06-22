@@ -3,7 +3,7 @@
 
 import Link from "next/link";
 import { CheckoutButton } from "@/components/checkout/checkout-button";
-import { useCartStore } from "@/src/stores/cart-store";
+import { cartItemId, useCartStore } from "@/src/stores/cart-store";
 
 function money(value: number) {
   return new Intl.NumberFormat("en-US", {
@@ -46,7 +46,7 @@ export function CartSummary() {
         <div className="divide-y divide-gray-100">
           {items.map((item) => (
             <div
-              key={item.productId}
+              key={cartItemId(item)}
               className="grid gap-4 p-4 sm:grid-cols-[112px_1fr_auto]"
             >
               <Link
@@ -62,6 +62,12 @@ export function CartSummary() {
                 >
                   {item.name}
                 </Link>
+                {item.variantLabel ? (
+                  <p className="mt-1 text-sm font-medium text-gray-700">
+                    Pack / Size: {item.variantLabel}
+                  </p>
+                ) : null}
+                <p className="mt-1 text-xs text-gray-500">SKU: {item.sku}</p>
                 <p className="mt-1 text-sm text-gray-600">
                   {money(item.price)}
                 </p>
@@ -80,14 +86,14 @@ export function CartSummary() {
                     max={item.trackInventory ? item.inventory : undefined}
                     value={item.quantity}
                     onChange={(event) =>
-                      updateQuantity(item.productId, Number(event.target.value))
+                      updateQuantity(cartItemId(item), Number(event.target.value))
                     }
                     className="w-24 rounded-lg border border-gray-300 px-3 py-2"
                   />
                 </label>
                 <button
                   className="text-sm font-semibold text-red-700 hover:text-red-800"
-                  onClick={() => removeItem(item.productId)}
+                  onClick={() => removeItem(cartItemId(item))}
                 >
                   Remove
                 </button>
