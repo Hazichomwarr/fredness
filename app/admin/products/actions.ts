@@ -194,6 +194,8 @@ export async function updateProductAction(formData: FormData) {
     },
   });
 
+  const retainedVariantIds: string[] = [];
+
   for (const variant of variants) {
     const data = {
       label: variant.label,
@@ -215,26 +217,27 @@ export async function updateProductAction(formData: FormData) {
         },
         data,
       });
+      retainedVariantIds.push(variant.id);
       continue;
     }
 
-    await prisma.productVariant.create({
+    const createdVariant = await prisma.productVariant.create({
       data: {
         productId: parsed.id,
         ...data,
       },
+      select: {
+        id: true,
+      },
     });
+    retainedVariantIds.push(createdVariant.id);
   }
-
-  const submittedVariantIds = variants
-    .map((variant) => variant.id)
-    .filter((id): id is string => Boolean(id));
 
   await prisma.productVariant.updateMany({
     where: {
       productId: parsed.id,
       id: {
-        notIn: submittedVariantIds.length ? submittedVariantIds : ["__none__"],
+        notIn: retainedVariantIds.length ? retainedVariantIds : ["__none__"],
       },
     },
     data: {
