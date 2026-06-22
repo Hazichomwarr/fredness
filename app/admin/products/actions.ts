@@ -8,6 +8,7 @@ import { prisma } from "@/src/lib/prisma";
 import { Prisma } from "@prisma/client";
 import { requireAdmin } from "@/src/lib/auth/admin";
 import {
+  productImageUrlsSchema,
   productFormSchema,
   productVariantFormSchema,
 } from "@/src/lib/products/product-form-schema";
@@ -169,6 +170,7 @@ export async function createProductAction(formData: FormData) {
 export async function updateProductAction(formData: FormData) {
   await requireAdmin();
   const variants = parseVariantRows(formData);
+  const imageUrls = productImageUrlsSchema.parse(formData.get("imageUrls"));
 
   const parsed = productUpdateSchema.parse({
     id: formData.get("id"),
@@ -180,18 +182,37 @@ export async function updateProductAction(formData: FormData) {
     isActive: formData.get("isActive"),
   });
 
-  await prisma.product.update({
-    where: { id: parsed.id },
-    data: {
-      name: parsed.name,
-      sku: parsed.sku,
-      retailPrice: new Prisma.Decimal(parsed.retailPrice),
-      wholesalePrice: parsed.wholesalePrice
-        ? new Prisma.Decimal(parsed.wholesalePrice)
-        : null,
-      inventory: parsed.inventory,
-      isActive: parsed.isActive,
-    },
+  await prisma.$transaction(async (tx) => {
+    await tx.product.update({
+      where: { id: parsed.id },
+      data: {
+        name: parsed.name,
+        sku: parsed.sku,
+        retailPrice: new Prisma.Decimal(parsed.retailPrice),
+        wholesalePrice: parsed.wholesalePrice
+          ? new Prisma.Decimal(parsed.wholesalePrice)
+          : null,
+        inventory: parsed.inventory,
+        isActive: parsed.isActive,
+      },
+    });
+
+    await tx.productImage.deleteMany({
+      where: {
+        productId: parsed.id,
+      },
+    });
+
+    if (imageUrls.length) {
+      await tx.productImage.createMany({
+        data: imageUrls.map((url, index) => ({
+          productId: parsed.id,
+          url,
+          sortOrder: index,
+          altText: parsed.name,
+        })),
+      });
+    }
   });
 
   const retainedVariantIds: string[] = [];

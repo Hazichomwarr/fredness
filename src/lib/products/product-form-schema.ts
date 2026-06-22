@@ -35,7 +35,7 @@ const imageUrlOrPublicPath = z.union([
   publicImagePath,
 ]);
 
-const imageUrls = z
+export const productImageUrlsSchema = z
   .string()
   .trim()
   .optional()
@@ -84,7 +84,7 @@ export const productFormSchema = z.object({
   inventory: z.coerce.number().int().min(0),
   trackInventory: z.boolean().default(true),
   isActive: z.boolean().default(true),
-  imageUrls,
+  imageUrls: productImageUrlsSchema,
   variants: z.array(productVariantFormSchema).default([]),
 });
 

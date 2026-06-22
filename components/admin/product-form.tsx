@@ -5,6 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useMemo, useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { createProductAction } from "@/app/admin/products/actions";
+import { ProductImageUploader } from "@/components/admin/product-image-uploader";
 import {
   ProductFormParsedValues,
   ProductFormValues,
@@ -39,7 +40,9 @@ export function ProductForm({ categories }: ProductFormProps) {
   const [validatedSubmit, setValidatedSubmit] = useState(false);
   const {
     control,
+    getValues,
     register,
+    setValue,
     trigger,
     formState: { errors },
   } = useForm<ProductFormValues, unknown, ProductFormParsedValues>({
@@ -83,6 +86,16 @@ export function ProductForm({ categories }: ProductFormProps) {
       inventory: 0,
       sortOrder: fields.length,
       isActive: true,
+    });
+  }
+
+  function appendImageUrls(urls: string[]) {
+    const existing = String(getValues("imageUrls") ?? "").trim();
+    const next = [existing, ...urls].filter(Boolean).join("\n");
+
+    setValue("imageUrls", next, {
+      shouldDirty: true,
+      shouldValidate: true,
     });
   }
 
@@ -227,20 +240,23 @@ export function ProductForm({ categories }: ProductFormProps) {
           ) : null}
         </label>
 
-        <label className="grid gap-1 text-sm font-medium text-neutral-700 md:col-span-2">
-          Image URLs or public paths
-          <textarea
-            {...register("imageUrls")}
-            rows={3}
-            className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
-            placeholder="https://example.com/product-front.jpg&#10;/products/product.jpeg"
-          />
-          {errors.imageUrls ? (
-            <span className="text-xs text-red-600">
-              {errors.imageUrls.message}
-            </span>
-          ) : null}
-        </label>
+        <div className="grid gap-2 md:col-span-2">
+          <ProductImageUploader onUploaded={appendImageUrls} />
+          <label className="grid gap-1 text-sm font-medium text-neutral-700">
+            Image URLs or public paths
+            <textarea
+              {...register("imageUrls")}
+              rows={3}
+              className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
+              placeholder="https://example.com/product-front.jpg&#10;/products/product.jpeg"
+            />
+            {errors.imageUrls ? (
+              <span className="text-xs text-red-600">
+                {errors.imageUrls.message}
+              </span>
+            ) : null}
+          </label>
+        </div>
 
         <label className="grid gap-1 text-sm font-medium text-neutral-700 md:col-span-2">
           Description

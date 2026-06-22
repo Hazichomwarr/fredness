@@ -1,6 +1,7 @@
 // components/admin/products-table.tsx
 "use client";
 
+import { useState } from "react";
 import {
   ColumnDef,
   flexRender,
@@ -12,6 +13,7 @@ import {
   hideProductAction,
   updateProductAction,
 } from "@/app/admin/products/actions";
+import { ProductImageUploader } from "@/components/admin/product-image-uploader";
 
 export type AdminProductRow = {
   id: string;
@@ -24,6 +26,7 @@ export type AdminProductRow = {
   inventory: number;
   isActive: boolean;
   createdAt: string;
+  imageUrls: string[];
   variants: {
     id: string;
     label: string;
@@ -71,6 +74,31 @@ function money(value: string | null) {
     style: "currency",
     currency: "USD",
   }).format(Number(value));
+}
+
+function ProductEditImageUrls({ initialUrls }: { initialUrls: string[] }) {
+  const [imageUrls, setImageUrls] = useState(initialUrls.join("\n"));
+
+  function appendImageUrls(urls: string[]) {
+    setImageUrls((current) => [current.trim(), ...urls].filter(Boolean).join("\n"));
+  }
+
+  return (
+    <div className="grid gap-2">
+      <ProductImageUploader onUploaded={appendImageUrls} />
+      <label className="grid gap-1 text-sm font-medium text-neutral-700">
+        Image URLs or public paths
+        <textarea
+          name="imageUrls"
+          rows={3}
+          value={imageUrls}
+          onChange={(event) => setImageUrls(event.target.value)}
+          className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
+          placeholder="https://example.com/product-front.jpg&#10;/products/product.jpeg"
+        />
+      </label>
+    </div>
+  );
 }
 
 export function ProductsTable({
@@ -173,7 +201,7 @@ export function ProductsTable({
                   />
                 </label>
 
-                {/* TODO: image url input */}
+                <ProductEditImageUrls initialUrls={row.original.imageUrls} />
 
                 <div className="grid grid-cols-2 gap-3">
                   <label className="grid gap-2 text-sm font-medium text-neutral-700">

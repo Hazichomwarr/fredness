@@ -34,6 +34,7 @@ function toProductRow(product: {
   inventory: number;
   isActive: boolean;
   createdAt: Date;
+  images: { url: string }[];
   category: { name: string; slug: string };
   variants: {
     id: string;
@@ -57,6 +58,7 @@ function toProductRow(product: {
     inventory: product.inventory,
     isActive: product.isActive,
     createdAt: product.createdAt.toISOString(),
+    imageUrls: product.images.map((image) => image.url),
     variants: product.variants.map((variant) => ({
       id: variant.id,
       label: variant.label,
@@ -114,6 +116,14 @@ export default async function ProductsPage({
             inventory: true,
             sortOrder: true,
             isActive: true,
+          },
+        },
+        images: {
+          orderBy: {
+            sortOrder: "asc",
+          },
+          select: {
+            url: true,
           },
         },
       },
