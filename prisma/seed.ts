@@ -51,7 +51,7 @@ const categories = [
   {
     name: "Fufu",
     slug: "fufu",
-    imageUrl: "/categories/fufu.jpg",
+    imageUrl: "/images/categories/fredness-fufu.jpg",
     description:
       "Fufu flours, instant fufu mixes, and swallow products for traditional African meals.",
     sortOrder: 4,
@@ -90,6 +90,347 @@ const categories = [
   },
 ];
 
+const fufuProducts = [
+  {
+    name: "Iyan Ado Pounded Yam",
+    slug: "iyan-ado-pounded-yam-10lb",
+    sku: "FUFU-001",
+    brand: "Iyan Ado",
+    weight: "10 lb",
+    description:
+      "Pounded yam flour for preparing a smooth, stretchy swallow served with soups and stews.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXRTLlgXAUXB0Qm2LsIibVYAJxv6Et8kd3aUqn",
+    ],
+  },
+  {
+    name: "Honeywell Semolina",
+    slug: "honeywell-semolina-1kg",
+    sku: "FUFU-002",
+    brand: "Honeywell",
+    weight: "1 kg",
+    description:
+      "Fine semolina flour for making a firm, smooth swallow to pair with African soups.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXMOZUUxCLMT5qyt9IA2aO3mxFvdXuncP7HriS",
+    ],
+  },
+  {
+    name: "Golden Penny Semovita",
+    slug: "golden-penny-semovita",
+    sku: "FUFU-003",
+    brand: "Golden Penny",
+    weight: null,
+    description:
+      "Premium quality semolina swallow mix fortified with vitamin A for everyday meals.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXHYttR1EXneMU0Gh4lFug5jsq1YarJLdSkKxb",
+    ],
+  },
+  {
+    name: "Siya Rice Flour",
+    slug: "siya-rice-flour-4lb",
+    sku: "FUFU-004",
+    brand: "Siya",
+    weight: "4 lb",
+    description:
+      "Rice flour for swallow, baking, and thickening soups, sauces, and traditional recipes.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXRMyecgUXB0Qm2LsIibVYAJxv6Et8kd3aUqn1",
+    ],
+  },
+  {
+    name: "Glorious Poundo Instant Yam Poundo",
+    slug: "glorious-poundo-instant-yam-poundo-2lb",
+    sku: "FUFU-005",
+    brand: "Glorious Poundo",
+    weight: "2 lb",
+    description:
+      "Instant yam poundo flour for quick pounded yam-style swallow with favorite soups.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXVXM30LSMuDmdnHeOcjLKfVkwIGr1YN2hlsSZ",
+    ],
+  },
+  {
+    name: "African Best Starch Powder",
+    slug: "african-best-starch-powder-edible-1lb",
+    sku: "FUFU-006",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Edible cassava starch powder for thickening and preparing traditional starch dishes.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXvb7wwLX6CQgPtxMVDopG2H9Wiu8YrbOXL3AJ",
+    ],
+  },
+  {
+    name: "African Best Plantain Flour",
+    slug: "african-best-plantain-flour-3lb-repack",
+    sku: "FUFU-007",
+    brand: "African Best",
+    weight: "3 lb",
+    description:
+      "Repacked plantain flour for making plantain swallow and traditional African meals.",
+    retailPrice: "12.00",
+    wholesalePrice: "10.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXjWD6hvFUYqgMeuyhvxCk8rOpNnTw70jzoHbP",
+    ],
+  },
+  {
+    name: "African Best Yam Flour",
+    slug: "african-best-yam-flour-8lb",
+    sku: "FUFU-008",
+    brand: "African Best",
+    weight: "8 lb",
+    description:
+      "Natural yam flour for preparing amala-style swallow and other yam flour dishes.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXHh8803EXneMU0Gh4lFug5jsq1YarJLdSkKxb",
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX3G2BhNMGp74HzRqQDLkTwCX0EUNeduW2c5tl",
+    ],
+  },
+  {
+    name: "African Best Plantain Flour",
+    slug: "african-best-plantain-flour-4lb",
+    sku: "FUFU-009",
+    brand: "African Best",
+    weight: "4 lb",
+    description:
+      "Natural plantain flour for making plantain swallow served with soups and stews.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXFVFkTmaMcAOF9rZhD3yjVXvk21HY6iBUNEwm",
+    ],
+  },
+  {
+    name: "Tropiway Instant Plantain Fufu",
+    slug: "tropiway-instant-plantain-fufu-10lb",
+    sku: "FUFU-010",
+    brand: "Tropiway",
+    weight: "10 lb",
+    description:
+      "Instant plantain fufu mix with low sodium and no added MSG for easy swallow preparation.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXtX87gRphYx5l2n4dkqFK1Ois7TyRZe69ubVI",
+    ],
+  },
+  {
+    name: "African Best Wheat Flour",
+    slug: "african-best-wheat-flour-1lb-repack",
+    sku: "FUFU-011",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Repacked wheat flour for baking, thickening, and everyday pantry cooking.",
+    retailPrice: "7.00",
+    wholesalePrice: "6.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXx8xFftljMJUv6gokLH2K3401lyX9VBtcseFD",
+    ],
+  },
+  {
+    name: "Ola-Ola Pounded Yam",
+    slug: "ola-ola-pounded-yam-5lb",
+    sku: "FUFU-012",
+    brand: "Ola-Ola",
+    weight: "5 lb",
+    description:
+      "Instant pounded yam flour for a smooth iyan swallow with traditional soups.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXbcEsIeWo5Op4CRV8ijmIyH2xoatJUT0sgzuX",
+    ],
+  },
+  {
+    name: "Ulibola Powder Blend",
+    slug: "ulibola-powder-blend-1lb",
+    sku: "FUFU-013",
+    brand: "Ulibola",
+    weight: "1 lb",
+    description:
+      "Seasoned powder blend with popcorn, spices, and herbs for traditional pantry cooking.",
+    retailPrice: "16.00",
+    wholesalePrice: "14.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX6uPifiTIdoa8APqmKptfzCilvc2yUEW9k3bD",
+    ],
+  },
+  {
+    name: "Golden Tropics Plantain Fufu",
+    slug: "golden-tropics-plantain-fufu-bulk",
+    sku: "FUFU-014",
+    brand: "Golden Tropics",
+    weight: null,
+    description:
+      "Bulk plantain fufu flour for preparing smooth plantain swallow in larger quantities.",
+    retailPrice: "34.99",
+    wholesalePrice: "30.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXT1DGargxANvhWd6lkPZwVCGOImSK9YaDEXfg",
+    ],
+  },
+  {
+    name: "African Best Yellow Corn Flour",
+    slug: "african-best-yellow-corn-flour-1lb-repack",
+    sku: "FUFU-015",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Repacked yellow corn flour for porridge, cornmeal dishes, and traditional cooking.",
+    retailPrice: "6.00",
+    wholesalePrice: "5.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXRTrLtPfUXB0Qm2LsIibVYAJxv6Et8kd3aUqn",
+    ],
+  },
+  {
+    name: "African Best Djuka",
+    slug: "african-best-djuka-1lb",
+    sku: "FUFU-016",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Ground djuka grain mix for traditional African meals and pantry cooking.",
+    retailPrice: "7.00",
+    wholesalePrice: "6.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXsGUyrc8BPgeWNAZFXca6QzOIrykMCwxfuYho",
+    ],
+  },
+  {
+    name: "African Best Ijebu Gari",
+    slug: "african-best-ijebu-gari-1lb",
+    sku: "FUFU-017",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Ijebu gari made from cassava for soaking, eba, and everyday traditional meals.",
+    retailPrice: "5.00",
+    wholesalePrice: "4.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXhLobzZFr6Ctc9jW27oTNiaOIdxk08KQeDGJy",
+    ],
+  },
+  {
+    name: "African Best Yellow Gari",
+    slug: "african-best-yellow-gari-1lb",
+    sku: "FUFU-018",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Yellow gari made from cassava for eba, soaking, and classic West African meals.",
+    retailPrice: "7.00",
+    wholesalePrice: "6.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX6w8hB5TIdoa8APqmKptfzCilvc2yUEW9k3bD",
+    ],
+  },
+  {
+    name: "African Best Oat Flour",
+    slug: "african-best-oat-flour-1lb",
+    sku: "FUFU-019",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Repacked oat flour for baking, porridge, thickening, and everyday pantry recipes.",
+    retailPrice: "7.00",
+    wholesalePrice: "6.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXcEvcbX0qxTLkfJbVaDEF6wd8mCrq39RzhUic",
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXlCCqOa1DeTIj320y6NViZlHOGkKqd4FoxEL7",
+    ],
+  },
+  {
+    name: "African Best Okpa Flour",
+    slug: "african-best-okpa-flour",
+    sku: "FUFU-020",
+    brand: "African Best",
+    weight: null,
+    description:
+      "Okpa flour made from Bambara nut for preparing the classic Nigerian steamed okpa dish.",
+    retailPrice: "12.76",
+    wholesalePrice: "10.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXnXyO3Zw1ufzt2jEMbVTAiKYeSx75Rnw43Xh6",
+    ],
+  },
+  {
+    name: "African Best Semolina",
+    slug: "african-best-semolina-1lb",
+    sku: "FUFU-021",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Repacked semolina flour for making a smooth, firm swallow with soups and stews.",
+    retailPrice: "6.00",
+    wholesalePrice: "5.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXMytLoohCLMT5qyt9IA2aO3mxFvdXuncP7Hri",
+    ],
+  },
+  {
+    name: "African Best Farinha",
+    slug: "african-best-farinha-3lb",
+    sku: "FUFU-022",
+    brand: "African Best",
+    weight: "3 lb",
+    description:
+      "Coarse cassava farinha for soaking, sprinkling, and traditional West African cooking.",
+    retailPrice: "5.00",
+    wholesalePrice: "4.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXMrXxWYCLMT5qyt9IA2aO3mxFvdXuncP7HriS",
+    ],
+  },
+  {
+    name: "African Best Yam Flour",
+    slug: "african-best-yam-flour-4lb-repack",
+    sku: "FUFU-023",
+    brand: "African Best",
+    weight: "4 lb",
+    description:
+      "Repacked yam flour for preparing amala-style swallow and other yam flour dishes.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX3IyD4SMGp74HzRqQDLkTwCX0EUNeduW2c5tl",
+    ],
+  },
+  {
+    name: "African Best Cassava Fufu",
+    slug: "african-best-cassava-fufu-1lb",
+    sku: "FUFU-024",
+    brand: "African Best",
+    weight: "1 lb",
+    description:
+      "Cassava fufu flour for preparing a soft, traditional swallow with favorite soups.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXM6SAO2CLMT5qyt9IA2aO3mxFvdXuncP7HriS",
+    ],
+  },
+];
+
 async function seedAdmin() {
   await prisma.user.upsert({
     where: { email: adminEmail },
@@ -121,9 +462,73 @@ async function seedCategories() {
   console.info(`Seeded ${categories.length} categories`);
 }
 
+async function seedFufuProducts() {
+  for (const product of fufuProducts) {
+    await prisma.product.upsert({
+      where: { sku: product.sku },
+      update: {
+        category: {
+          connect: {
+            slug: "fufu",
+          },
+        },
+        name: product.name,
+        slug: product.slug,
+        sku: product.sku,
+        description: product.description,
+        brand: product.brand,
+        weight: product.weight,
+        retailPrice: product.retailPrice,
+        wholesalePrice: product.wholesalePrice,
+        minimumWholesaleQty: 1,
+        inventory: 100,
+        trackInventory: true,
+        isActive: true,
+        images: {
+          deleteMany: {},
+          create: product.imageUrls.map((url, index) => ({
+            url,
+            altText: product.name,
+            sortOrder: index,
+          })),
+        },
+      },
+      create: {
+        category: {
+          connect: {
+            slug: "fufu",
+          },
+        },
+        name: product.name,
+        slug: product.slug,
+        sku: product.sku,
+        description: product.description,
+        brand: product.brand,
+        weight: product.weight,
+        retailPrice: product.retailPrice,
+        wholesalePrice: product.wholesalePrice,
+        minimumWholesaleQty: 1,
+        inventory: 100,
+        trackInventory: true,
+        isActive: true,
+        images: {
+          create: product.imageUrls.map((url, index) => ({
+            url,
+            altText: product.name,
+            sortOrder: index,
+          })),
+        },
+      },
+    });
+  }
+
+  console.info(`Seeded ${fufuProducts.length} Fufu products`);
+}
+
 async function main() {
   await seedAdmin();
   await seedCategories();
+  await seedFufuProducts();
 }
 
 main()
