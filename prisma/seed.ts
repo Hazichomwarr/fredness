@@ -1,3 +1,4 @@
+// prisma/seed.ts
 import "dotenv/config";
 
 import { PrismaClient } from "@prisma/client";
@@ -431,6 +432,98 @@ const fufuProducts = [
   },
 ];
 
+const drinksProducts = [
+  {
+    name: "Vinut 100% Red Grape Juice",
+    slug: "vinut-red-grape-juice-500ml",
+    sku: "DRINK-JUICE-GRAPE-VINUT-500",
+    brand: "Vinut",
+    weight: "500 ml",
+    description:
+      "Pure red grape juice with no sugar added for a naturally rich and refreshing taste.",
+  },
+
+  {
+    name: "AmericanDrop 100% Watermelon Juice",
+    slug: "americandrop-watermelon-juice-490ml",
+    sku: "DRINK-JUICE-WATERMELON-AMERICANDROP-490",
+    brand: "AmericanDrop",
+    weight: "490 ml",
+    description:
+      "Refreshing watermelon juice with pulp and no sugar added for tropical refreshment.",
+  },
+
+  {
+    name: "AmericanDrop 100% Orange Juice",
+    slug: "americandrop-orange-juice-490ml",
+    sku: "DRINK-JUICE-ORANGE-AMERICANDROP-490",
+    brand: "AmericanDrop",
+    weight: "490 ml",
+    description:
+      "Smooth orange juice with pulp delivering fresh citrus flavor in every sip.",
+  },
+
+  {
+    name: "Vinut 100% Apple Juice",
+    slug: "vinut-apple-juice-500ml",
+    sku: "DRINK-JUICE-APPLE-VINUT-500",
+    brand: "Vinut",
+    weight: "500 ml",
+    description:
+      "Naturally sweet apple juice made with no sugar added and never from concentrate.",
+  },
+
+  {
+    name: "AmericanDrop 100% Lychee Juice",
+    slug: "americandrop-lychee-juice-490ml",
+    sku: "DRINK-JUICE-LYCHEE-AMERICANDROP-490",
+    brand: "AmericanDrop",
+    weight: "490 ml",
+    description:
+      "Delicious lychee juice bursting with exotic fruit flavor and natural sweetness.",
+  },
+
+  {
+    name: "Ensure Original Vanilla Nutrition Shake",
+    slug: "ensure-original-vanilla-shake-237ml",
+    sku: "DRINK-NUTRITION-ENSURE-VANILLA-237",
+    brand: "Ensure",
+    weight: "237 ml",
+    description:
+      "Protein-rich nutrition shake with vitamins and minerals to help fuel your day.",
+  },
+
+  {
+    name: "Power Malt Extra Energy",
+    slug: "power-malt-extra-energy-330ml",
+    sku: "DRINK-MALT-POWERMALT-330",
+    brand: "Power Malt",
+    weight: "330 ml",
+    description:
+      "Refreshing non-alcoholic malt drink with bold flavor and extra energy.",
+  },
+
+  {
+    name: "Vimto Fruit Flavor Drink",
+    slug: "vimto-fruit-flavor-drink-330ml",
+    sku: "DRINK-SODA-VIMTO-330",
+    brand: "Vimto",
+    weight: "330 ml",
+    description:
+      "Classic mixed fruit soft drink loved for its rich, sweet, and fruity taste.",
+  },
+
+  {
+    name: "Vita Malt Ginger",
+    slug: "vita-malt-ginger-330ml",
+    sku: "DRINK-MALT-VITAMALT-GINGER-330",
+    brand: "Vita Malt",
+    weight: "330 ml",
+    description:
+      "Non-alcoholic malt beverage infused with natural ginger for a bold, refreshing finish.",
+  },
+];
+
 async function seedAdmin() {
   await prisma.user.upsert({
     where: { email: adminEmail },
@@ -462,73 +555,125 @@ async function seedCategories() {
   console.info(`Seeded ${categories.length} categories`);
 }
 
-async function seedFufuProducts() {
-  for (const product of fufuProducts) {
-    await prisma.product.upsert({
-      where: { sku: product.sku },
-      update: {
-        category: {
-          connect: {
-            slug: "fufu",
-          },
-        },
-        name: product.name,
-        slug: product.slug,
-        sku: product.sku,
-        description: product.description,
-        brand: product.brand,
-        weight: product.weight,
-        retailPrice: product.retailPrice,
-        wholesalePrice: product.wholesalePrice,
-        minimumWholesaleQty: 1,
-        inventory: 100,
-        trackInventory: true,
-        isActive: true,
-        images: {
-          deleteMany: {},
-          create: product.imageUrls.map((url, index) => ({
-            url,
-            altText: product.name,
-            sortOrder: index,
-          })),
-        },
+type SeedProduct = {
+  name: string;
+  slug: string;
+  sku: string;
+  brand: string | null;
+  weight: string | null;
+  description: string;
+  retailPrice: string;
+  wholesalePrice: string;
+  imageUrls: string[];
+};
+
+function productData(categorySlug: string, product: SeedProduct) {
+  return {
+    category: {
+      connect: {
+        slug: categorySlug,
       },
-      create: {
-        category: {
-          connect: {
-            slug: "fufu",
+    },
+    name: product.name,
+    slug: product.slug,
+    sku: product.sku,
+    description: product.description,
+    brand: product.brand,
+    weight: product.weight,
+    retailPrice: product.retailPrice,
+    wholesalePrice: product.wholesalePrice,
+    minimumWholesaleQty: 1,
+    inventory: 100,
+    trackInventory: true,
+    isActive: true,
+  };
+}
+
+function productImages(product: SeedProduct) {
+  return product.imageUrls.map((url, index) => ({
+    url,
+    altText: product.name,
+    sortOrder: index,
+  }));
+}
+
+async function seedProducts(
+  categorySlug: string,
+  products: SeedProduct[],
+  label: string,
+) {
+  for (const product of products) {
+    const existingProduct = await prisma.product.findFirst({
+      where: {
+        OR: [{ sku: product.sku }, { slug: product.slug }],
+      },
+      select: { id: true },
+    });
+
+    if (existingProduct) {
+      const [productWithSku, productWithSlug] = await Promise.all([
+        prisma.product.findUnique({
+          where: { sku: product.sku },
+          select: { id: true },
+        }),
+        prisma.product.findUnique({
+          where: { slug: product.slug },
+          select: { id: true },
+        }),
+      ]);
+      const data: Omit<ReturnType<typeof productData>, "sku" | "slug"> & {
+        sku?: string;
+        slug?: string;
+      } = { ...productData(categorySlug, product) };
+
+      if (productWithSku && productWithSku.id !== existingProduct.id) {
+        delete data.sku;
+      }
+
+      if (productWithSlug && productWithSlug.id !== existingProduct.id) {
+        delete data.slug;
+      }
+
+      await prisma.product.update({
+        where: { id: existingProduct.id },
+        data: {
+          ...data,
+          images: {
+            deleteMany: {},
+            create: productImages(product),
           },
         },
-        name: product.name,
-        slug: product.slug,
-        sku: product.sku,
-        description: product.description,
-        brand: product.brand,
-        weight: product.weight,
-        retailPrice: product.retailPrice,
-        wholesalePrice: product.wholesalePrice,
-        minimumWholesaleQty: 1,
-        inventory: 100,
-        trackInventory: true,
-        isActive: true,
+      });
+
+      continue;
+    }
+
+    await prisma.product.create({
+      data: {
+        ...productData(categorySlug, product),
         images: {
-          create: product.imageUrls.map((url, index) => ({
-            url,
-            altText: product.name,
-            sortOrder: index,
-          })),
+          create: productImages(product),
         },
       },
     });
   }
 
-  console.info(`Seeded ${fufuProducts.length} Fufu products`);
+  console.info(`Seeded ${products.length} ${label} products`);
+}
+
+async function seedFufuProducts() {
+  await seedProducts("fufu", fufuProducts, "Fufu");
+}
+
+async function seedDrinksProducts() {
+  await seedProducts("drinks", drinksProducts, "Drinks");
 }
 
 async function main() {
   await seedAdmin();
   await seedCategories();
   await seedFufuProducts();
+  await seedDrinksProducts();
 }
 
 main()
