@@ -432,97 +432,97 @@ const fufuProducts = [
   },
 ];
 
-const drinksProducts = [
-  {
-    name: "Vinut 100% Red Grape Juice",
-    slug: "vinut-red-grape-juice-500ml",
-    sku: "DRINK-JUICE-GRAPE-VINUT-500",
-    brand: "Vinut",
-    weight: "500 ml",
-    description:
-      "Pure red grape juice with no sugar added for a naturally rich and refreshing taste.",
-  },
+// const drinksProducts = [
+//   {
+//     name: "Vinut 100% Red Grape Juice",
+//     slug: "vinut-red-grape-juice-500ml",
+//     sku: "DRINK-JUICE-GRAPE-VINUT-500",
+//     brand: "Vinut",
+//     weight: "500 ml",
+//     description:
+//       "Pure red grape juice with no sugar added for a naturally rich and refreshing taste.",
+//   },
 
-  {
-    name: "AmericanDrop 100% Watermelon Juice",
-    slug: "americandrop-watermelon-juice-490ml",
-    sku: "DRINK-JUICE-WATERMELON-AMERICANDROP-490",
-    brand: "AmericanDrop",
-    weight: "490 ml",
-    description:
-      "Refreshing watermelon juice with pulp and no sugar added for tropical refreshment.",
-  },
+//   {
+//     name: "AmericanDrop 100% Watermelon Juice",
+//     slug: "americandrop-watermelon-juice-490ml",
+//     sku: "DRINK-JUICE-WATERMELON-AMERICANDROP-490",
+//     brand: "AmericanDrop",
+//     weight: "490 ml",
+//     description:
+//       "Refreshing watermelon juice with pulp and no sugar added for tropical refreshment.",
+//   },
 
-  {
-    name: "AmericanDrop 100% Orange Juice",
-    slug: "americandrop-orange-juice-490ml",
-    sku: "DRINK-JUICE-ORANGE-AMERICANDROP-490",
-    brand: "AmericanDrop",
-    weight: "490 ml",
-    description:
-      "Smooth orange juice with pulp delivering fresh citrus flavor in every sip.",
-  },
+//   {
+//     name: "AmericanDrop 100% Orange Juice",
+//     slug: "americandrop-orange-juice-490ml",
+//     sku: "DRINK-JUICE-ORANGE-AMERICANDROP-490",
+//     brand: "AmericanDrop",
+//     weight: "490 ml",
+//     description:
+//       "Smooth orange juice with pulp delivering fresh citrus flavor in every sip.",
+//   },
 
-  {
-    name: "Vinut 100% Apple Juice",
-    slug: "vinut-apple-juice-500ml",
-    sku: "DRINK-JUICE-APPLE-VINUT-500",
-    brand: "Vinut",
-    weight: "500 ml",
-    description:
-      "Naturally sweet apple juice made with no sugar added and never from concentrate.",
-  },
+//   {
+//     name: "Vinut 100% Apple Juice",
+//     slug: "vinut-apple-juice-500ml",
+//     sku: "DRINK-JUICE-APPLE-VINUT-500",
+//     brand: "Vinut",
+//     weight: "500 ml",
+//     description:
+//       "Naturally sweet apple juice made with no sugar added and never from concentrate.",
+//   },
 
-  {
-    name: "AmericanDrop 100% Lychee Juice",
-    slug: "americandrop-lychee-juice-490ml",
-    sku: "DRINK-JUICE-LYCHEE-AMERICANDROP-490",
-    brand: "AmericanDrop",
-    weight: "490 ml",
-    description:
-      "Delicious lychee juice bursting with exotic fruit flavor and natural sweetness.",
-  },
+//   {
+//     name: "AmericanDrop 100% Lychee Juice",
+//     slug: "americandrop-lychee-juice-490ml",
+//     sku: "DRINK-JUICE-LYCHEE-AMERICANDROP-490",
+//     brand: "AmericanDrop",
+//     weight: "490 ml",
+//     description:
+//       "Delicious lychee juice bursting with exotic fruit flavor and natural sweetness.",
+//   },
 
-  {
-    name: "Ensure Original Vanilla Nutrition Shake",
-    slug: "ensure-original-vanilla-shake-237ml",
-    sku: "DRINK-NUTRITION-ENSURE-VANILLA-237",
-    brand: "Ensure",
-    weight: "237 ml",
-    description:
-      "Protein-rich nutrition shake with vitamins and minerals to help fuel your day.",
-  },
+//   {
+//     name: "Ensure Original Vanilla Nutrition Shake",
+//     slug: "ensure-original-vanilla-shake-237ml",
+//     sku: "DRINK-NUTRITION-ENSURE-VANILLA-237",
+//     brand: "Ensure",
+//     weight: "237 ml",
+//     description:
+//       "Protein-rich nutrition shake with vitamins and minerals to help fuel your day.",
+//   },
 
-  {
-    name: "Power Malt Extra Energy",
-    slug: "power-malt-extra-energy-330ml",
-    sku: "DRINK-MALT-POWERMALT-330",
-    brand: "Power Malt",
-    weight: "330 ml",
-    description:
-      "Refreshing non-alcoholic malt drink with bold flavor and extra energy.",
-  },
+//   {
+//     name: "Power Malt Extra Energy",
+//     slug: "power-malt-extra-energy-330ml",
+//     sku: "DRINK-MALT-POWERMALT-330",
+//     brand: "Power Malt",
+//     weight: "330 ml",
+//     description:
+//       "Refreshing non-alcoholic malt drink with bold flavor and extra energy.",
+//   },
 
-  {
-    name: "Vimto Fruit Flavor Drink",
-    slug: "vimto-fruit-flavor-drink-330ml",
-    sku: "DRINK-SODA-VIMTO-330",
-    brand: "Vimto",
-    weight: "330 ml",
-    description:
-      "Classic mixed fruit soft drink loved for its rich, sweet, and fruity taste.",
-  },
+//   {
+//     name: "Vimto Fruit Flavor Drink",
+//     slug: "vimto-fruit-flavor-drink-330ml",
+//     sku: "DRINK-SODA-VIMTO-330",
+//     brand: "Vimto",
+//     weight: "330 ml",
+//     description:
+//       "Classic mixed fruit soft drink loved for its rich, sweet, and fruity taste.",
+//   },
 
-  {
-    name: "Vita Malt Ginger",
-    slug: "vita-malt-ginger-330ml",
-    sku: "DRINK-MALT-VITAMALT-GINGER-330",
-    brand: "Vita Malt",
-    weight: "330 ml",
-    description:
-      "Non-alcoholic malt beverage infused with natural ginger for a bold, refreshing finish.",
-  },
-];
+//   {
+//     name: "Vita Malt Ginger",
+//     slug: "vita-malt-ginger-330ml",
+//     sku: "DRINK-MALT-VITAMALT-GINGER-330",
+//     brand: "Vita Malt",
+//     weight: "330 ml",
+//     description:
+//       "Non-alcoholic malt beverage infused with natural ginger for a bold, refreshing finish.",
+//   },
+// ];
 
 async function seedAdmin() {
   await prisma.user.upsert({
@@ -665,15 +665,15 @@ async function seedFufuProducts() {
   await seedProducts("fufu", fufuProducts, "Fufu");
 }
 
-async function seedDrinksProducts() {
-  await seedProducts("drinks", drinksProducts, "Drinks");
-}
+// async function seedDrinksProducts() {
+//   await seedProducts("drinks", drinksProducts, "Drinks");
+// }
 
 async function main() {
   await seedAdmin();
   await seedCategories();
   await seedFufuProducts();
-  await seedDrinksProducts();
+  // await seedDrinksProducts();
 }
 
 main()
