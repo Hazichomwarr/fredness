@@ -89,6 +89,14 @@ const categories = [
       "Soft drinks, malt beverages, juices, and refreshments from Africa and the Caribbean.",
     sortOrder: 8,
   },
+  {
+    name: "Cooking Oils, Creams & Sauces",
+    slug: "cooking-oils-creams-sauces",
+    imageUrl: "/images/african-best-fallback.png",
+    description:
+      "Cooking oils, palm creams, shito, soup bases, and flavorful sauces for African and Caribbean meals.",
+    sortOrder: 9,
+  },
 ];
 
 const fufuProducts = [
@@ -432,97 +440,223 @@ const fufuProducts = [
   },
 ];
 
-// const drinksProducts = [
-//   {
-//     name: "Vinut 100% Red Grape Juice",
-//     slug: "vinut-red-grape-juice-500ml",
-//     sku: "DRINK-JUICE-GRAPE-VINUT-500",
-//     brand: "Vinut",
-//     weight: "500 ml",
-//     description:
-//       "Pure red grape juice with no sugar added for a naturally rich and refreshing taste.",
-//   },
+const oilsProducts = [
+  {
+    name: "African Best Palm Oil Regular 2L",
+    slug: "african-best-palm-oil-regular-2l",
+    sku: "ABPR-2L",
+    brand: "African Best",
+    weight: "2 L",
+    description: "Pure red palm oil for authentic African cooking.",
+    retailPrice: "13.99",
+    wholesalePrice: "11.99",
+    imageUrls: [],
+  },
 
-//   {
-//     name: "AmericanDrop 100% Watermelon Juice",
-//     slug: "americandrop-watermelon-juice-490ml",
-//     sku: "DRINK-JUICE-WATERMELON-AMERICANDROP-490",
-//     brand: "AmericanDrop",
-//     weight: "490 ml",
-//     description:
-//       "Refreshing watermelon juice with pulp and no sugar added for tropical refreshment.",
-//   },
+  {
+    name: "African Best Palm Oil Zomi 2L",
+    slug: "african-best-palm-oil-zomi-2l",
+    sku: "ABPZ-2L",
+    brand: "African Best",
+    weight: "2 L",
+    description: "Premium Zomi palm oil with rich flavor and aroma.",
+    retailPrice: "14.99",
+    wholesalePrice: "12.99",
+    imageUrls: [],
+  },
 
-//   {
-//     name: "AmericanDrop 100% Orange Juice",
-//     slug: "americandrop-orange-juice-490ml",
-//     sku: "DRINK-JUICE-ORANGE-AMERICANDROP-490",
-//     brand: "AmericanDrop",
-//     weight: "490 ml",
-//     description:
-//       "Smooth orange juice with pulp delivering fresh citrus flavor in every sip.",
-//   },
+  {
+    name: "African Best Palm Oil 5kg",
+    slug: "african-best-palm-oil-5kg",
+    sku: "ABP-5KG",
+    brand: "African Best",
+    weight: "5 kg",
+    description: "Bulk family-size palm oil for everyday cooking.",
+    retailPrice: "32.99",
+    wholesalePrice: "28.99",
+    imageUrls: [],
+  },
 
-//   {
-//     name: "Vinut 100% Apple Juice",
-//     slug: "vinut-apple-juice-500ml",
-//     sku: "DRINK-JUICE-APPLE-VINUT-500",
-//     brand: "Vinut",
-//     weight: "500 ml",
-//     description:
-//       "Naturally sweet apple juice made with no sugar added and never from concentrate.",
-//   },
+  {
+    name: "Carotino Cooking Oil 1.1L",
+    slug: "carotino-cooking-oil-1-1l",
+    sku: "CAR-1100",
+    brand: "Carotino",
+    weight: "1.1 L",
+    description: "Vitamin E enriched cooking oil for daily meals.",
+    retailPrice: "8.99",
+    wholesalePrice: "7.49",
+    imageUrls: [],
+  },
 
-//   {
-//     name: "AmericanDrop 100% Lychee Juice",
-//     slug: "americandrop-lychee-juice-490ml",
-//     sku: "DRINK-JUICE-LYCHEE-AMERICANDROP-490",
-//     brand: "AmericanDrop",
-//     weight: "490 ml",
-//     description:
-//       "Delicious lychee juice bursting with exotic fruit flavor and natural sweetness.",
-//   },
+  {
+    name: "Kirkland Vegetable Oil",
+    slug: "kirkland-vegetable-oil",
+    sku: "KS-VO-284",
+    brand: "Kirkland Signature",
+    weight: "2.84 L",
+    description: "Versatile vegetable oil for frying and baking.",
+    retailPrice: "11.99",
+    wholesalePrice: "9.99",
+    imageUrls: [],
+  },
 
-//   {
-//     name: "Ensure Original Vanilla Nutrition Shake",
-//     slug: "ensure-original-vanilla-shake-237ml",
-//     sku: "DRINK-NUTRITION-ENSURE-VANILLA-237",
-//     brand: "Ensure",
-//     weight: "237 ml",
-//     description:
-//       "Protein-rich nutrition shake with vitamins and minerals to help fuel your day.",
-//   },
+  {
+    name: "Kirkland Canola Oil",
+    slug: "kirkland-canola-oil",
+    sku: "KS-CO-284",
+    brand: "Kirkland Signature",
+    weight: "2.84 L",
+    description: "Light canola oil perfect for everyday cooking.",
+    retailPrice: "11.99",
+    wholesalePrice: "9.99",
+    imageUrls: [],
+  },
 
-//   {
-//     name: "Power Malt Extra Energy",
-//     slug: "power-malt-extra-energy-330ml",
-//     sku: "DRINK-MALT-POWERMALT-330",
-//     brand: "Power Malt",
-//     weight: "330 ml",
-//     description:
-//       "Refreshing non-alcoholic malt drink with bold flavor and extra energy.",
-//   },
+  {
+    name: "Kirkland Olive Oil",
+    slug: "kirkland-olive-oil",
+    sku: "KS-OO-3L",
+    brand: "Kirkland Signature",
+    weight: "3 L",
+    description: "Smooth olive oil blend for cooking and roasting.",
+    retailPrice: "22.99",
+    wholesalePrice: "19.99",
+    imageUrls: [],
+  },
 
-//   {
-//     name: "Vimto Fruit Flavor Drink",
-//     slug: "vimto-fruit-flavor-drink-330ml",
-//     sku: "DRINK-SODA-VIMTO-330",
-//     brand: "Vimto",
-//     weight: "330 ml",
-//     description:
-//       "Classic mixed fruit soft drink loved for its rich, sweet, and fruity taste.",
-//   },
+  {
+    name: "Filippo Berio Extra Virgin Olive Oil",
+    slug: "filippo-berio-extra-virgin-olive-oil",
+    sku: "FB-EVOO",
+    brand: "Filippo Berio",
+    weight: "250 ml",
+    description: "Premium extra virgin olive oil with rich flavor.",
+    retailPrice: "5.99",
+    wholesalePrice: "4.79",
+    imageUrls: [],
+  },
 
-//   {
-//     name: "Vita Malt Ginger",
-//     slug: "vita-malt-ginger-330ml",
-//     sku: "DRINK-MALT-VITAMALT-GINGER-330",
-//     brand: "Vita Malt",
-//     weight: "330 ml",
-//     description:
-//       "Non-alcoholic malt beverage infused with natural ginger for a bold, refreshing finish.",
-//   },
-// ];
+  {
+    name: "Mazola Corn Plus Oil",
+    slug: "mazola-corn-plus-oil",
+    sku: "MAZ-CP",
+    brand: "Mazola",
+    weight: "2.84 L",
+    description: "Corn and canola oil blend for healthy cooking.",
+    retailPrice: "12.99",
+    wholesalePrice: "10.99",
+    imageUrls: [],
+  },
+
+  {
+    name: "Red & White Vegetable Oil",
+    slug: "red-white-vegetable-oil",
+    sku: "RW-VO",
+    brand: "Red & White",
+    weight: "2.84 L",
+    description: "All-purpose vegetable oil for everyday recipes.",
+    retailPrice: "9.99",
+    wholesalePrice: "8.49",
+    imageUrls: [],
+  },
+
+  {
+    name: "CocoDrop Organic Coconut Oil",
+    slug: "cocodrop-organic-coconut-oil",
+    sku: "CD-CO",
+    brand: "CocoDrop",
+    weight: "500 ml",
+    description: "Organic refined coconut oil for cooking and baking.",
+    retailPrice: "10.99",
+    wholesalePrice: "8.99",
+    imageUrls: [],
+  },
+
+  {
+    name: "Walkerswood Traditional Jamaican Jerk Seasoning",
+    slug: "walkerswood-jerk-seasoning",
+    sku: "WW-JERK",
+    brand: "Walkerswood",
+    weight: "280 g",
+    description: "Authentic Jamaican jerk seasoning with bold spice.",
+    retailPrice: "6.99",
+    wholesalePrice: "5.49",
+    imageUrls: [],
+  },
+
+  {
+    name: "African Best Shito",
+    slug: "african-best-shito",
+    sku: "ABS-500",
+    brand: "African Best",
+    weight: "500 g",
+    description: "Traditional Ghanaian spicy black pepper sauce.",
+    retailPrice: "11.99",
+    wholesalePrice: "9.99",
+    imageUrls: [],
+  },
+
+  {
+    name: "Julie's Special Shito",
+    slug: "julies-special-shito",
+    sku: "JS-SHITO",
+    brand: "Julie's Special",
+    weight: "500 g",
+    description: "Homestyle shrimp pepper sauce with bold flavor.",
+    retailPrice: "12.99",
+    wholesalePrice: "10.99",
+    imageUrls: [],
+  },
+
+  {
+    name: "Ghana Fresh Palm Nut Cream Concentrate",
+    slug: "ghana-fresh-palm-nut-cream",
+    sku: "GF-PNC",
+    brand: "Ghana Fresh",
+    weight: "800 g",
+    description: "Rich palm nut concentrate for soups and stews.",
+    retailPrice: "6.99",
+    wholesalePrice: "5.49",
+    imageUrls: [],
+  },
+
+  {
+    name: "Praise Abemu Dro Palm Cream",
+    slug: "praise-abemu-dro-palm-cream",
+    sku: "PAD-PC",
+    brand: "Praise",
+    weight: "800 g",
+    description: "Palm cream with herbs for traditional African dishes.",
+    retailPrice: "6.99",
+    wholesalePrice: "5.49",
+    imageUrls: [],
+  },
+
+  {
+    name: "Nkulenu Palm Soup Base",
+    slug: "nkulenu-palm-soup-base",
+    sku: "NK-PSB",
+    brand: "Nkulenu",
+    weight: "780 g",
+    description: "Ready-to-use palm soup base with authentic flavor.",
+    retailPrice: "7.99",
+    wholesalePrice: "6.49",
+    imageUrls: [],
+  },
+
+  {
+    name: "Ghana Fresh Egg Plant",
+    slug: "ghana-fresh-egg-plant",
+    sku: "GF-EP",
+    brand: "Ghana Fresh",
+    weight: "800 g",
+    description: "Canned African eggplant for soups and sauces.",
+    retailPrice: "4.99",
+    wholesalePrice: "3.99",
+    imageUrls: [],
+  },
+];
 
 async function seedAdmin() {
   await prisma.user.upsert({
@@ -665,15 +799,19 @@ async function seedFufuProducts() {
   await seedProducts("fufu", fufuProducts, "Fufu");
 }
 
-// async function seedDrinksProducts() {
-//   await seedProducts("drinks", drinksProducts, "Drinks");
-// }
+async function seedBulkProducts() {
+  await seedProducts(
+    "cooking-oils-creams-sauces",
+    oilsProducts,
+    "Cooking Oils, Sauces & Creams",
+  );
+}
 
 async function main() {
   await seedAdmin();
   await seedCategories();
   await seedFufuProducts();
-  // await seedDrinksProducts();
+  await seedBulkProducts();
 }
 
 main()
