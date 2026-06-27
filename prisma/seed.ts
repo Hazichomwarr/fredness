@@ -442,219 +442,258 @@ const fufuProducts = [
 
 const oilsProducts = [
   {
-    name: "African Best Palm Oil Regular 2L",
-    slug: "african-best-palm-oil-regular-2l",
-    sku: "ABPR-2L",
+    name: "African Best Palm Oil Regular 1 Litre",
+    slug: "african-best-palm-oil-regular-1-litre",
+    sku: "AFBEST-PALMOIL-REG-1L",
     brand: "African Best",
-    weight: "2 L",
-    description: "Pure red palm oil for authentic African cooking.",
-    retailPrice: "13.99",
-    wholesalePrice: "11.99",
-    imageUrls: [],
+    weight: "1 L",
+    description:
+      "Regular red palm oil made from fresh palm pulp for stews, frying, beans, egusi, and okra.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXCR1BaPJGDNTIJPmq7LiCuRpwSEMecbKWQ58O",
+    ],
   },
 
   {
-    name: "African Best Palm Oil Zomi 2L",
+    name: "African Best Palm Oil Zomi",
     slug: "african-best-palm-oil-zomi-2l",
-    sku: "ABPZ-2L",
+    sku: "AFBEST-PALMOIL-ZOMI",
+    brand: "African Best",
+    weight: null,
+    description:
+      "Zomi-style red palm oil with a deeper aroma for soups, stews, and traditional dishes.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXb5hltno5Op4CRV8ijmIyH2xoatJUT0sgzuX3",
+    ],
+  },
+
+  {
+    name: "CDC Premium Menau Palm Oil 1 Litre",
+    slug: "cdc-premium-menau-palm-oil-1-litre",
+    sku: "CDC-PALMOIL-1L",
+    brand: "CDC",
+    weight: "1 L",
+    description:
+      "Premium Menau red palm oil from Cameroon for traditional soups, stews, and sauces.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXBf0bd0NVUFoSHVOz6iry4PwWQ5KdDR1BxGqn",
+    ],
+  },
+
+  {
+    name: "African Best Palm Oil Premium Quality",
+    slug: "african-best-palm-oil-premium-quality",
+    sku: "AFBEST-PALMOIL-PREMIUM",
+    brand: "African Best",
+    weight: null,
+    description:
+      "Premium quality African Best palm oil for family-size cooking, stews, soups, and frying.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXHGcwueEXneMU0Gh4lFug5jsq1YarJLdSkKxb",
+    ],
+  },
+
+  {
+    name: "African Best Palm Oil Regular 2 Litres",
+    slug: "african-best-palm-oil-regular-2l",
+    sku: "AFBEST-PALMOIL-REG-2L",
     brand: "African Best",
     weight: "2 L",
-    description: "Premium Zomi palm oil with rich flavor and aroma.",
-    retailPrice: "14.99",
-    wholesalePrice: "12.99",
-    imageUrls: [],
+    description:
+      "Two-litre regular red palm oil for authentic African soups, stews, and frying.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXyEgrEXGlH8fEcPQBWqpLDUbioN4JgzFMsYRS",
+    ],
   },
 
   {
-    name: "African Best Palm Oil 5kg",
-    slug: "african-best-palm-oil-5kg",
-    sku: "ABP-5KG",
+    name: "Ola-Ola Carotino Cooking Oil 3.3 L",
+    slug: "ola-ola-carotino-cooking-oil-3-3l",
+    sku: "CAROTINO-3-3L",
+    brand: "Ola-Ola Carotino",
+    weight: "3.3 L",
+    description:
+      "Cholesterol-free cooking oil with natural carotenes and vitamin E for everyday meals.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXqtKkXiHqd2MjsJFtYK70QIOpun8f64gceyki",
+    ],
+  },
+
+  {
+    name: "Ola-Ola Carotino Cooking Oil 550 ml",
+    slug: "ola-ola-carotino-cooking-oil-550ml",
+    sku: "CAROTINO-550",
+    brand: "Ola-Ola Carotino",
+    weight: "550 ml",
+    description:
+      "Small bottle of cholesterol-free Carotino cooking oil enriched with natural carotenes.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXt28k3FphYx5l2n4dkqFK1Ois7TyRZe69ubVI",
+    ],
+  },
+
+  {
+    name: "African Best Palm Oil",
+    slug: "african-best-palm-oil-bottle",
+    sku: "AFBEST-PALMOIL-BTL",
     brand: "African Best",
-    weight: "5 kg",
-    description: "Bulk family-size palm oil for everyday cooking.",
-    retailPrice: "32.99",
-    wholesalePrice: "28.99",
-    imageUrls: [],
+    weight: null,
+    description:
+      "Bottled red palm oil for everyday African soups, stews, beans, and frying.",
+    retailPrice: "6.00",
+    wholesalePrice: "5.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXgidW5Hnob5x69mSJEQUfGjOz3TDPZqheIC7Y",
+    ],
   },
 
   {
-    name: "Carotino Cooking Oil 1.1L",
+    name: "Ola-Ola Carotino Cooking Oil 1.1 L",
     slug: "carotino-cooking-oil-1-1l",
-    sku: "CAR-1100",
-    brand: "Carotino",
+    sku: "CAROTINO-1-1L",
+    brand: "Ola-Ola Carotino",
     weight: "1.1 L",
-    description: "Vitamin E enriched cooking oil for daily meals.",
-    retailPrice: "8.99",
-    wholesalePrice: "7.49",
-    imageUrls: [],
+    description:
+      "Carotino cooking oil with vitamin E and natural carotenes for soups, stews, and frying.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXY1arIyhwZPWs3SFLqN69dXt4ankvTHEyKQD1",
+    ],
   },
 
   {
-    name: "Kirkland Vegetable Oil",
-    slug: "kirkland-vegetable-oil",
-    sku: "KS-VO-284",
-    brand: "Kirkland Signature",
-    weight: "2.84 L",
-    description: "Versatile vegetable oil for frying and baking.",
-    retailPrice: "11.99",
-    wholesalePrice: "9.99",
-    imageUrls: [],
+    name: "Ola-Ola Carotino Cooking Oil 5.5 L",
+    slug: "ola-ola-carotino-cooking-oil-5-5l",
+    sku: "CAROTINO-5-5L",
+    brand: "Ola-Ola Carotino",
+    weight: "5.5 L",
+    description:
+      "Large jug of cholesterol-free Carotino cooking oil for home and food-service use.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX26dwAKWKNpRGQMoemS15q0TasbWAOw8DtVUY",
+    ],
   },
 
   {
-    name: "Kirkland Canola Oil",
-    slug: "kirkland-canola-oil",
-    sku: "KS-CO-284",
-    brand: "Kirkland Signature",
-    weight: "2.84 L",
-    description: "Light canola oil perfect for everyday cooking.",
-    retailPrice: "11.99",
-    wholesalePrice: "9.99",
-    imageUrls: [],
-  },
-
-  {
-    name: "Kirkland Olive Oil",
-    slug: "kirkland-olive-oil",
-    sku: "KS-OO-3L",
-    brand: "Kirkland Signature",
-    weight: "3 L",
-    description: "Smooth olive oil blend for cooking and roasting.",
-    retailPrice: "22.99",
-    wholesalePrice: "19.99",
-    imageUrls: [],
-  },
-
-  {
-    name: "Filippo Berio Extra Virgin Olive Oil",
-    slug: "filippo-berio-extra-virgin-olive-oil",
-    sku: "FB-EVOO",
-    brand: "Filippo Berio",
-    weight: "250 ml",
-    description: "Premium extra virgin olive oil with rich flavor.",
-    retailPrice: "5.99",
-    wholesalePrice: "4.79",
-    imageUrls: [],
-  },
-
-  {
-    name: "Mazola Corn Plus Oil",
-    slug: "mazola-corn-plus-oil",
-    sku: "MAZ-CP",
-    brand: "Mazola",
-    weight: "2.84 L",
-    description: "Corn and canola oil blend for healthy cooking.",
-    retailPrice: "12.99",
-    wholesalePrice: "10.99",
-    imageUrls: [],
-  },
-
-  {
-    name: "Red & White Vegetable Oil",
-    slug: "red-white-vegetable-oil",
-    sku: "RW-VO",
-    brand: "Red & White",
-    weight: "2.84 L",
-    description: "All-purpose vegetable oil for everyday recipes.",
-    retailPrice: "9.99",
-    wholesalePrice: "8.49",
-    imageUrls: [],
-  },
-
-  {
-    name: "CocoDrop Organic Coconut Oil",
-    slug: "cocodrop-organic-coconut-oil",
-    sku: "CD-CO",
-    brand: "CocoDrop",
-    weight: "500 ml",
-    description: "Organic refined coconut oil for cooking and baking.",
-    retailPrice: "10.99",
-    wholesalePrice: "8.99",
-    imageUrls: [],
-  },
-
-  {
-    name: "Walkerswood Traditional Jamaican Jerk Seasoning",
-    slug: "walkerswood-jerk-seasoning",
-    sku: "WW-JERK",
-    brand: "Walkerswood",
-    weight: "280 g",
-    description: "Authentic Jamaican jerk seasoning with bold spice.",
-    retailPrice: "6.99",
-    wholesalePrice: "5.49",
-    imageUrls: [],
-  },
-
-  {
-    name: "African Best Shito",
-    slug: "african-best-shito",
-    sku: "ABS-500",
+    name: "African Best Concentrated Abemuduro Sauce Graine",
+    slug: "african-best-concentrated-abemuduro-sauce-graine",
+    sku: "AFBEST-ABEMUDURO",
     brand: "African Best",
-    weight: "500 g",
-    description: "Traditional Ghanaian spicy black pepper sauce.",
-    retailPrice: "11.99",
-    wholesalePrice: "9.99",
-    imageUrls: [],
+    weight: null,
+    description:
+      "Concentrated palm nut sauce base for preparing sauce graine, soups, and stews.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX3TGGu2MGp74HzRqQDLkTwCX0EUNeduW2c5tl",
+    ],
   },
 
   {
-    name: "Julie's Special Shito",
-    slug: "julies-special-shito",
-    sku: "JS-SHITO",
-    brand: "Julie's Special",
-    weight: "500 g",
-    description: "Homestyle shrimp pepper sauce with bold flavor.",
-    retailPrice: "12.99",
-    wholesalePrice: "10.99",
-    imageUrls: [],
+    name: "De Rica Double Concentrated Tomato Paste Large Can",
+    slug: "de-rica-double-concentrated-tomato-paste-large-can",
+    sku: "DERICA-TOMATO-PASTE-LG",
+    brand: "De Rica",
+    weight: null,
+    description:
+      "Double concentrated tomato paste for rich stews, sauces, jollof rice, and soups.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXBcotqNVUFoSHVOz6iry4PwWQ5KdDR1BxGqnt",
+    ],
   },
 
   {
-    name: "Ghana Fresh Palm Nut Cream Concentrate",
-    slug: "ghana-fresh-palm-nut-cream",
-    sku: "GF-PNC",
-    brand: "Ghana Fresh",
-    weight: "800 g",
-    description: "Rich palm nut concentrate for soups and stews.",
-    retailPrice: "6.99",
-    wholesalePrice: "5.49",
-    imageUrls: [],
+    name: "De Rica Double Concentrated Tomato Paste 400 g",
+    slug: "de-rica-double-concentrated-tomato-paste-400g",
+    sku: "DERICA-TOMATO-PASTE-400",
+    brand: "De Rica",
+    weight: "400 g",
+    description:
+      "Four-hundred gram can of double concentrated tomato paste for everyday cooking.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX63oVr2TIdoa8APqmKptfzCilvc2yUEW9k3bD",
+    ],
   },
 
   {
-    name: "Praise Abemu Dro Palm Cream",
-    slug: "praise-abemu-dro-palm-cream",
-    sku: "PAD-PC",
-    brand: "Praise",
-    weight: "800 g",
-    description: "Palm cream with herbs for traditional African dishes.",
-    retailPrice: "6.99",
-    wholesalePrice: "5.49",
-    imageUrls: [],
+    name: "De Rica Double Concentrated Tomato Paste Small Can",
+    slug: "de-rica-double-concentrated-tomato-paste-small-can",
+    sku: "DERICA-TOMATO-PASTE-SM",
+    brand: "De Rica",
+    weight: null,
+    description:
+      "Small can of double concentrated tomato paste for soups, sauces, and quick stews.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXJ3K6GfyUIcDxWynlGbSNmh0zBPkXAHapLZfj",
+    ],
   },
 
   {
-    name: "Nkulenu Palm Soup Base",
-    slug: "nkulenu-palm-soup-base",
-    sku: "NK-PSB",
-    brand: "Nkulenu",
+    name: "Liberian Fresh Palm Cream Concentrate 780 g",
+    slug: "liberian-fresh-palm-cream-concentrate-780g",
+    sku: "LIBFRESH-PALM-CREAM-780",
+    brand: "Liberian Fresh",
     weight: "780 g",
-    description: "Ready-to-use palm soup base with authentic flavor.",
-    retailPrice: "7.99",
-    wholesalePrice: "6.49",
-    imageUrls: [],
+    description:
+      "Palm cream concentrate, also called sauce graine or moambe, for soups and stews.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXDr0qlqmVz6Whf5jJxIZB9EvncekuFaSwCgGm",
+    ],
   },
 
   {
-    name: "Ghana Fresh Egg Plant",
-    slug: "ghana-fresh-egg-plant",
-    sku: "GF-EP",
-    brand: "Ghana Fresh",
+    name: "Praise Palm Cream Sauce Graine",
+    slug: "praise-abemu-dro-palm-cream",
+    sku: "PRAISE-PALM-CREAM",
+    brand: "Praise",
+    weight: null,
+    description:
+      "Concentrated palm cream sauce graine for preparing hearty West African soups.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXQQnt0FLaQmgxRsrwTlNvnbS3Bpfi7yGF50X9",
+    ],
+  },
+
+  {
+    name: "Trofai Spicy Hot Palmnut Concentrate 800 g",
+    slug: "trofai-spicy-hot-palmnut-concentrate-800g",
+    sku: "TROFAI-SPICY-800",
+    brand: "Trofai",
     weight: "800 g",
-    description: "Canned African eggplant for soups and sauces.",
-    retailPrice: "4.99",
-    wholesalePrice: "3.99",
-    imageUrls: [],
+    description:
+      "Spicy palmnut concentrate with hot pepper flavor for moambe, sauce graine, and soups.",
+    retailPrice: "10.00",
+    wholesalePrice: "8.00",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXVjazPJSMuDmdnHeOcjLKfVkwIGr1YN2hlsSZ",
+    ],
   },
 ];
 
