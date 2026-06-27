@@ -30,7 +30,7 @@ const categories = [
   {
     name: "Proteins",
     slug: "proteins",
-    imageUrl: "/categories/proteins.jpg",
+    imageUrl: "/images/categories/fredness-proteins.jpg",
     description:
       "Fresh and frozen meats, poultry, and protein essentials for African and Caribbean cooking.",
     sortOrder: 1,
@@ -38,14 +38,14 @@ const categories = [
   {
     name: "Fish & Seafood",
     slug: "fish-seafood",
-    imageUrl: "/categories/fish.jpg",
+    imageUrl: "/images/categories/fredness-fish-seafood.jpg",
     description: "Smoked fish, dried fish, frozen fish, and seafood products.",
     sortOrder: 2,
   },
   {
     name: "Grains & Rice",
     slug: "grains-rice",
-    imageUrl: "/categories/grains-rice.jpg",
+    imageUrl: "/images/categories/fredness-bulk-rice.jpg",
     description: "Rice, beans, grains, and pantry staples for everyday meals.",
     sortOrder: 3,
   },
@@ -60,7 +60,7 @@ const categories = [
   {
     name: "Vegetables",
     slug: "vegetables",
-    imageUrl: "/categories/vegetables.jpg",
+    imageUrl: "/images/categories/fredness-vegetables.jpg",
     description:
       "Fresh vegetables and produce used in authentic African and Caribbean recipes.",
     sortOrder: 5,
@@ -68,7 +68,7 @@ const categories = [
   {
     name: "Spices",
     slug: "spices",
-    imageUrl: "/categories/spices.jpg",
+    imageUrl: "/images/categories/fredness-spices.jpg",
     description:
       "Traditional African and Caribbean seasonings, spices, and flavor enhancers.",
     sortOrder: 6,
@@ -76,7 +76,7 @@ const categories = [
   {
     name: "Snacks",
     slug: "snacks",
-    imageUrl: "/categories/snacks.jpg",
+    imageUrl: "/images/categories/fredness-snacks.jpg",
     description:
       "Cookies, crackers, sweets, and popular imported snack favorites.",
     sortOrder: 7,
@@ -84,7 +84,7 @@ const categories = [
   {
     name: "Drinks",
     slug: "drinks",
-    imageUrl: "/categories/drinks.jpg",
+    imageUrl: "/images/categories/fredness-drinks.jpg",
     description:
       "Soft drinks, malt beverages, juices, and refreshments from Africa and the Caribbean.",
     sortOrder: 8,
@@ -92,10 +92,17 @@ const categories = [
   {
     name: "Cooking Oils, Creams & Sauces",
     slug: "cooking-oils-creams-sauces",
-    imageUrl: "/images/african-best-fallback.png",
+    imageUrl: "/images/categories/frednes-oils-sauces.jpg",
     description:
       "Cooking oils, palm creams, shito, soup bases, and flavorful sauces for African and Caribbean meals.",
     sortOrder: 9,
+  },
+  {
+    name: "Canned Foods",
+    slug: "canned-foods",
+    description:
+      "A selection of premium canned fish, corned beef, luncheon meat, tuna, sardines, mackerel, and tomato paste from trusted international and African brands.",
+    imageUrl: "/images/categories/frednes-canned-foods.jpg",
   },
 ];
 
@@ -440,260 +447,485 @@ const fufuProducts = [
   },
 ];
 
-const oilsProducts = [
+// const oilsProducts = [
+//   {
+//     name: "African Best Palm Oil Regular 1 Litre",
+//     slug: "african-best-palm-oil-regular-1-litre",
+//     sku: "AFBEST-PALMOIL-REG-1L",
+//     brand: "African Best",
+//     weight: "1 L",
+//     description:
+//       "Regular red palm oil made from fresh palm pulp for stews, frying, beans, egusi, and okra.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXCR1BaPJGDNTIJPmq7LiCuRpwSEMecbKWQ58O",
+//     ],
+//   },
+
+//   {
+//     name: "African Best Palm Oil Zomi",
+//     slug: "african-best-palm-oil-zomi-2l",
+//     sku: "AFBEST-PALMOIL-ZOMI",
+//     brand: "African Best",
+//     weight: null,
+//     description:
+//       "Zomi-style red palm oil with a deeper aroma for soups, stews, and traditional dishes.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXb5hltno5Op4CRV8ijmIyH2xoatJUT0sgzuX3",
+//     ],
+//   },
+
+//   {
+//     name: "CDC Premium Menau Palm Oil 1 Litre",
+//     slug: "cdc-premium-menau-palm-oil-1-litre",
+//     sku: "CDC-PALMOIL-1L",
+//     brand: "CDC",
+//     weight: "1 L",
+//     description:
+//       "Premium Menau red palm oil from Cameroon for traditional soups, stews, and sauces.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXBf0bd0NVUFoSHVOz6iry4PwWQ5KdDR1BxGqn",
+//     ],
+//   },
+
+//   {
+//     name: "African Best Palm Oil Premium Quality",
+//     slug: "african-best-palm-oil-premium-quality",
+//     sku: "AFBEST-PALMOIL-PREMIUM",
+//     brand: "African Best",
+//     weight: null,
+//     description:
+//       "Premium quality African Best palm oil for family-size cooking, stews, soups, and frying.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXHGcwueEXneMU0Gh4lFug5jsq1YarJLdSkKxb",
+//     ],
+//   },
+
+//   {
+//     name: "African Best Palm Oil Regular 2 Litres",
+//     slug: "african-best-palm-oil-regular-2l",
+//     sku: "AFBEST-PALMOIL-REG-2L",
+//     brand: "African Best",
+//     weight: "2 L",
+//     description:
+//       "Two-litre regular red palm oil for authentic African soups, stews, and frying.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXyEgrEXGlH8fEcPQBWqpLDUbioN4JgzFMsYRS",
+//     ],
+//   },
+
+//   {
+//     name: "Ola-Ola Carotino Cooking Oil 3.3 L",
+//     slug: "ola-ola-carotino-cooking-oil-3-3l",
+//     sku: "CAROTINO-3-3L",
+//     brand: "Ola-Ola Carotino",
+//     weight: "3.3 L",
+//     description:
+//       "Cholesterol-free cooking oil with natural carotenes and vitamin E for everyday meals.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXqtKkXiHqd2MjsJFtYK70QIOpun8f64gceyki",
+//     ],
+//   },
+
+//   {
+//     name: "Ola-Ola Carotino Cooking Oil 550 ml",
+//     slug: "ola-ola-carotino-cooking-oil-550ml",
+//     sku: "CAROTINO-550",
+//     brand: "Ola-Ola Carotino",
+//     weight: "550 ml",
+//     description:
+//       "Small bottle of cholesterol-free Carotino cooking oil enriched with natural carotenes.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXt28k3FphYx5l2n4dkqFK1Ois7TyRZe69ubVI",
+//     ],
+//   },
+
+//   {
+//     name: "African Best Palm Oil",
+//     slug: "african-best-palm-oil-bottle",
+//     sku: "AFBEST-PALMOIL-BTL",
+//     brand: "African Best",
+//     weight: null,
+//     description:
+//       "Bottled red palm oil for everyday African soups, stews, beans, and frying.",
+//     retailPrice: "6.00",
+//     wholesalePrice: "5.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXgidW5Hnob5x69mSJEQUfGjOz3TDPZqheIC7Y",
+//     ],
+//   },
+
+//   {
+//     name: "Ola-Ola Carotino Cooking Oil 1.1 L",
+//     slug: "carotino-cooking-oil-1-1l",
+//     sku: "CAROTINO-1-1L",
+//     brand: "Ola-Ola Carotino",
+//     weight: "1.1 L",
+//     description:
+//       "Carotino cooking oil with vitamin E and natural carotenes for soups, stews, and frying.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXY1arIyhwZPWs3SFLqN69dXt4ankvTHEyKQD1",
+//     ],
+//   },
+
+//   {
+//     name: "Ola-Ola Carotino Cooking Oil 5.5 L",
+//     slug: "ola-ola-carotino-cooking-oil-5-5l",
+//     sku: "CAROTINO-5-5L",
+//     brand: "Ola-Ola Carotino",
+//     weight: "5.5 L",
+//     description:
+//       "Large jug of cholesterol-free Carotino cooking oil for home and food-service use.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX26dwAKWKNpRGQMoemS15q0TasbWAOw8DtVUY",
+//     ],
+//   },
+
+//   {
+//     name: "African Best Concentrated Abemuduro Sauce Graine",
+//     slug: "african-best-concentrated-abemuduro-sauce-graine",
+//     sku: "AFBEST-ABEMUDURO",
+//     brand: "African Best",
+//     weight: null,
+//     description:
+//       "Concentrated palm nut sauce base for preparing sauce graine, soups, and stews.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX3TGGu2MGp74HzRqQDLkTwCX0EUNeduW2c5tl",
+//     ],
+//   },
+
+//   {
+//     name: "De Rica Double Concentrated Tomato Paste Large Can",
+//     slug: "de-rica-double-concentrated-tomato-paste-large-can",
+//     sku: "DERICA-TOMATO-PASTE-LG",
+//     brand: "De Rica",
+//     weight: null,
+//     description:
+//       "Double concentrated tomato paste for rich stews, sauces, jollof rice, and soups.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXBcotqNVUFoSHVOz6iry4PwWQ5KdDR1BxGqnt",
+//     ],
+//   },
+
+//   {
+//     name: "De Rica Double Concentrated Tomato Paste 400 g",
+//     slug: "de-rica-double-concentrated-tomato-paste-400g",
+//     sku: "DERICA-TOMATO-PASTE-400",
+//     brand: "De Rica",
+//     weight: "400 g",
+//     description:
+//       "Four-hundred gram can of double concentrated tomato paste for everyday cooking.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX63oVr2TIdoa8APqmKptfzCilvc2yUEW9k3bD",
+//     ],
+//   },
+
+//   {
+//     name: "De Rica Double Concentrated Tomato Paste Small Can",
+//     slug: "de-rica-double-concentrated-tomato-paste-small-can",
+//     sku: "DERICA-TOMATO-PASTE-SM",
+//     brand: "De Rica",
+//     weight: null,
+//     description:
+//       "Small can of double concentrated tomato paste for soups, sauces, and quick stews.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXJ3K6GfyUIcDxWynlGbSNmh0zBPkXAHapLZfj",
+//     ],
+//   },
+
+//   {
+//     name: "Liberian Fresh Palm Cream Concentrate 780 g",
+//     slug: "liberian-fresh-palm-cream-concentrate-780g",
+//     sku: "LIBFRESH-PALM-CREAM-780",
+//     brand: "Liberian Fresh",
+//     weight: "780 g",
+//     description:
+//       "Palm cream concentrate, also called sauce graine or moambe, for soups and stews.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXDr0qlqmVz6Whf5jJxIZB9EvncekuFaSwCgGm",
+//     ],
+//   },
+
+//   {
+//     name: "Praise Palm Cream Sauce Graine",
+//     slug: "praise-abemu-dro-palm-cream",
+//     sku: "PRAISE-PALM-CREAM",
+//     brand: "Praise",
+//     weight: null,
+//     description:
+//       "Concentrated palm cream sauce graine for preparing hearty West African soups.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXQQnt0FLaQmgxRsrwTlNvnbS3Bpfi7yGF50X9",
+//     ],
+//   },
+
+//   {
+//     name: "Trofai Spicy Hot Palmnut Concentrate 800 g",
+//     slug: "trofai-spicy-hot-palmnut-concentrate-800g",
+//     sku: "TROFAI-SPICY-800",
+//     brand: "Trofai",
+//     weight: "800 g",
+//     description:
+//       "Spicy palmnut concentrate with hot pepper flavor for moambe, sauce graine, and soups.",
+//     retailPrice: "10.00",
+//     wholesalePrice: "8.00",
+//     imageUrls: [
+//       "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXVjazPJSMuDmdnHeOcjLKfVkwIGr1YN2hlsSZ",
+//     ],
+//   },
+// ];
+
+const cannedFoods: SeedProduct[] = [
   {
-    name: "African Best Palm Oil Regular 1 Litre",
-    slug: "african-best-palm-oil-regular-1-litre",
-    sku: "AFBEST-PALMOIL-REG-1L",
-    brand: "African Best",
-    weight: "1 L",
+    name: "Exeter Original Corned Beef",
+    slug: "exeter-original-corned-beef",
+    sku: "CB-EXETER-001",
+    brand: "Exeter",
+    weight: "340g",
     description:
-      "Regular red palm oil made from fresh palm pulp for stews, frying, beans, egusi, and okra.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXCR1BaPJGDNTIJPmq7LiCuRpwSEMecbKWQ58O",
-    ],
+      "Premium halal corned beef imported from Brazil. Great for sandwiches, breakfast and African dishes.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.75",
+    imageUrls: [],
+  },
+
+  // {
+  //   name: "Exeter Original Corned Beef",
+  //   slug: "exeter-original-corned-beef-large",
+  //   sku: "CB-EXETER-002",
+  //   brand: "Exeter",
+  //   weight: "2.72kg",
+  //   description:
+  //     "Large catering-size halal corned beef for restaurants, events and bulk cooking.",
+  //   retailPrice: "0",
+  //   wholesalePrice: "0",
+  //   imageUrls: [],
+  // },
+
+  {
+    name: "Pampeano Corned Beef",
+    slug: "pampeano-corned-beef",
+    sku: "CB-PAMPEANO-001",
+    brand: "Pampeano",
+    weight: "340g",
+    description:
+      "Halal Brazilian corned beef with rich flavor and tender texture.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "African Best Palm Oil Zomi",
-    slug: "african-best-palm-oil-zomi-2l",
-    sku: "AFBEST-PALMOIL-ZOMI",
-    brand: "African Best",
-    weight: null,
+    name: "Al Haloub Corned Beef",
+    slug: "al-haloub-corned-beef",
+    sku: "CB-HALOUB-001",
+    brand: "Al Haloub Cow",
+    weight: "340g",
     description:
-      "Zomi-style red palm oil with a deeper aroma for soups, stews, and traditional dishes.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXb5hltno5Op4CRV8ijmIyH2xoatJUT0sgzuX3",
-    ],
+      "Halal corned beef with natural juices. Perfect for quick meals.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "CDC Premium Menau Palm Oil 1 Litre",
-    slug: "cdc-premium-menau-palm-oil-1-litre",
-    sku: "CDC-PALMOIL-1L",
-    brand: "CDC",
-    weight: "1 L",
-    description:
-      "Premium Menau red palm oil from Cameroon for traditional soups, stews, and sauces.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXBf0bd0NVUFoSHVOz6iry4PwWQ5KdDR1BxGqn",
-    ],
+    name: "Zwan Chicken & Beef Luncheon Loaf",
+    slug: "zwan-chicken-beef-luncheon-loaf",
+    sku: "CB-ZWAN-001",
+    brand: "Zwan",
+    weight: "340g",
+    description: "Chicken and beef luncheon loaf. Ready-to-eat canned meat.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "African Best Palm Oil Premium Quality",
-    slug: "african-best-palm-oil-premium-quality",
-    sku: "AFBEST-PALMOIL-PREMIUM",
-    brand: "African Best",
-    weight: null,
-    description:
-      "Premium quality African Best palm oil for family-size cooking, stews, soups, and frying.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXHGcwueEXneMU0Gh4lFug5jsq1YarJLdSkKxb",
-    ],
+    name: "Africa Queen Mackerel in Tomato Sauce",
+    slug: "africa-queen-mackerel-tomato-sauce",
+    sku: "CF-AQ-001",
+    brand: "Africa Queen",
+    weight: "425g",
+    description: "Mackerel in rich tomato sauce. Popular across West Africa.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "African Best Palm Oil Regular 2 Litres",
-    slug: "african-best-palm-oil-regular-2l",
-    sku: "AFBEST-PALMOIL-REG-2L",
-    brand: "African Best",
-    weight: "2 L",
-    description:
-      "Two-litre regular red palm oil for authentic African soups, stews, and frying.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXyEgrEXGlH8fEcPQBWqpLDUbioN4JgzFMsYRS",
-    ],
+    name: "Geisha Mackerel in Tomato Sauce",
+    slug: "geisha-mackerel-tomato-sauce",
+    sku: "CF-GEISHA-001",
+    brand: "Geisha",
+    weight: "425g",
+    description: "Premium canned mackerel in tomato sauce.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "Ola-Ola Carotino Cooking Oil 3.3 L",
-    slug: "ola-ola-carotino-cooking-oil-3-3l",
-    sku: "CAROTINO-3-3L",
-    brand: "Ola-Ola Carotino",
-    weight: "3.3 L",
-    description:
-      "Cholesterol-free cooking oil with natural carotenes and vitamin E for everyday meals.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXqtKkXiHqd2MjsJFtYK70QIOpun8f64gceyki",
-    ],
+    name: "Geisha Mackerel in Tomato Sauce",
+    slug: "geisha-mackerel-tomato-sauce-small",
+    sku: "CF-GEISHA-002",
+    brand: "Geisha",
+    weight: "155g",
+    description: "Small-size Geisha mackerel in tomato sauce.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "Ola-Ola Carotino Cooking Oil 550 ml",
-    slug: "ola-ola-carotino-cooking-oil-550ml",
-    sku: "CAROTINO-550",
-    brand: "Ola-Ola Carotino",
-    weight: "550 ml",
-    description:
-      "Small bottle of cholesterol-free Carotino cooking oil enriched with natural carotenes.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXt28k3FphYx5l2n4dkqFK1Ois7TyRZe69ubVI",
-    ],
+    name: "Tinappa Mackerel in Tomato Sauce",
+    slug: "tinappa-mackerel-tomato-sauce",
+    sku: "CF-TINAPPA-001",
+    brand: "Tinappa",
+    weight: "425g",
+    description: "Premium canned mackerel in tomato sauce.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "African Best Palm Oil",
-    slug: "african-best-palm-oil-bottle",
-    sku: "AFBEST-PALMOIL-BTL",
-    brand: "African Best",
-    weight: null,
-    description:
-      "Bottled red palm oil for everyday African soups, stews, beans, and frying.",
-    retailPrice: "6.00",
-    wholesalePrice: "5.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXgidW5Hnob5x69mSJEQUfGjOz3TDPZqheIC7Y",
-    ],
+    name: "Tinappa Mackerel in Tomato Sauce with Chili",
+    slug: "tinappa-mackerel-tomato-sauce-chili",
+    sku: "CF-TINAPPA-002",
+    brand: "Tinappa",
+    weight: "425g",
+    description: "Mackerel in spicy tomato sauce with chili.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "Ola-Ola Carotino Cooking Oil 1.1 L",
-    slug: "carotino-cooking-oil-1-1l",
-    sku: "CAROTINO-1-1L",
-    brand: "Ola-Ola Carotino",
-    weight: "1.1 L",
-    description:
-      "Carotino cooking oil with vitamin E and natural carotenes for soups, stews, and frying.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXY1arIyhwZPWs3SFLqN69dXt4ankvTHEyKQD1",
-    ],
+    name: "African King Mackerel in Tomato Sauce",
+    slug: "african-king-mackerel-tomato-sauce",
+    sku: "CF-AK-001",
+    brand: "African King",
+    weight: "425g",
+    description: "Canned mackerel in rich tomato sauce.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "Ola-Ola Carotino Cooking Oil 5.5 L",
-    slug: "ola-ola-carotino-cooking-oil-5-5l",
-    sku: "CAROTINO-5-5L",
-    brand: "Ola-Ola Carotino",
-    weight: "5.5 L",
-    description:
-      "Large jug of cholesterol-free Carotino cooking oil for home and food-service use.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX26dwAKWKNpRGQMoemS15q0TasbWAOw8DtVUY",
-    ],
+    name: "African King Mackerel in Tomato Sauce with Chili",
+    slug: "african-king-mackerel-tomato-sauce-chili",
+    sku: "CF-AK-002",
+    brand: "African King",
+    weight: "425g",
+    description: "Spicy canned mackerel in tomato sauce with chili.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "African Best Concentrated Abemuduro Sauce Graine",
-    slug: "african-best-concentrated-abemuduro-sauce-graine",
-    sku: "AFBEST-ABEMUDURO",
-    brand: "African Best",
-    weight: null,
-    description:
-      "Concentrated palm nut sauce base for preparing sauce graine, soups, and stews.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX3TGGu2MGp74HzRqQDLkTwCX0EUNeduW2c5tl",
-    ],
+    name: "Belma Sardines in Vegetable Oil",
+    slug: "belma-sardines-vegetable-oil",
+    sku: "CF-BELMA-001",
+    brand: "Belma",
+    weight: "125g",
+    description: "Premium Moroccan sardines preserved in vegetable oil.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "De Rica Double Concentrated Tomato Paste Large Can",
-    slug: "de-rica-double-concentrated-tomato-paste-large-can",
-    sku: "DERICA-TOMATO-PASTE-LG",
+    name: "Titus Sardines in Soybean Oil & Chili",
+    slug: "titus-sardines-soybean-oil-chili",
+    sku: "CF-TITUS-001",
+    brand: "Titus",
+    weight: "125g",
+    description: "Classic West African sardines in soybean oil with chili.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
+  },
+
+  {
+    name: "Princesse Sardines in Soybean Oil & Chili",
+    slug: "princesse-sardines-soybean-oil-chili",
+    sku: "CF-PRINCESSE-001",
+    brand: "Princesse",
+    weight: "125g",
+    description:
+      "Flavorful sardines preserved in soybean oil with chili peppers.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
+  },
+
+  {
+    name: "StarKist Tuna Flakes in Sunflower Oil",
+    slug: "starkist-tuna-flakes-sunflower-oil",
+    sku: "CF-STARKIST-001",
+    brand: "StarKist",
+    weight: "170g",
+    description: "Ready-to-eat tuna flakes packed in sunflower oil.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
+  },
+
+  {
+    name: "De Rica Double Concentrated Tomato Paste",
+    slug: "de-rica-double-concentrated-tomato-paste",
+    sku: "TP-DERICA-001",
     brand: "De Rica",
-    weight: null,
+    weight: "400g",
     description:
-      "Double concentrated tomato paste for rich stews, sauces, jollof rice, and soups.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXBcotqNVUFoSHVOz6iry4PwWQ5KdDR1BxGqnt",
-    ],
+      "Double concentrated tomato paste for African and international recipes.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 
   {
-    name: "De Rica Double Concentrated Tomato Paste 400 g",
-    slug: "de-rica-double-concentrated-tomato-paste-400g",
-    sku: "DERICA-TOMATO-PASTE-400",
-    brand: "De Rica",
-    weight: "400 g",
+    name: "Hunt's Tomato Paste",
+    slug: "hunts-tomato-paste-food-service",
+    sku: "TP-HUNTS-001",
+    brand: "Hunt's",
+    weight: "3.15kg",
     description:
-      "Four-hundred gram can of double concentrated tomato paste for everyday cooking.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX63oVr2TIdoa8APqmKptfzCilvc2yUEW9k3bD",
-    ],
-  },
-
-  {
-    name: "De Rica Double Concentrated Tomato Paste Small Can",
-    slug: "de-rica-double-concentrated-tomato-paste-small-can",
-    sku: "DERICA-TOMATO-PASTE-SM",
-    brand: "De Rica",
-    weight: null,
-    description:
-      "Small can of double concentrated tomato paste for soups, sauces, and quick stews.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXJ3K6GfyUIcDxWynlGbSNmh0zBPkXAHapLZfj",
-    ],
-  },
-
-  {
-    name: "Liberian Fresh Palm Cream Concentrate 780 g",
-    slug: "liberian-fresh-palm-cream-concentrate-780g",
-    sku: "LIBFRESH-PALM-CREAM-780",
-    brand: "Liberian Fresh",
-    weight: "780 g",
-    description:
-      "Palm cream concentrate, also called sauce graine or moambe, for soups and stews.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXDr0qlqmVz6Whf5jJxIZB9EvncekuFaSwCgGm",
-    ],
-  },
-
-  {
-    name: "Praise Palm Cream Sauce Graine",
-    slug: "praise-abemu-dro-palm-cream",
-    sku: "PRAISE-PALM-CREAM",
-    brand: "Praise",
-    weight: null,
-    description:
-      "Concentrated palm cream sauce graine for preparing hearty West African soups.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXQQnt0FLaQmgxRsrwTlNvnbS3Bpfi7yGF50X9",
-    ],
-  },
-
-  {
-    name: "Trofai Spicy Hot Palmnut Concentrate 800 g",
-    slug: "trofai-spicy-hot-palmnut-concentrate-800g",
-    sku: "TROFAI-SPICY-800",
-    brand: "Trofai",
-    weight: "800 g",
-    description:
-      "Spicy palmnut concentrate with hot pepper flavor for moambe, sauce graine, and soups.",
-    retailPrice: "10.00",
-    wholesalePrice: "8.00",
-    imageUrls: [
-      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXVjazPJSMuDmdnHeOcjLKfVkwIGr1YN2hlsSZ",
-    ],
+      "Food-service size tomato paste for restaurants and wholesale customers.",
+    retailPrice: "7.50",
+    wholesalePrice: "5.50",
+    imageUrls: [],
   },
 ];
 
@@ -839,11 +1071,7 @@ async function seedFufuProducts() {
 }
 
 async function seedBulkProducts() {
-  await seedProducts(
-    "cooking-oils-creams-sauces",
-    oilsProducts,
-    "Cooking Oils, Sauces & Creams",
-  );
+  await seedProducts("canned-foods", cannedFoods, "Canned Foods");
 }
 
 async function main() {
