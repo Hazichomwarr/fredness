@@ -67,6 +67,14 @@ const categories = [
     description:
       "Crunchy snacks, sweet treats, and grab-and-go favorites for home, shops, and gatherings.",
   },
+  {
+    name: "Cooking Oils, Creams & Sauces",
+    slug: "cooking-oils-creams-sauces",
+    imageUrl: "/images/categories/frednes-oils-sauces.jpg",
+    sortOrder: 10,
+    description:
+      "Cooking oils, sauces, creams, condiments, and pantry essentials for everyday meals.",
+  },
 ];
 
 async function seedAdmin() {
@@ -141,378 +149,459 @@ type SeedProduct = {
 };
 
 // const products: SeedProduct[] = [
-//   {
-//     name: "Tropical Sun Crunchy Coconut Peanuts",
-//     slug: "tropical-sun-crunchy-coconut-peanuts",
-//     sku: "TS-COCONUT-PEANUTS",
-//     brand: "Tropical Sun",
-//     weight: "180g",
-//     description: "Crunchy roasted peanuts coated with real coconut cream.",
-//     retailPrice: "4.99",
-//     wholesalePrice: "3.75",
-//     imageUrls: [],
-//     category: "Snacks & Confectionery",
-//   },
+//   // {
+//   //   name: "Clabber Girl Baking Soda",
+//   //   slug: "clabber-girl-baking-soda-5lb",
+//   //   sku: "CG-BS-5LB",
+//   //   brand: "Clabber Girl",
+//   //   weight: "5 lb",
+//   //   description:
+//   //     "Multi-purpose baking soda for baking, cleaning and deodorizing.",
+//   //   retailPrice: "8.99",
+//   //   wholesalePrice: "6.90",
+//   //   imageUrls: [],
+//   //   category: "Baking",
+//   // },
+
+//   // {
+//   //   name: "Le Vainqueur Refined Baking Soda",
+//   //   slug: "le-vainqueur-refined-baking-soda",
+//   //   sku: "LV-BS-125",
+//   //   brand: "Le Vainqueur",
+//   //   weight: "125g",
+//   //   description:
+//   //     "Refined baking soda suitable for cooking, baking and household use.",
+//   //   retailPrice: "1.99",
+//   //   wholesalePrice: "1.35",
+//   //   imageUrls: [],
+//   //   category: "Baking",
+//   // },
 
 //   {
-//     name: "Nestlé Nido Instant Full Cream Milk Powder",
-//     slug: "nestle-nido-instant-full-cream-milk-powder",
-//     sku: "NIDO-MILK-POWDER",
-//     brand: "Nestlé Nido",
-//     weight: null,
+//     name: "Amora Dijon Mustard",
+//     slug: "amora-dijon-mustard",
+//     sku: "AMO-DIJ-440",
+//     brand: "Amora",
+//     weight: "440g",
 //     description:
-//       "Rich full cream milk powder for tea, cereal, and family meals.",
-//     retailPrice: "8.99",
-//     wholesalePrice: "7.25",
+//       "Traditional French Dijon mustard with a smooth and strong flavor.",
+//     retailPrice: "5.99",
+//     wholesalePrice: "4.60",
 //     imageUrls: [],
-//     category: "Milk & Dairy",
-//     variants: [
-//       {
-//         name: "400g",
-//         sku: "NIDO-MILK-400G",
-//         weight: "400g",
-//         retailPrice: "8.99",
-//         wholesalePrice: "7.25",
-//       },
-//       {
-//         name: "1.8kg",
-//         sku: "NIDO-MILK-1800G",
-//         weight: "1.8kg",
-//         retailPrice: "31.99",
-//         wholesalePrice: "27.50",
-//       },
-//       {
-//         name: "2.5kg",
-//         sku: "NIDO-MILK-2500G",
-//         weight: "2.5kg",
-//         retailPrice: "43.99",
-//         wholesalePrice: "38.00",
-//       },
-//     ],
+//     category: "Cooking Oils, Creams & Sauces",
 //   },
 
 //   {
-//     name: "Nestlé Milo Powder",
-//     slug: "nestle-milo-powder",
-//     sku: "MILO-POWDER",
-//     brand: "Nestlé Milo",
-//     weight: null,
-//     description: "Chocolate malt drink powder with nourishing energy.",
-//     retailPrice: "8.49",
-//     wholesalePrice: "6.95",
-//     imageUrls: [],
-//     category: "Malted & Chocolate Drinks",
-//     variants: [
-//       {
-//         name: "400g",
-//         sku: "MILO-POWDER-400G",
-//         weight: "400g",
-//         retailPrice: "8.49",
-//         wholesalePrice: "6.95",
-//       },
-//       {
-//         name: "1.3kg",
-//         sku: "MILO-POWDER-1300G",
-//         weight: "1.3kg",
-//         retailPrice: "22.99",
-//         wholesalePrice: "19.25",
-//       },
-//       {
-//         name: "1.8kg",
-//         sku: "MILO-POWDER-1800G",
-//         weight: "1.8kg",
-//         retailPrice: "29.99",
-//         wholesalePrice: "25.50",
-//       },
-//     ],
-//   },
-
-//   {
-//     name: "Nestlé Milo Energy Food Drink",
-//     slug: "nestle-milo-energy-food-drink",
-//     sku: "MILO-ENERGY-FOOD",
-//     brand: "Nestlé Milo",
-//     weight: null,
+//     name: "Adum Foods Creamy Peanut Butter",
+//     slug: "adum-foods-creamy-peanut-butter-454g",
+//     sku: "ADUM-PB-454",
+//     brand: "Adum Foods",
+//     weight: "454g",
 //     description:
-//       "Classic Milo energy drink mix for a rich chocolate malt taste.",
+//       "Creamy peanut butter with no added salt and naturally rich peanut flavor.",
 //     retailPrice: "6.99",
 //     wholesalePrice: "5.50",
 //     imageUrls: [],
-//     category: "Malted & Chocolate Drinks",
-//     variants: [
-//       {
-//         name: "400g",
-//         sku: "MILO-ENERGY-400G",
-//         weight: "400g",
-//         retailPrice: "6.99",
-//         wholesalePrice: "5.50",
-//       },
-//       {
-//         name: "500g",
-//         sku: "MILO-ENERGY-500G",
-//         weight: "500g",
-//         retailPrice: "8.49",
-//         wholesalePrice: "6.95",
-//       },
-//     ],
+//     category: "Cooking Oils, Creams & Sauces",
 //   },
+// ];
 
+// const products: SeedProduct[] = [
 //   {
-//     name: "Nestlé Milo Energy Cubes",
-//     slug: "nestle-milo-energy-cubes",
-//     sku: "MILO-ENERGY-CUBES-100CT",
-//     brand: "Nestlé Milo",
-//     weight: "100 cubes",
-//     description: "Individually wrapped chocolate malt cubes for quick energy.",
-//     retailPrice: "9.99",
-//     wholesalePrice: "7.95",
-//     imageUrls: [],
-//     category: "Snacks & Confectionery",
-//   },
-
-//   {
-//     name: "Peak Instant Whole Milk Powder",
-//     slug: "peak-instant-whole-milk-powder",
-//     sku: "PEAK-MILK-POWDER",
-//     brand: "Peak",
-//     weight: null,
-//     description: "Creamy instant whole milk powder with a rich dairy taste.",
-//     retailPrice: "8.49",
-//     wholesalePrice: "6.95",
-//     imageUrls: [],
-//     category: "Milk & Dairy",
-//     variants: [
-//       {
-//         name: "400g",
-//         sku: "PEAK-MILK-400G",
-//         weight: "400g",
-//         retailPrice: "8.49",
-//         wholesalePrice: "6.95",
-//       },
-//       {
-//         name: "900g",
-//         sku: "PEAK-MILK-900G",
-//         weight: "900g",
-//         retailPrice: "17.49",
-//         wholesalePrice: "14.95",
-//       },
-//     ],
-//   },
-
-//   {
-//     name: "Peak Evaporated Milk",
-//     slug: "peak-evaporated-milk",
-//     sku: "PEAK-EVAP-MILK",
-//     brand: "Peak",
+//     name: "Nutella Hazelnut Spread with Cocoa",
+//     slug: "nutella-hazelnut-spread-with-cocoa",
+//     sku: "NUTELLA-HAZELNUT-SPREAD",
+//     brand: "Nutella",
 //     weight: null,
 //     description:
-//       "Rich and creamy evaporated milk for tea, porridge, and baking.",
-//     retailPrice: "2.29",
-//     wholesalePrice: "1.75",
+//       "Classic creamy hazelnut spread with cocoa, perfect for bread, pancakes, pastries, and breakfast treats.",
+//     retailPrice: "0.00",
+//     wholesalePrice: "0.00",
 //     imageUrls: [],
-//     category: "Milk & Dairy",
+//     category: "Breakfast & Cereals",
 //     variants: [
 //       {
-//         name: "170ml",
-//         sku: "PEAK-EVAP-170ML",
-//         weight: "170ml",
-//         retailPrice: "2.29",
-//         wholesalePrice: "1.75",
+//         name: "Small Jar",
+//         sku: "NUTELLA-HAZELNUT-SPREAD-SM",
+//         weight: "350g",
+//         retailPrice: "6.99",
+//         wholesalePrice: "5.40",
 //       },
 //       {
-//         name: "360ml",
-//         sku: "PEAK-EVAP-360ML",
-//         weight: "360ml",
+//         name: "Large Jar",
+//         sku: "NUTELLA-HAZELNUT-SPREAD-LG",
+//         weight: "750g",
+//         retailPrice: "12.99",
+//         wholesalePrice: "10.25",
+//       },
+//     ],
+//   },
+//   {
+//     name: "Heinz Baked Beanz",
+//     slug: "heinz-baked-beanz",
+//     sku: "HEINZ-BAKED-BEANZ",
+//     brand: "Heinz",
+//     weight: null,
+//     description:
+//       "Classic Heinz baked beans in rich tomato sauce, ready to heat and serve.",
+//     retailPrice: "0.00",
+//     wholesalePrice: "0.00",
+//     imageUrls: [],
+//     category: "Canned Foods",
+//     variants: [
+//       {
+//         name: "Small Can",
+//         sku: "HEINZ-BAKED-BEANZ-SM",
+//         weight: "220g",
+//         retailPrice: "2.49",
+//         wholesalePrice: "1.85",
+//       },
+//       {
+//         name: "Large Can",
+//         sku: "HEINZ-BAKED-BEANZ-LG",
+//         weight: "415g",
 //         retailPrice: "3.99",
 //         wholesalePrice: "3.10",
 //       },
 //     ],
 //   },
-
 //   {
-//     name: "Cowbell Our Milk Instant Filled Milk Powder",
-//     slug: "cowbell-our-milk-instant-filled-milk-powder",
-//     sku: "COWBELL-MILK-POWDER",
-//     brand: "Cowbell",
-//     weight: "900g",
+//     name: "Amora Dijon Mustard Fine & Forte",
+//     slug: "amora-dijon-mustard-fine-forte",
+//     sku: "AMORA-DIJON-MUSTARD-440G",
+//     brand: "Amora",
+//     weight: "440g",
 //     description:
-//       "Smooth instant milk powder enriched with vitamins and minerals.",
-//     retailPrice: "12.99",
-//     wholesalePrice: "10.75",
-//     imageUrls: [],
-//     category: "Milk & Dairy",
-//   },
-
-//   {
-//     name: "Nestlé Cerelac Wheat Infant Cereal With Milk",
-//     slug: "nestle-cerelac-wheat-infant-cereal-with-milk",
-//     sku: "CERELAC-WHEAT-1KG",
-//     brand: "Nestlé Cerelac",
-//     weight: "1kg",
-//     description: "Smooth wheat cereal with milk crafted for growing babies.",
-//     retailPrice: "14.99",
-//     wholesalePrice: "12.25",
-//     imageUrls: [],
-//     category: "Breakfast & Cereals",
-//   },
-
-//   {
-//     name: "Nestlé Cerelac Maize With Milk",
-//     slug: "nestle-cerelac-maize-with-milk",
-//     sku: "CERELAC-MAIZE-400G",
-//     brand: "Nestlé Cerelac",
-//     weight: "400g",
-//     description: "Gentle maize cereal with milk for a smooth baby meal.",
-//     retailPrice: "7.99",
-//     wholesalePrice: "6.25",
-//     imageUrls: [],
-//     category: "Breakfast & Cereals",
-//   },
-
-//   {
-//     name: "Nestlé Cerelac Wheat & Honey",
-//     slug: "nestle-cerelac-wheat-and-honey",
-//     sku: "CERELAC-WHEAT-HONEY-1KG",
-//     brand: "Nestlé Cerelac",
-//     weight: "1kg",
-//     description: "Nutritious wheat cereal blended with honey and milk.",
-//     retailPrice: "15.99",
-//     wholesalePrice: "13.25",
-//     imageUrls: [],
-//     category: "Breakfast & Cereals",
-//   },
-
-//   {
-//     name: "Cadbury Bournvita Food Drink",
-//     slug: "cadbury-bournvita-food-drink",
-//     sku: "BOURNVITA-800G",
-//     brand: "Cadbury Bournvita",
-//     weight: "800g",
-//     description:
-//       "Creamy chocolate food drink packed with classic Bournvita flavor.",
-//     retailPrice: "14.99",
-//     wholesalePrice: "12.50",
-//     imageUrls: [],
-//     category: "Malted & Chocolate Drinks",
-//   },
-
-//   {
-//     name: "Ovaltine Malted Drink",
-//     slug: "ovaltine-malted-drink",
-//     sku: "OVALTINE-MALTED-DRINK",
-//     brand: "Ovaltine",
-//     weight: null,
-//     description:
-//       "Chocolatey malt drink mix enriched with vitamins and minerals.",
-//     retailPrice: "7.49",
-//     wholesalePrice: "5.95",
-//     imageUrls: [],
-//     category: "Malted & Chocolate Drinks",
-//     variants: [
-//       {
-//         name: "400g",
-//         sku: "OVALTINE-400G",
-//         weight: "400g",
-//         retailPrice: "7.49",
-//         wholesalePrice: "5.95",
-//       },
-//       {
-//         name: "800g",
-//         sku: "OVALTINE-800G",
-//         weight: "800g",
-//         retailPrice: "13.99",
-//         wholesalePrice: "11.50",
-//       },
-//       {
-//         name: "1.2kg",
-//         sku: "OVALTINE-1200G",
-//         weight: "1.2kg",
-//         retailPrice: "19.99",
-//         wholesalePrice: "16.75",
-//       },
-//     ],
-//   },
-
-//   {
-//     name: "Ovaltine Nutri 10 Jar",
-//     slug: "ovaltine-nutri-10-jar",
-//     sku: "OVALTINE-NUTRI10-JAR",
-//     brand: "Ovaltine",
-//     weight: "400g",
-//     description:
-//       "Rich chocolate malt drink with Nutri 10 vitamins and minerals.",
-//     retailPrice: "8.99",
-//     wholesalePrice: "7.25",
-//     imageUrls: [],
-//     category: "Malted & Chocolate Drinks",
-//   },
-
-//   {
-//     name: "Horlicks Original Malted Drink",
-//     slug: "horlicks-original-malted-drink",
-//     sku: "HORLICKS-ORIGINAL",
-//     brand: "Horlicks",
-//     weight: null,
-//     description: "Original hot malty goodness for a comforting cup anytime.",
-//     retailPrice: "6.99",
-//     wholesalePrice: "5.50",
-//     imageUrls: [],
-//     category: "Malted & Chocolate Drinks",
-//     variants: [
-//       {
-//         name: "270g",
-//         sku: "HORLICKS-270G",
-//         weight: "270g",
-//         retailPrice: "6.99",
-//         wholesalePrice: "5.50",
-//       },
-//       {
-//         name: "400g",
-//         sku: "HORLICKS-400G",
-//         weight: "400g",
-//         retailPrice: "8.99",
-//         wholesalePrice: "7.25",
-//       },
-//     ],
-//   },
-
-//   {
-//     name: "Nescafé Classic Instant Coffee",
-//     slug: "nescafe-classic-instant-coffee",
-//     sku: "NESCAFE-CLASSIC-50G",
-//     brand: "Nescafé",
-//     weight: "50g",
-//     description: "Classic instant coffee with bold aroma and smooth taste.",
+//       "Authentic French Dijon mustard with a smooth texture and strong, sharp flavor.",
 //     retailPrice: "5.99",
-//     wholesalePrice: "4.75",
+//     wholesalePrice: "4.60",
 //     imageUrls: [],
-//     category: "Coffee & Creamers",
+//     category: "Cooking Oils, Creams & Sauces",
 //   },
-
 //   {
-//     name: "Nestlé Coffee Mate Original Creamer",
-//     slug: "nestle-coffee-mate-original-creamer",
-//     sku: "COFFEEMATE-ORIGINAL-1KG",
-//     brand: "Coffee Mate",
-//     weight: "1kg",
-//     description: "Rich and smooth creamer for a better morning cup.",
-//     retailPrice: "11.99",
-//     wholesalePrice: "9.75",
+//     name: "Heinz Salad Cream Original",
+//     slug: "heinz-salad-cream-original",
+//     sku: "HEINZ-SALAD-CREAM-285G",
+//     brand: "Heinz",
+//     weight: "285g",
+//     description:
+//       "Original Heinz salad cream with a creamy, tangy flavor for salads, sandwiches, and sides.",
+//     retailPrice: "4.99",
+//     wholesalePrice: "3.80",
 //     imageUrls: [],
-//     category: "Coffee & Creamers",
+//     category: "Cooking Oils, Creams & Sauces",
 //   },
-
 //   {
-//     name: "Quaker White Oats",
-//     slug: "quaker-white-oats",
-//     sku: "QUAKER-WHITE-OATS-500G",
-//     brand: "Quaker",
-//     weight: "500g",
-//     description: "Classic white oats for warm breakfasts and healthy recipes.",
+//     name: "Jesdit Moi Moi Cooking Pouch",
+//     slug: "jesdit-moi-moi-cooking-pouch-100-count",
+//     sku: "JESDIT-MOI-MOI-POUCH-100CT",
+//     brand: "Jesdit",
+//     weight: "100 pouches",
+//     description:
+//       "Convenient moi moi and oleleh cooking pouches designed to make steaming bean pudding easier.",
+//     retailPrice: "6.99",
+//     wholesalePrice: "5.25",
+//     imageUrls: [],
+//     category: "Fufu",
+//   },
+//   {
+//     name: "Rosa Margarine",
+//     slug: "rosa-premium-quality-margarine",
+//     sku: "ROSA-MARGARINE-450G",
+//     brand: "Rosa",
+//     weight: "450g",
+//     description:
+//       "Premium quality margarine from Holland, rich in vitamins A and D for cooking, baking, and spreading.",
+//     retailPrice: "4.99",
+//     wholesalePrice: "3.80",
+//     imageUrls: [],
+//     category: "Cooking Oils, Creams & Sauces",
+//   },
+//   {
+//     name: "Calvé Mayonnaise",
+//     slug: "calve-mayonnaise",
+//     sku: "CALVE-MAYONNAISE",
+//     brand: "Calvé",
+//     weight: null,
+//     description:
+//       "Creamy mayonnaise for sandwiches, salads, fries, grilled meats, and everyday meals.",
+//     retailPrice: "0.00",
+//     wholesalePrice: "0.00",
+//     imageUrls: [],
+//     category: "Cooking Oils, Creams & Sauces",
+//     variants: [
+//       {
+//         name: "225ml",
+//         sku: "CALVE-MAYONNAISE-225ML",
+//         weight: "225ml",
+//         retailPrice: "3.99",
+//         wholesalePrice: "2.95",
+//       },
+//       {
+//         name: "450ml",
+//         sku: "CALVE-MAYONNAISE-450ML",
+//         weight: "450ml",
+//         retailPrice: "6.99",
+//         wholesalePrice: "5.25",
+//       },
+//       {
+//         name: "825ml",
+//         sku: "CALVE-MAYONNAISE-825ML",
+//         weight: "825ml",
+//         retailPrice: "10.99",
+//         wholesalePrice: "8.50",
+//       },
+//     ],
+//   },
+//   {
+//     name: "Potash Stones Kaun",
+//     slug: "potash-stones-kaun",
+//     sku: "POTASH-STONES-KAUN",
+//     brand: "Royal Star",
+//     weight: "Small jar",
+//     description:
+//       "Traditional potash stones, also known as kaun, used in African cooking for soups, beans, and specialty dishes.",
+//     retailPrice: "3.99",
+//     wholesalePrice: "2.85",
+//     imageUrls: [],
+//     category: "Spices",
+//   },
+//   {
+//     name: "Potash Powder Kaun",
+//     slug: "potash-powder-kaun",
+//     sku: "POTASH-POWDER-KAUN",
+//     brand: "Potash",
+//     weight: "Small jar",
+//     description:
+//       "Ground potash powder used in traditional African recipes such as okra soup, beans, and local dishes.",
+//     retailPrice: "3.99",
+//     wholesalePrice: "2.85",
+//     imageUrls: [],
+//     category: "Spices",
+//   },
+//   {
+//     name: "African Best Peanut",
+//     slug: "african-best-peanut-510g",
+//     sku: "AFRICAN-BEST-PEANUT-510G",
+//     brand: "African Best",
+//     weight: "510g",
+//     description:
+//       "Roasted peanuts packed in a bottle for snacking, sharing, and pantry use.",
+//     retailPrice: "6.99",
+//     wholesalePrice: "5.25",
+//     imageUrls: [],
+//     category: "Snacks & Confectionery",
+//   },
+//   {
+//     name: "Tropical Sun Crunchy Coconut Peanuts",
+//     slug: "tropical-sun-crunchy-coconut-peanuts",
+//     sku: "TROPICAL-SUN-COCONUT-PEANUTS",
+//     brand: "Tropical Sun",
+//     weight: "180g",
+//     description:
+//       "Crunchy peanuts coated with real coconut cream for a sweet tropical snack.",
+//     retailPrice: "4.99",
+//     wholesalePrice: "3.75",
+//     imageUrls: [],
+//     category: "Snacks & Confectionery",
+//   },
+//   {
+//     name: "Golden Natural Pitted Deglet Noor Dates",
+//     slug: "golden-natural-pitted-deglet-noor-dates-284g",
+//     sku: "GOLDEN-DEGLET-NOOR-DATES-284G",
+//     brand: "Golden",
+//     weight: "284g",
+//     description:
+//       "Natural Algerian pitted Deglet Noor dates, sweet and rich in fiber for snacking and Ramadan tables.",
 //     retailPrice: "5.99",
 //     wholesalePrice: "4.50",
 //     imageUrls: [],
+//     category: "Fruits",
+//   },
+//   {
+//     name: "African Best Roasted Corn & Peanuts",
+//     slug: "african-best-roasted-corn-and-peanuts",
+//     sku: "AFRICAN-BEST-ROASTED-CORN-PEANUTS",
+//     brand: "African Best",
+//     weight: "1 container",
+//     description:
+//       "Traditional roasted corn and peanuts snack mix, crunchy and satisfying.",
+//     retailPrice: "6.00",
+//     wholesalePrice: "4.75",
+//     imageUrls: [],
+//     category: "Snacks & Confectionery",
+//   },
+//   {
+//     name: "Gonyek Spicy Yam Chips",
+//     slug: "gonyek-spicy-yam-chips-65g",
+//     sku: "GONYEK-SPICY-YAM-CHIPS-65G",
+//     brand: "Gonyek",
+//     weight: "65g",
+//     description:
+//       "All-natural spicy yam chips with a crisp texture and bold savory flavor.",
+//     retailPrice: "2.99",
+//     wholesalePrice: "2.10",
+//     imageUrls: [],
+//     category: "Snacks & Confectionery",
+//   },
+//   {
+//     name: "Checkers Custard Powder Vanilla Flavour",
+//     slug: "checkers-custard-powder-vanilla-flavour",
+//     sku: "CHECKERS-CUSTARD-VANILLA",
+//     brand: "Checkers",
+//     weight: "400g",
+//     description:
+//       "Smooth vanilla custard powder for breakfast, desserts, and family meals.",
+//     retailPrice: "4.99",
+//     wholesalePrice: "3.75",
+//     imageUrls: [],
 //     category: "Breakfast & Cereals",
+//   },
+//   {
+//     name: "Checkers Custard Powder Banana Flavour",
+//     slug: "checkers-custard-powder-banana-flavour",
+//     sku: "CHECKERS-CUSTARD-BANANA",
+//     brand: "Checkers",
+//     weight: "400g",
+//     description:
+//       "Creamy banana-flavored custard powder for warm breakfast bowls and desserts.",
+//     retailPrice: "4.99",
+//     wholesalePrice: "3.75",
+//     imageUrls: [],
+//     category: "Breakfast & Cereals",
+//   },
+//   {
+//     name: "Kirkland Signature Organic Apple Cider Vinegar",
+//     slug: "kirkland-signature-organic-apple-cider-vinegar-32oz",
+//     sku: "KIRKLAND-APPLE-CIDER-VINEGAR-32OZ",
+//     brand: "Kirkland Signature",
+//     weight: "32 fl oz",
+//     description:
+//       "Raw and unfiltered organic apple cider vinegar, never from concentrate and with the mother.",
+//     retailPrice: "7.99",
+//     wholesalePrice: "6.25",
+//     imageUrls: [],
+//     category: "Cooking Oils, Creams & Sauces",
+//   },
+//   {
+//     name: "Magnolia Sweetened Condensed Milk",
+//     slug: "magnolia-sweetened-condensed-milk",
+//     sku: "MAGNOLIA-CONDENSED-MILK",
+//     brand: "Magnolia",
+//     weight: "14 oz",
+//     description:
+//       "Sweetened condensed milk for desserts, drinks, baking, and creamy recipes.",
+//     retailPrice: "3.49",
+//     wholesalePrice: "2.65",
+//     imageUrls: [],
+//     category: "Milk & Dairy",
+//   },
+//   {
+//     name: "Red & White Sweetened Condensed Milk",
+//     slug: "red-and-white-sweetened-condensed-milk-14oz",
+//     sku: "REDWHITE-CONDENSED-MILK-14OZ",
+//     brand: "Red & White",
+//     weight: "14 oz",
+//     description:
+//       "Premium sweetened condensed milk for baking, desserts, coffee, and sweet recipes.",
+//     retailPrice: "3.29",
+//     wholesalePrice: "2.45",
+//     imageUrls: [],
+//     category: "Milk & Dairy",
+//   },
+// ];
+
+// const products: SeedProduct[] = [
+//   {
+//     name: "Indomie Oriental Fried Noodles",
+//     slug: "indomie-oriental-fried-noodles",
+//     sku: "INDOMIE-ORIENTAL-FRIED-NOODLES",
+//     brand: "Indomie",
+//     weight: "70g",
+//     description:
+//       "Instant oriental fried noodles with a savory seasoning blend for a quick and satisfying meal.",
+//     retailPrice: "0.99",
+//     wholesalePrice: "0.65",
+//     imageUrls: [],
+//     category: "Grains & Rice",
+//   },
+//   {
+//     name: "Indomie Chicken Peppersoup Noodles",
+//     slug: "indomie-chicken-peppersoup-noodles",
+//     sku: "INDOMIE-CHICKEN-PEPPERSOUP-NOODLES",
+//     brand: "Indomie",
+//     weight: "70g",
+//     description:
+//       "Instant noodles with bold chicken peppersoup flavor and spicy seasoning.",
+//     retailPrice: "0.99",
+//     wholesalePrice: "0.65",
+//     imageUrls: [],
+//     category: "Grains & Rice",
+//   },
+//   {
+//     name: "Indomie Onion Chicken Noodles",
+//     slug: "indomie-onion-chicken-noodles",
+//     sku: "INDOMIE-ONION-CHICKEN-NOODLES",
+//     brand: "Indomie",
+//     weight: "70g",
+//     description:
+//       "Instant noodles with onion chicken flavor and seasoning oil for a quick everyday meal.",
+//     retailPrice: "0.99",
+//     wholesalePrice: "0.65",
+//     imageUrls: [],
+//     category: "Grains & Rice",
+//   },
+//   {
+//     name: "Indomie Chicken Flavor Noodles",
+//     slug: "indomie-chicken-flavor-noodles",
+//     sku: "INDOMIE-CHICKEN-FLAVOR-NOODLES",
+//     brand: "Indomie",
+//     weight: "70g",
+//     description:
+//       "Classic Indomie chicken flavor instant noodles, easy to prepare and family friendly.",
+//     retailPrice: "0.99",
+//     wholesalePrice: "0.65",
+//     imageUrls: [],
+//     category: "Grains & Rice",
+//   },
+//   {
+//     name: "Home Fresh Tuo Zaafi Corn & Rice Flour",
+//     slug: "home-fresh-tuo-zaafi-corn-rice-flour",
+//     sku: "HOMEFRESH-TUO-ZAAFI-1KG",
+//     brand: "Home Fresh",
+//     weight: "1kg",
+//     description:
+//       "Corn and rice flour blend for preparing smooth traditional Tuo Zaafi.",
+//     retailPrice: "8.99",
+//     wholesalePrice: "6.95",
+//     imageUrls: [],
+//     category: "Fufu",
+//   },
+//   {
+//     name: "Home Fresh Kokonte Cassava Flour",
+//     slug: "home-fresh-kokonte-cassava-flour",
+//     sku: "HOMEFRESH-KOKONTE-1KG",
+//     brand: "Home Fresh",
+//     weight: "1kg",
+//     description:
+//       "Cassava flour for preparing traditional Kokonte, a popular West African swallow.",
+//     retailPrice: "8.99",
+//     wholesalePrice: "6.95",
+//     imageUrls: [],
+//     category: "Fufu",
+//   },
+//   {
+//     name: "Madam Jas Banku Mix Flour",
+//     slug: "madam-jas-banku-mix-flour",
+//     sku: "MADAM-JAS-BANKU-MIX-1KG",
+//     brand: "Madam Jas",
+//     weight: "1kg",
+//     description:
+//       "Ready-to-cook banku flour mix for preparing authentic Ghanaian banku at home.",
+//     retailPrice: "8.99",
+//     wholesalePrice: "6.95",
+//     imageUrls: [],
+//     category: "Fufu",
 //   },
 // ];
 
@@ -554,9 +643,24 @@ async function seedProducts(products: SeedProduct[]) {
 
     const categorySlug = product.category
       .toLowerCase()
-      .replace(/&/g, "and")
-      .replace(/,/g, "")
-      .replace(/\s+/g, "-");
+      .replace(/&/g, "") // Remove the ampersand entirely
+      .replace(/,/g, "") // Remove commas
+      .replace(/\s+/g, "-") // Replace spaces with hyphens
+      .replace(/-+/g, "-") // Collapse multiple hyphens (e.g., "--") into one "-"
+      .replace(/^-+|-+$/g, ""); // Trim hyphens from the start and end
+
+    console.log("Trying:", product.name, "=>", categorySlug);
+
+    const categoryExists = await prisma.category.findUnique({
+      where: { slug: categorySlug },
+      select: { id: true, name: true, slug: true },
+    });
+
+    if (!categoryExists) {
+      throw new Error(
+        `Missing category for product "${product.name}". Expected slug: "${categorySlug}"`,
+      );
+    }
 
     const existingProduct = await prisma.product.findFirst({
       where: {
@@ -622,7 +726,7 @@ async function seedProducts(products: SeedProduct[]) {
 async function main() {
   await seedAdmin();
   await seedCategories();
-  // await seedProducts(products);
+  //await seedProducts(products);
 }
 
 main()
