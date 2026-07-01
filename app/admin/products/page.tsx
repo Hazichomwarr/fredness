@@ -145,12 +145,18 @@ export default async function ProductsPage({
               Admin
             </p>
             <h1 className="mt-2 text-3xl font-bold tracking-tight">Products</h1>
-          </div>
-          <div className="flex flex-wrap items-center gap-3">
-            <Link
-              href="/admin/products/new"
-              className="rounded-md bg-neutral-950 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
-            >
+      </div>
+      <div className="flex flex-wrap items-center gap-3">
+        <Link
+          href="/admin/products/images"
+          className="rounded-md border border-neutral-300 px-4 py-2 text-sm font-semibold text-neutral-800 hover:bg-neutral-100"
+        >
+          Manage images
+        </Link>
+        <Link
+          href="/admin/products/new"
+          className="rounded-md bg-neutral-950 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
+        >
               Create product
             </Link>
             <form

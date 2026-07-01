@@ -1,0 +1,858 @@
+{
+  "generatedAt": "2026-07-01T06:25:26.386Z",
+  "fallbackImageUrl": "/images/african-best-fallback.png",
+  "totalProductsChecked": 210,
+  "totalProductsNeedingImages": 50,
+  "products": [
+    {
+      "id": "cmr1n0prl0007mjrfr8y1o40g",
+      "name": "Adum Foods Creamy Peanut Butter",
+      "sku": "ADUM-PB-454",
+      "slug": "adum-foods-creamy-peanut-butter-454g",
+      "brand": "Adum Foods",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Adum Foods Adum Foods Creamy Peanut Butter 454g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Adum Foods Adum Foods Creamy Peanut Butter 454g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn36i000c0irfh59nebyu",
+      "name": "African Best Peanut",
+      "sku": "AFRICAN-BEST-PEANUT-510G",
+      "slug": "african-best-peanut-510g",
+      "brand": "African Best",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "African Best African Best Peanut 510g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "African Best African Best Peanut 510g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn3jz000e0irf1j9hxuov",
+      "name": "African Best Roasted Corn & Peanuts",
+      "sku": "AFRICAN-BEST-ROASTED-CORN-PEANUTS",
+      "slug": "african-best-roasted-corn-and-peanuts",
+      "brand": "African Best",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "African Best African Best Roasted Corn & Peanuts 1 container product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "African Best African Best Roasted Corn & Peanuts 1 container product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mxfz900018qrfzltshe9d",
+      "name": "Amora Dijon Mustard",
+      "sku": "AMO-DIJ-440",
+      "slug": "amora-dijon-mustard",
+      "brand": "Amora",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Amora Amora Dijon Mustard 440g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Amora Amora Dijon Mustard 440g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nlf76000899rfckqfsh0k",
+      "name": "Amora Dijon Mustard Fine & Forte",
+      "sku": "AMORA-DIJON-MUSTARD-440G",
+      "slug": "amora-dijon-mustard-fine-forte",
+      "brand": "Amora",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Amora Amora Dijon Mustard Fine & Forte 440g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Amora Amora Dijon Mustard Fine & Forte 440g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mxg3g00028qrfoutk0pfi",
+      "name": "Blue Band Spread",
+      "sku": "BB-SPR",
+      "slug": "blue-band-spread",
+      "brand": "Blue Band",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Blue Band Blue Band Spread product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Blue Band Blue Band Spread product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn2u700090irf7s24ouqe",
+      "name": "Calvé Mayonnaise",
+      "sku": "CALVE-MAYONNAISE",
+      "slug": "calve-mayonnaise",
+      "brand": "Calvé",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Calvé Calvé Mayonnaise product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Calvé Calvé Mayonnaise product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn3vu000h0irfe223f2ph",
+      "name": "Checkers Custard Powder Banana Flavour",
+      "sku": "CHECKERS-CUSTARD-BANANA",
+      "slug": "checkers-custard-powder-banana-flavour",
+      "brand": "Checkers",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Checkers Checkers Custard Powder Banana Flavour 400g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Checkers Checkers Custard Powder Banana Flavour 400g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn3ri000g0irftyzjwlqn",
+      "name": "Checkers Custard Powder Vanilla Flavour",
+      "sku": "CHECKERS-CUSTARD-VANILLA",
+      "slug": "checkers-custard-powder-vanilla-flavour",
+      "brand": "Checkers",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Checkers Checkers Custard Powder Vanilla Flavour 400g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Checkers Checkers Custard Powder Vanilla Flavour 400g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmqjjwpjg0003gyrfal9tlb77",
+      "name": "Garri",
+      "sku": "GARRI-001",
+      "slug": "garri",
+      "brand": null,
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Garri 10 lb product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Garri 10 lb product image"
+        }
+      ]
+    },
+    {
+      "id": "cmqvnyxdx0017tlrf1jojju58",
+      "name": "Geisha Mackerel in Tomato Sauce",
+      "sku": "CF-GEISHA-002",
+      "slug": "geisha-mackerel-tomato-sauce-small",
+      "brand": "Geisha",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Geisha Geisha Mackerel in Tomato Sauce 155g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Geisha Geisha Mackerel in Tomato Sauce 155g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf65d0001z4rf0b6h95m8",
+      "name": "Ginger Instant Tea with Cranberry",
+      "sku": "TEA-GIN-CRAN-10",
+      "slug": "ginger-instant-tea-cranberry",
+      "brand": "Ginger",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Ginger Ginger Instant Tea with Cranberry 10 Sachets product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Ginger Ginger Instant Tea with Cranberry 10 Sachets product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn3g2000d0irfhajnlbls",
+      "name": "Golden Natural Pitted Deglet Noor Dates",
+      "sku": "GOLDEN-DEGLET-NOOR-DATES-284G",
+      "slug": "golden-natural-pitted-deglet-noor-dates-284g",
+      "brand": "Golden",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Golden Golden Natural Pitted Deglet Noor Dates 284g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Golden Golden Natural Pitted Deglet Noor Dates 284g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn3nv000f0irflpyri2uc",
+      "name": "Gonyek Spicy Yam Chips",
+      "sku": "GONYEK-SPICY-YAM-CHIPS-65G",
+      "slug": "gonyek-spicy-yam-chips-65g",
+      "brand": "Gonyek",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Gonyek Gonyek Spicy Yam Chips 65g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Gonyek Gonyek Spicy Yam Chips 65g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf77x000cz4rftqxsju7x",
+      "name": "Grandios Brown Pap",
+      "sku": "GRAN-PAP-500",
+      "slug": "grandios-brown-pap-500g",
+      "brand": "Grandios",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Grandios Grandios Brown Pap 500g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Grandios Grandios Brown Pap 500g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf7i5000fz4rfwcnx5grm",
+      "name": "Heinz Baked Beanz",
+      "sku": "HEINZ-BAKED-BEANZ",
+      "slug": "heinz-baked-beanz",
+      "brand": "Heinz",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Heinz Heinz Baked Beanz product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Heinz Heinz Baked Beanz product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nlfb0000999rf9opdrxyu",
+      "name": "Heinz Salad Cream Original",
+      "sku": "HEINZ-SALAD-CREAM-285G",
+      "slug": "heinz-salad-cream-original",
+      "brand": "Heinz",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Heinz Heinz Salad Cream Original 285g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Heinz Heinz Salad Cream Original 285g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf7ew000ez4rfr12ce37u",
+      "name": "Heinz Tomato Ketchup",
+      "sku": "HEI-KET-14",
+      "slug": "heinz-tomato-ketchup-14oz",
+      "brand": "Heinz",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Heinz Heinz Tomato Ketchup 14 oz product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Heinz Heinz Tomato Ketchup 14 oz product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1ji81p00079nrfsz1f3kyx",
+      "name": "Home Fresh Banku Maize & Cassava Mix Flour",
+      "sku": "HOMEFRESH-BANKU-1KG",
+      "slug": "home-fresh-banku-maize-cassava-mix-flour",
+      "brand": "Home Fresh",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Home Fresh Home Fresh Banku Maize & Cassava Mix Flour 1kg product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Home Fresh Home Fresh Banku Maize & Cassava Mix Flour 1kg product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1ji7xa00069nrfmzu0wwlm",
+      "name": "Home Fresh Kokonte Cassava Flour",
+      "sku": "HOMEFRESH-KOKONTE-1KG",
+      "slug": "home-fresh-kokonte-cassava-flour",
+      "brand": "Home Fresh",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Home Fresh Home Fresh Kokonte Cassava Flour 1kg product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Home Fresh Home Fresh Kokonte Cassava Flour 1kg product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1o0tbc000bm4rflm8426gc",
+      "name": "Home Fresh Tuo Zaafi Corn & Rice Flour",
+      "sku": "HOMEFRESH-TUO-ZAAFI-1KG",
+      "slug": "home-fresh-tuo-zaafi-corn-rice-flour",
+      "brand": "Home Fresh",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Home Fresh Home Fresh Tuo Zaafi Corn & Rice Flour 1kg product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Home Fresh Home Fresh Tuo Zaafi Corn & Rice Flour 1kg product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1ji7tt00059nrftuwaagwi",
+      "name": "Home Fresh Tuo Zafi Corn & Rice Flour",
+      "sku": "HOMEFRESH-TUOZAFI-1KG",
+      "slug": "home-fresh-tuo-zafi-corn-rice-flour",
+      "brand": "Home Fresh",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Home Fresh Home Fresh Tuo Zafi Corn & Rice Flour 1kg product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Home Fresh Home Fresh Tuo Zafi Corn & Rice Flour 1kg product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1o0t7h000am4rfgty2z1vz",
+      "name": "Indomie Chicken Flavor Noodles",
+      "sku": "INDOMIE-CHICKEN-FLAVOR-NOODLES",
+      "slug": "indomie-chicken-flavor-noodles",
+      "brand": "Indomie",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Indomie Indomie Chicken Flavor Noodles 70g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Indomie Indomie Chicken Flavor Noodles 70g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1o0szb0008m4rf8gmdd983",
+      "name": "Indomie Chicken Peppersoup Noodles",
+      "sku": "INDOMIE-CHICKEN-PEPPERSOUP-NOODLES",
+      "slug": "indomie-chicken-peppersoup-noodles",
+      "brand": "Indomie",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Indomie Indomie Chicken Peppersoup Noodles 70g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Indomie Indomie Chicken Peppersoup Noodles 70g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1o0t3e0009m4rfg5qhahrc",
+      "name": "Indomie Onion Chicken Noodles",
+      "sku": "INDOMIE-ONION-CHICKEN-NOODLES",
+      "slug": "indomie-onion-chicken-noodles",
+      "brand": "Indomie",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Indomie Indomie Onion Chicken Noodles 70g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Indomie Indomie Onion Chicken Noodles 70g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1o0sva0007m4rfb23i9ecz",
+      "name": "Indomie Oriental Fried Noodles",
+      "sku": "INDOMIE-ORIENTAL-FRIED-NOODLES",
+      "slug": "indomie-oriental-fried-noodles",
+      "brand": "Indomie",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Indomie Indomie Oriental Fried Noodles 70g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Indomie Indomie Oriental Fried Noodles 70g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn2mj00070irfkdbgxmne",
+      "name": "Jesdit Moi Moi Cooking Pouch",
+      "sku": "JESDIT-MOI-MOI-POUCH-100CT",
+      "slug": "jesdit-moi-moi-cooking-pouch-100-count",
+      "brand": "Jesdit",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Jesdit Jesdit Moi Moi Cooking Pouch 100 pouches product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Jesdit Jesdit Moi Moi Cooking Pouch 100 pouches product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn3zr000i0irfqzx535he",
+      "name": "Kirkland Signature Organic Apple Cider Vinegar",
+      "sku": "KIRKLAND-APPLE-CIDER-VINEGAR-32OZ",
+      "slug": "kirkland-signature-organic-apple-cider-vinegar-32oz",
+      "brand": "Kirkland Signature",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Kirkland Signature Kirkland Signature Organic Apple Cider Vinegar 32 fl oz product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Kirkland Signature Kirkland Signature Organic Apple Cider Vinegar 32 fl oz product image"
+        }
+      ]
+    },
+    {
+      "id": "cmqjk78bq0006gyrfma7d7l99",
+      "name": "Kojo Passion Fruit Ginger Beer",
+      "sku": "KOJO-GB-480",
+      "slug": "kojo-passion-fruit-ginger-beer-480ml",
+      "brand": "Kojo",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Kojo Kojo Passion Fruit Ginger Beer 480 ml product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Kojo Kojo Passion Fruit Ginger Beer 480 ml product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf6jl0005z4rfdyihz6yx",
+      "name": "Lady B Custard Powder",
+      "sku": "LB-CUS-1600",
+      "slug": "lady-b-custard-powder-16kg",
+      "brand": "Lady B",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Lady B Lady B Custard Powder 1.6kg product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Lady B Lady B Custard Powder 1.6kg product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf6ga0004z4rfod9w8bys",
+      "name": "Lady B Custard Powder",
+      "sku": "LB-CUS-500",
+      "slug": "lady-b-custard-powder-500g",
+      "brand": "Lady B",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Lady B Lady B Custard Powder 500g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Lady B Lady B Custard Powder 500g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf6qp0007z4rfx47k7m7w",
+      "name": "Laju Guinea Corn & Millet Pap",
+      "sku": "LAJU-PAP-500",
+      "slug": "laju-guinea-corn-millet-pap-500g",
+      "brand": "Laju",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Laju Laju Guinea Corn & Millet Pap 500g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Laju Laju Guinea Corn & Millet Pap 500g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf744000bz4rfzut4r3xy",
+      "name": "Lipton Yellow Label Black Tea",
+      "sku": "LIP-BLK",
+      "slug": "lipton-yellow-label-black-tea",
+      "brand": "Lipton",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Lipton Lipton Yellow Label Black Tea product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Lipton Lipton Yellow Label Black Tea product image"
+        }
+      ]
+    },
+    {
+      "id": "cmqsz1i7c001dq5rfv95altm2",
+      "name": "Lucozade Energy Orange",
+      "sku": "LUCOZADE-ORANGE-330",
+      "slug": "lucozade-energy-orange-330ml",
+      "brand": "Lucozade",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Lucozade Lucozade Energy Orange 330 ml product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Lucozade Lucozade Energy Orange 330 ml product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1ji7ir00029nrf2198y969",
+      "name": "Madam Jas Banku Mix Flour",
+      "sku": "MADAM-JAS-BANKU-MIX-1KG",
+      "slug": "madam-jas-banku-mix-flour",
+      "brand": "Madam Jas",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Madam Jas Madam Jas Banku Mix Flour 1kg product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Madam Jas Madam Jas Banku Mix Flour 1kg product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn43t000j0irfx80zbebm",
+      "name": "Magnolia Sweetened Condensed Milk",
+      "sku": "MAGNOLIA-CONDENSED-MILK",
+      "slug": "magnolia-sweetened-condensed-milk",
+      "brand": "Magnolia",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Magnolia Magnolia Sweetened Condensed Milk 14 oz product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Magnolia Magnolia Sweetened Condensed Milk 14 oz product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf6n70006z4rfc4b0utgi",
+      "name": "Nestlé Golden Morn",
+      "sku": "NES-GM",
+      "slug": "nestle-golden-morn",
+      "brand": "Nestlé",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Nestlé Nestlé Golden Morn product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Nestlé Nestlé Golden Morn product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf6xj0009z4rf1x138rgg",
+      "name": "Nirwana Green Tea Ginger",
+      "sku": "NIR-GTG-020",
+      "slug": "nirwana-green-tea-ginger-20-sachets",
+      "brand": "Nirwana",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Nirwana Nirwana Green Tea Ginger 20 Sachets product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Nirwana Nirwana Green Tea Ginger 20 Sachets product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf7bh000dz4rf2s4asbey",
+      "name": "Nirwana Honey Ginger Tea",
+      "sku": "NIR-HGT-020",
+      "slug": "nirwana-honey-ginger-tea-20-sachets",
+      "brand": "Nirwana",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Nirwana Nirwana Honey Ginger Tea 20 Sachets product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Nirwana Nirwana Honey Ginger Tea 20 Sachets product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf68x0002z4rf2xubi7s3",
+      "name": "Nirwana Lemon Ginger Tea",
+      "sku": "NIR-LGT-020",
+      "slug": "nirwana-lemon-ginger-tea-20-sachets",
+      "brand": "Nirwana",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Nirwana Nirwana Lemon Ginger Tea 20 Sachets product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Nirwana Nirwana Lemon Ginger Tea 20 Sachets product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf6u80008z4rftijn8qkn",
+      "name": "Nirwana Soursop Ginger Tea",
+      "sku": "NIR-SGT-020",
+      "slug": "nirwana-soursop-ginger-tea-20-sachets",
+      "brand": "Nirwana",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Nirwana Nirwana Soursop Ginger Tea 20 Sachets product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Nirwana Nirwana Soursop Ginger Tea 20 Sachets product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf6ch0003z4rf38y70wa2",
+      "name": "Nirwana Turmeric Ginger Tea",
+      "sku": "NIR-TGT-020",
+      "slug": "nirwana-turmeric-ginger-tea-20-sachets",
+      "brand": "Nirwana",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Nirwana Nirwana Turmeric Ginger Tea 20 Sachets product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Nirwana Nirwana Turmeric Ginger Tea 20 Sachets product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nletk000799rfj5zban3o",
+      "name": "Nutella Hazelnut Spread with Cocoa",
+      "sku": "NUTELLA-HAZELNUT-SPREAD",
+      "slug": "nutella-hazelnut-spread-with-cocoa",
+      "brand": "Nutella",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Nutella Nutella Hazelnut Spread with Cocoa product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Nutella Nutella Hazelnut Spread with Cocoa product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn32e000b0irfjrjn03a3",
+      "name": "Potash Powder Kaun",
+      "sku": "POTASH-POWDER-KAUN",
+      "slug": "potash-powder-kaun",
+      "brand": "Potash",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Potash Potash Powder Kaun Small jar product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Potash Potash Powder Kaun Small jar product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn2ya000a0irfjqidbu3o",
+      "name": "Potash Stones Kaun",
+      "sku": "POTASH-STONES-KAUN",
+      "slug": "potash-stones-kaun",
+      "brand": "Royal Star",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Royal Star Potash Stones Kaun Small jar product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Royal Star Potash Stones Kaun Small jar product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn47p000k0irfulxjhk60",
+      "name": "Red & White Sweetened Condensed Milk",
+      "sku": "REDWHITE-CONDENSED-MILK-14OZ",
+      "slug": "red-and-white-sweetened-condensed-milk-14oz",
+      "brand": "Red & White",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Red & White Red & White Sweetened Condensed Milk 14 oz product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Red & White Red & White Sweetened Condensed Milk 14 oz product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mxg7m00038qrfox992xy4",
+      "name": "Rosa Margarine",
+      "sku": "ROSA-MARG-450",
+      "slug": "rosa-margarine-450g",
+      "brand": "Rosa",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Rosa Rosa Margarine 450g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Rosa Rosa Margarine 450g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1nn2qf00080irfqwyytitw",
+      "name": "Rosa Margarine",
+      "sku": "ROSA-MARGARINE-450G",
+      "slug": "rosa-premium-quality-margarine",
+      "brand": "Rosa",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Rosa Rosa Margarine 450g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Rosa Rosa Margarine 450g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1mf70u000az4rf9t5vevzu",
+      "name": "Soon Soursop Ginger Instant Tea",
+      "sku": "SOON-SGT-020",
+      "slug": "soon-soursop-ginger-instant-tea",
+      "brand": "Soon",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Soon Soon Soursop Ginger Instant Tea 20 x 18g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Soon Soon Soursop Ginger Instant Tea 20 x 18g product image"
+        }
+      ]
+    },
+    {
+      "id": "cmr1atn010006l7rfa61g1h82",
+      "name": "Tropical Sun Crunchy Coconut Peanuts",
+      "sku": "TROPICAL-SUN-COCONUT-PEANUTS",
+      "slug": "tropical-sun-crunchy-coconut-peanuts",
+      "brand": "Tropical Sun",
+      "currentImages": [],
+      "reason": "NO_PRODUCT_IMAGES",
+      "proposedImageSearchQuery": "Tropical Sun Tropical Sun Crunchy Coconut Peanuts 180g product image",
+      "proposedImageSearchQueries": [
+        {
+          "imageId": null,
+          "currentUrl": null,
+          "query": "Tropical Sun Tropical Sun Crunchy Coconut Peanuts 180g product image"
+        }
+      ]
+    }
+  ]
+}
