@@ -96,3 +96,43 @@ export async function deleteCategoryAction(formData: FormData) {
 
   revalidatePath("/admin/categories");
 }
+
+export async function mergeCategoryAction(formData: FormData) {
+  await requireAdmin();
+
+  const sourceCategoryId = z
+    .string()
+    .min(1)
+    .parse(formData.get("sourceCategoryId"));
+  const targetCategoryId = z
+    .string()
+    .min(1)
+    .parse(formData.get("targetCategoryId"));
+
+  if (sourceCategoryId === targetCategoryId) {
+    throw new Error("Choose a different target category.");
+  }
+
+  await prisma.$transaction(async (tx) => {
+    const [source, target] = await Promise.all([
+      tx.category.findUnique({ where: { id: sourceCategoryId } }),
+      tx.category.findUnique({ where: { id: targetCategoryId } }),
+    ]);
+
+    if (!source || !target) {
+      throw new Error("Category not found.");
+    }
+
+    await tx.product.updateMany({
+      where: { categoryId: sourceCategoryId },
+      data: { categoryId: targetCategoryId },
+    });
+
+    await tx.category.delete({
+      where: { id: sourceCategoryId },
+    });
+  });
+
+  revalidatePath("/admin/categories");
+  revalidatePath("/admin/products");
+}

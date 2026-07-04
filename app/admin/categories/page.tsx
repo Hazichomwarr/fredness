@@ -2,8 +2,10 @@ import Link from "next/link";
 import {
   createCategoryAction,
   deleteCategoryAction,
+  mergeCategoryAction,
 } from "@/app/admin/categories/actions";
 import { CategoryDeleteButton } from "@/components/admin/category-delete-button";
+import { CategoryMergeButton } from "@/components/admin/category-merge-button";
 import { requireAdmin } from "@/src/lib/auth/admin";
 import { FALLBACK_IMAGE_URL } from "@/src/lib/images";
 import { prisma } from "@/src/lib/prisma";
@@ -143,22 +145,62 @@ export default async function CategoriesPage() {
                         {category.updatedAt.toLocaleDateString("en-US")}
                       </td>
                       <td className="px-4 py-4 align-top">
-                        <div className="flex justify-end gap-2">
-                          <Link
-                            href={`/admin/categories/${category.id}/edit`}
-                            className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-800 hover:bg-neutral-50"
+                        <div className="grid justify-items-end gap-2">
+                          <div className="flex justify-end gap-2">
+                            <Link
+                              href={`/admin/categories/${category.id}/edit`}
+                              className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm font-medium text-neutral-800 hover:bg-neutral-50"
+                            >
+                              Edit
+                            </Link>
+                            <form action={deleteCategoryAction}>
+                              <input
+                                type="hidden"
+                                name="id"
+                                value={category.id}
+                              />
+                              <CategoryDeleteButton
+                                categoryName={category.name}
+                                disabled={category._count.products > 0}
+                              />
+                            </form>
+                          </div>
+                          <form
+                            action={mergeCategoryAction}
+                            className="flex justify-end gap-2"
                           >
-                            Edit
-                          </Link>
-                          <form action={deleteCategoryAction}>
                             <input
                               type="hidden"
-                              name="id"
+                              name="sourceCategoryId"
                               value={category.id}
                             />
-                            <CategoryDeleteButton
-                              categoryName={category.name}
-                              disabled={category._count.products > 0}
+                            <label
+                              className="sr-only"
+                              htmlFor={`merge-target-${category.id}`}
+                            >
+                              Merge into
+                            </label>
+                            <select
+                              id={`merge-target-${category.id}`}
+                              name="targetCategoryId"
+                              required
+                              defaultValue=""
+                              className="w-48 rounded-md border border-neutral-300 px-2 py-1.5 text-sm text-neutral-800"
+                              disabled={categories.length < 2}
+                            >
+                              <option value="" disabled>
+                                Merge into...
+                              </option>
+                              {categories
+                                .filter((target) => target.id !== category.id)
+                                .map((target) => (
+                                  <option key={target.id} value={target.id}>
+                                    {target.name}
+                                  </option>
+                                ))}
+                            </select>
+                            <CategoryMergeButton
+                              disabled={categories.length < 2}
                             />
                           </form>
                         </div>

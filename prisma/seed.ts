@@ -2382,7 +2382,699 @@ const categorySlugOverrides: Partial<Record<ProductCategory, string>> = {
 //   },
 // ];
 
-const products: SeedProduct[] = [];
+const products: SeedProduct[] = [
+  {
+    name: "Jacob's Cream Crackers",
+    slug: "jacobs-cream-crackers-200g",
+    sku: "JACOBS-CREAM-CRACKERS-200G",
+    brand: "Jacob's",
+    weight: "200g",
+    description:
+      "Light, crispy cream crackers with no added sugar, great with spreads, tea, soups, and snack plates.",
+    retailPrice: "3.49",
+    wholesalePrice: "2.60",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXJRUZdR7yUIcDxWynlGbSNmh0zBPkXAHapLZf",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "McVitie's Digestives Dark Chocolate",
+    slug: "mcvities-digestives-dark-chocolate-300g",
+    sku: "MCVITIES-DIGESTIVES-DARK-CHOCOLATE-300G",
+    brand: "McVitie's",
+    weight: "10.5 oz (300g)",
+    description:
+      "Wheat digestive biscuits with a dark chocolate flavored coating for tea, dessert trays, and sweet snacking.",
+    retailPrice: "5.99",
+    wholesalePrice: "4.50",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXqDSkz7Hqd2MjsJFtYK70QIOpun8f64gceyki",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "McVitie's Butter Shortbread",
+    slug: "mcvities-butter-shortbread-200g",
+    sku: "MCVITIES-BUTTER-SHORTBREAD-200G",
+    brand: "McVitie's",
+    weight: "200g",
+    description:
+      "Scottish heritage butter shortbread fingers with a rich, crumbly texture for tea and sharing.",
+    retailPrice: "4.99",
+    wholesalePrice: "3.75",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXUxm4dfM6zWU8smDVPqlov4bjwie3dKCO7tGL",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "McVitie's Digestives The Original",
+    slug: "mcvities-digestives-the-original-355g",
+    sku: "MCVITIES-DIGESTIVES-ORIGINAL-355G",
+    brand: "McVitie's",
+    weight: "355g",
+    description:
+      "Original wheat digestive biscuits made with wheat flour and wholemeal for a classic crisp biscuit snack.",
+    retailPrice: "4.99",
+    wholesalePrice: "3.75",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXdYplXujtw1fXiQBl8ukhZS63beKEaYUgxJyq",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Butturkist Ginger Cookies",
+    slug: "butturkist-ginger-cookies-150g",
+    sku: "BUTTURKIST-GINGER-COOKIES-150G",
+    brand: "Butturkist",
+    weight: "5.3 oz (150g)",
+    description:
+      "Ginger flavored cookies with a crisp bite for tea, coffee, lunchboxes, and everyday sweet snacking.",
+    retailPrice: "2.49",
+    wholesalePrice: "1.80",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXCGtDEXLJGDNTIJPmq7LiCuRpwSEMecbKWQ58",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Butturkist Butter Cookies",
+    slug: "butturkist-butter-cookies-150g",
+    sku: "BUTTURKIST-BUTTER-COOKIES-150G",
+    brand: "Butturkist",
+    weight: "5.3 oz (150g)",
+    description:
+      "Butter flavored cookies with a light crunch and sweet bakery-style taste for tea and snack time.",
+    retailPrice: "2.49",
+    wholesalePrice: "1.80",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXgDSBKonob5x69mSJEQUfGjOz3TDPZqheIC7Y",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "McVitie's Ginger Nuts",
+    slug: "mcvities-ginger-nuts",
+    sku: "MCVITIES-GINGER-NUTS",
+    brand: "McVitie's",
+    weight: "1 pack",
+    description:
+      "Fiery ginger biscuits with a crunchy texture and warm spice flavor for tea, coffee, and snacking.",
+    retailPrice: "4.49",
+    wholesalePrice: "3.35",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX1ZeL3vD5eMVEqQchlkgbBUPnuW7drwAvzOa3",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "LU Gala Egg Biscuits",
+    slug: "lu-gala-egg-biscuits",
+    sku: "LU-GALA-EGG-BISCUITS",
+    brand: "LU",
+    weight: "1 box",
+    description:
+      "Golden egg biscuits with a crisp, lightly sweet bite for tea, breakfast plates, and family snacking.",
+    retailPrice: "2.99",
+    wholesalePrice: "2.20",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXutUfTGjNCabhFUH1XVJiWOBK8ytTP3A70qdn",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Artiach Chiquilin 0% Added Sugars Biscuits",
+    slug: "artiach-chiquilin-zero-added-sugars-biscuits",
+    sku: "ARTIACH-CHIQUILIN-ZERO-ADDED-SUGARS",
+    brand: "Artiach",
+    weight: "1 pack",
+    description:
+      "Chiquilin biscuits with 0% added sugars, made for a crisp biscuit snack with classic Spanish-style flavor.",
+    retailPrice: "3.99",
+    wholesalePrice: "2.95",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX5wnji6uEeOQdJY39B8l0cIFUCxvfVwMyLqZR",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "McVitie's Digestives The Original",
+    slug: "mcvities-digestives-the-original-400g",
+    sku: "MCVITIES-DIGESTIVES-ORIGINAL-400G",
+    brand: "McVitie's",
+    weight: "400g",
+    description:
+      "Original wheat digestive biscuits with a crisp, lightly sweet bite and a source of fibre.",
+    retailPrice: "5.49",
+    wholesalePrice: "4.10",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXMuaReGCLMT5qyt9IA2aO3mxFvdXuncP7HriS",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Jacob's Krim Kraker Vitamin & Mineral",
+    slug: "jacobs-krim-kraker-vitamin-mineral-14-pack",
+    sku: "JACOBS-KRIM-KRAKER-VITAMIN-MINERAL-14PK",
+    brand: "Jacob's",
+    weight: "14 packs",
+    description:
+      "Nutritious wheat cream crackers with vitamins and minerals in convenient packs for snacking and sharing.",
+    retailPrice: "6.99",
+    wholesalePrice: "5.25",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXOPJZZVbQYH4d3gWkzAvUyumf5Xsq1r8GD2nS",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Oxford Sweetened Cabin Biscuits",
+    slug: "oxford-sweetened-cabin-biscuits",
+    sku: "OXFORD-SWEETENED-CABIN-BISCUITS",
+    brand: "Oxford",
+    weight: "Fresh pack",
+    description:
+      "Sweetened cabin biscuits in a fresh pack for tea, lunchboxes, light snacks, and family pantry stocking.",
+    retailPrice: "7.99",
+    wholesalePrice: "5.99",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXT3JLMRxANvhWd6lkPZwVCGOImSK9YaDEXfgt",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Ulker Tea Biscuit",
+    slug: "ulker-tea-biscuit-1kg",
+    sku: "ULKER-TEA-BISCUIT-1KG",
+    brand: "Ulker",
+    weight: "2.2 lb (1kg)",
+    description:
+      "Large family pack of classic tea biscuits with a mild sweetness for hot drinks, desserts, and sharing.",
+    retailPrice: "8.99",
+    wholesalePrice: "6.75",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXXccHwI5pjE47Cu1KbTeNyMZYcGLSPAn68Wa2",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Weetabix Wholegrain Wheat Biscuits",
+    slug: "weetabix-wholegrain-wheat-biscuits-24-pack",
+    sku: "WEETABIX-WHOLEGRAIN-WHEAT-BISCUITS-24PK",
+    brand: "Weetabix",
+    weight: "24 biscuits",
+    description:
+      "Wholegrain wheat breakfast biscuits packed with fibre and vitamin B1 for breakfast or a hearty snack.",
+    retailPrice: "4.99",
+    wholesalePrice: "3.69",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXUrkyRq6zWU8smDVPqlov4bjwie3dKCO7tGL2",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "La Fe Premium Saltine Crackers",
+    slug: "la-fe-premium-saltine-crackers-690g",
+    sku: "LA-FE-PREMIUM-SALTINE-CRACKERS-690G",
+    brand: "La Fe",
+    weight: "24.3 oz (690g)",
+    description:
+      "Premium saltine crackers packed in individual sleeves for soups, spreads, tea, and everyday snacking.",
+    retailPrice: "8.99",
+    wholesalePrice: "6.75",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXmWYCuRdsZwLcdWBKmS3az5oxMIHgQAi4RnD1",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "African Best Donkwa",
+    slug: "african-best-donkwa",
+    sku: "AFRICAN-BEST-DONKWA",
+    brand: "African Best",
+    weight: "1 pouch",
+    description:
+      "Traditional donkwa peanut snack made with groundnut, chili pepper, sugar, ground cloves, peanut oil, and spices.",
+    retailPrice: "5.99",
+    wholesalePrice: "4.50",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXXjMgK1U5pjE47Cu1KbTeNyMZYcGLSPAn68Wa",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "London Biscuits Digestives",
+    slug: "london-biscuits-digestives-400g",
+    sku: "LONDON-BISCUITS-DIGESTIVES-400G",
+    brand: "London Biscuits",
+    weight: "400g",
+    description:
+      "Classic digestives from London Biscuits with a crisp wheat biscuit texture for tea and snacking.",
+    retailPrice: "4.49",
+    wholesalePrice: "3.35",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXMk567bCLMT5qyt9IA2aO3mxFvdXuncP7HriS",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "LU Candi Original Caramelized Biscuits",
+    slug: "lu-candi-original-caramelized-biscuits-104g",
+    sku: "LU-CANDI-ORIGINAL-CARAMELIZED-BISCUITS-104G",
+    brand: "LU",
+    weight: "3.68 oz (104.4g)",
+    description:
+      "Original caramelized biscuits with a crisp texture and warm caramel flavor for coffee, tea, and desserts.",
+    retailPrice: "2.49",
+    wholesalePrice: "1.80",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXsXnfMb8BPgeWNAZFXca6QzOIrykMCwxfuYho",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Jacob's The Selection Crackers",
+    slug: "jacobs-the-selection-crackers-900g",
+    sku: "JACOBS-THE-SELECTION-CRACKERS-900G",
+    brand: "Jacob's",
+    weight: "900g",
+    description:
+      "Assorted cracker selection with eight varieties made for sharing, cheese boards, parties, and snack trays.",
+    retailPrice: "14.99",
+    wholesalePrice: "11.25",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXRT6nrfJUXB0Qm2LsIibVYAJxv6Et8kd3aUqn",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "African Best Crunchy Kulikuli Peanut Cake",
+    slug: "african-best-crunchy-kulikuli-peanut-cake",
+    sku: "AFRICAN-BEST-CRUNCHY-KULIKULI-PEANUT-CAKE",
+    brand: "African Best",
+    weight: "1 jar",
+    description:
+      "Crunchy kulikuli peanut cake with bold roasted peanut flavor for traditional snacking and sharing.",
+    retailPrice: "6.99",
+    wholesalePrice: "5.25",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXQSxnmXLaQmgxRsrwTlNvnbS3Bpfi7yGF50X9",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Ulker Finger Biscuits",
+    slug: "ulker-finger-biscuits-5-pack",
+    sku: "ULKER-FINGER-BISCUITS-5PK",
+    brand: "Ulker",
+    weight: "5 packs",
+    description:
+      "Classic finger tea biscuits in a multipack, made for dipping, sharing, and everyday pantry snacking.",
+    retailPrice: "4.99",
+    wholesalePrice: "3.75",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXrVY131QbDAGT40s36lLoNFnigX1fHUjk2ZRB",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "LU Prince Chocolate Sandwich Biscuits",
+    slug: "lu-prince-chocolate-sandwich-biscuits",
+    sku: "LU-PRINCE-CHOCOLATE-SANDWICH-BISCUITS",
+    brand: "LU",
+    weight: "1 box",
+    description:
+      "Chocolate cream sandwich biscuits with crisp golden cookies and a smooth cocoa filling.",
+    retailPrice: "3.49",
+    wholesalePrice: "2.60",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXsRKG048BPgeWNAZFXca6QzOIrykMCwxfuYho",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Imperial Nuts Salted Cashew Halves & Pieces",
+    slug: "imperial-nuts-salted-cashew-halves-pieces-7oz",
+    sku: "IMPERIAL-NUTS-SALTED-CASHEWS-7OZ",
+    brand: "Imperial Nuts",
+    weight: "7 oz (198g)",
+    description:
+      "Salted cashew halves and pieces with plant-based protein in a resealable gluten-free snack cup.",
+    retailPrice: "6.99",
+    wholesalePrice: "5.25",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXj94CWwmFUYqgMeuyhvxCk8rOpNnTw70jzoHb",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "NutriSnax Oats Digestive Biscuits",
+    slug: "nutrisnax-oats-digestive-biscuits",
+    sku: "NUTRISNAX-OATS-DIGESTIVE-BISCUITS",
+    brand: "NutriSnax",
+    weight: "1 box",
+    description:
+      "High-fibre oats digestive biscuits with a crisp bite for tea, breakfast, and light snacking.",
+    retailPrice: "1.99",
+    wholesalePrice: "1.40",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXxI9kyKljMJUv6gokLH2K3401lyX9VBtcseFD",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Yale Double-Decker Vanilla Sandwich Biscuits",
+    slug: "yale-double-decker-vanilla-sandwich-biscuits",
+    sku: "YALE-DOUBLE-DECKER-VANILLA-SANDWICH-BISCUITS",
+    brand: "Yale",
+    weight: "1 pack",
+    description:
+      "Vanilla sandwich biscuits with a double-decker cookie style for quick sweet snacks and lunchboxes.",
+    retailPrice: "0.99",
+    wholesalePrice: "0.70",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXSmQBHVfdVulCEw3DZ4MYR9m6LfIat8iFQobW",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Cuetara Palmeritas Crisp Palm Leaf Cookies",
+    slug: "cuetara-palmeritas-crisp-palm-leaf-cookies-195g",
+    sku: "CUETARA-PALMERITAS-195G",
+    brand: "Cuetara",
+    weight: "6.9 oz (195g)",
+    description:
+      "Crisp palm leaf cookies with a flaky, lightly sweet texture and a 15% bonus pack.",
+    retailPrice: "3.99",
+    wholesalePrice: "2.95",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXCDsb6RJGDNTIJPmq7LiCuRpwSEMecbKWQ58O",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Bocel Aviva Soda Crackers",
+    slug: "bocel-aviva-soda-crackers-4-pack",
+    sku: "BOCEL-AVIVA-SODA-CRACKERS-4PK",
+    brand: "Bocel",
+    weight: "4 crackers",
+    description:
+      "Light soda crackers packed for simple snacking, soups, spreads, and quick pantry use.",
+    retailPrice: "1.49",
+    wholesalePrice: "1.05",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX8LmcKcBtpWNA2JcSXHGh9I8YufnPOUkVgz1B",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Famous Amos Chocolate Chip Cookies",
+    slug: "famous-amos-chocolate-chip-cookies",
+    sku: "FAMOUS-AMOS-CHOCOLATE-CHIP-COOKIES",
+    brand: "Famous Amos",
+    weight: "1 bag",
+    description:
+      "Bite-size chocolate chip cookies with rich chocolate pieces and a crunchy cookie texture.",
+    retailPrice: "2.49",
+    wholesalePrice: "1.80",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX5UvcPUuEeOQdJY39B8l0cIFUCxvfVwMyLqZR",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "McVitie's Saklikoy Hazelnut Cream Biscuits",
+    slug: "mcvities-saklikoy-hazelnut-cream-biscuits",
+    sku: "MCVITIES-SAKLIKOY-HAZELNUT-CREAM-BISCUITS",
+    brand: "McVitie's",
+    weight: "1 pack",
+    description:
+      "Wheat biscuit sandwiches filled with hazelnut cream for a sweet, crisp Turkish-style snack.",
+    retailPrice: "2.99",
+    wholesalePrice: "2.20",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXCB8XTIJGDNTIJPmq7LiCuRpwSEMecbKWQ58O",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Nirwana Ginger Candy Coconut Flavour",
+    slug: "nirwana-ginger-candy-coconut-flavour-125g",
+    sku: "NIRWANA-GINGER-CANDY-COCONUT-125G",
+    brand: "Nirwana",
+    weight: "125g (4.02 oz)",
+    description:
+      "Individually wrapped ginger candies with coconut flavour for a sweet, warming treat.",
+    retailPrice: "3.49",
+    wholesalePrice: "2.60",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXRTYYT4LUXB0Qm2LsIibVYAJxv6Et8kd3aUqn",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Nirwana Chewy Ginger Candy Original",
+    slug: "nirwana-chewy-ginger-candy-original-125g",
+    sku: "NIRWANA-CHEWY-GINGER-CANDY-ORIGINAL-125G",
+    brand: "Nirwana",
+    weight: "125g (4.41 oz)",
+    description:
+      "Chewy original ginger candy made with real ginger and packed in individually wrapped pieces.",
+    retailPrice: "3.49",
+    wholesalePrice: "2.60",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXMylFieECLMT5qyt9IA2aO3mxFvdXuncP7Hri",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "African Best Chin Chin Coconut Flavour",
+    slug: "african-best-chin-chin-coconut-flavour-950g",
+    sku: "AFRICAN-BEST-CHIN-CHIN-COCONUT-950G",
+    brand: "African Best",
+    weight: "950g",
+    description:
+      "Crunchy coconut-flavoured chin chin pieces in a large tub for sharing and traditional snacking.",
+    retailPrice: "10.99",
+    wholesalePrice: "8.25",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXBsCsyMVUFoSHVOz6iry4PwWQ5KdDR1BxGqnt",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Africa's Finest Chin Chin",
+    slug: "africas-finest-chin-chin",
+    sku: "AFRICAS-FINEST-CHIN-CHIN",
+    brand: "Africa's Finest",
+    weight: "Assorted tubs",
+    description:
+      "Traditional African chin chin with a crisp fried texture, packed in convenient tubs for pantry snacking.",
+    retailPrice: "5.99",
+    wholesalePrice: "4.50",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXwUxjBl2G9mNXOBKC65Pa7porlUtgM1SzkLeH",
+    ],
+    category: "Snacks, Breads & Confectionery",
+    variants: [
+      {
+        name: "Small Tub",
+        sku: "AFRICAS-FINEST-CHIN-CHIN-SMALL-TUB",
+        weight: "Small tub",
+        retailPrice: "5.99",
+        wholesalePrice: "4.50",
+      },
+      {
+        name: "Large Tub",
+        sku: "AFRICAS-FINEST-CHIN-CHIN-LARGE-TUB",
+        weight: "Large tub",
+        retailPrice: "10.99",
+        wholesalePrice: "8.25",
+      },
+    ],
+  },
+  {
+    name: "Martha White Chocolate Chocolate Chip Muffin Mix",
+    slug: "martha-white-chocolate-chocolate-chip-muffin-mix-7-4oz",
+    sku: "MARTHA-WHITE-CHOCOLATE-CHOCOLATE-CHIP-MUFFIN-MIX-7-4OZ",
+    brand: "Martha White",
+    weight: "7.4 oz (209g)",
+    description:
+      "Chocolate chocolate chip muffin mix with real chocolate chips; just add milk for quick baking.",
+    retailPrice: "2.49",
+    wholesalePrice: "1.80",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXCZLzMoJGDNTIJPmq7LiCuRpwSEMecbKWQ58O",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "LU Prince Chocolate Sandwich Biscuits Single Pack",
+    slug: "lu-prince-chocolate-sandwich-biscuits-single-pack",
+    sku: "LU-PRINCE-CHOCOLATE-SANDWICH-BISCUITS-SINGLE",
+    brand: "LU",
+    weight: "1 pack",
+    description:
+      "Single pack of Prince chocolate sandwich biscuits with cocoa cream between crisp biscuits.",
+    retailPrice: "1.49",
+    wholesalePrice: "1.05",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX6lSFY5TIdoa8APqmKptfzCilvc2yUEW9k3bD",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Kings Bakery Butter Rolls",
+    slug: "kings-bakery-butter-rolls-24oz",
+    sku: "KINGS-BAKERY-BUTTER-ROLLS-24OZ",
+    brand: "Kings Bakery",
+    weight: "24 oz (1.5 lb)",
+    description:
+      "Soft buttery bread rolls from Kings Bakery, packed for breakfast, sandwiches, and family meals.",
+    retailPrice: "5.99",
+    wholesalePrice: "4.50",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXtzI3wCphYx5l2n4dkqFK1Ois7TyRZe69ubVI",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Purerise Wholewheat Bread",
+    slug: "purerise-wholewheat-bread-24-6oz",
+    sku: "PURERISE-WHOLEWHEAT-BREAD-24-6OZ",
+    brand: "Purerise",
+    weight: "24.6 oz (1.5 lb)",
+    description:
+      "Sliced wholewheat bread with a hearty texture for sandwiches, toast, and everyday breakfast.",
+    retailPrice: "5.99",
+    wholesalePrice: "4.50",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXBIhuelVUFoSHVOz6iry4PwWQ5KdDR1BxGqnt",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Flows Toasted Corn & Peanut Mix",
+    slug: "flows-toasted-corn-peanut-mix",
+    sku: "FLOWS-TOASTED-CORN-PEANUT-MIX",
+    brand: "Flows",
+    weight: "1 pack",
+    description:
+      "Toasted corn and peanut mix from Ghana with a crunchy texture and savory snack flavor.",
+    retailPrice: "2.49",
+    wholesalePrice: "1.80",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXMy6rM4LCLMT5qyt9IA2aO3mxFvdXuncP7Hri",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "James Oat Original Biscuits",
+    slug: "james-oat-original-biscuits-700g",
+    sku: "JAMES-OAT-ORIGINAL-BISCUITS-700G",
+    brand: "James",
+    weight: "700g",
+    description:
+      "Oat original biscuits in a large tin, made for tea, breakfast, and family biscuit tins.",
+    retailPrice: "8.99",
+    wholesalePrice: "6.75",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXJRUeQB9yUIcDxWynlGbSNmh0zBPkXAHapLZf",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Royal Menthol Toffee Tough Candy",
+    slug: "royal-menthol-toffee-tough-candy-400g",
+    sku: "ROYAL-MENTHOL-TOFFEE-TOUGH-CANDY-400G",
+    brand: "Royal",
+    weight: "400g",
+    description:
+      "Individually wrapped menthol toffee tough candy in a bulk bag for sharing and counter sales.",
+    retailPrice: "5.99",
+    wholesalePrice: "4.50",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX8XlnufBtpWNA2JcSXHGh9I8YufnPOUkVgz1B",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Tasty Foods Njangsang Akpi",
+    slug: "tasty-foods-njangsang-akpi-85g",
+    sku: "TASTY-FOODS-NJANGSANG-AKPI-85G",
+    brand: "Tasty Foods",
+    weight: "85g (3 oz)",
+    description:
+      "Natural njangsang akpi seeds used for traditional soups, stews, sauces, and African cooking.",
+    retailPrice: "3.99",
+    wholesalePrice: "2.95",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXUN8ax56zWU8smDVPqlov4bjwie3dKCO7tGL2",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Gonyek Crispy Ripe Salted Plantain Chips",
+    slug: "gonyek-crispy-ripe-salted-plantain-chips-2-3oz",
+    sku: "GONYEK-CRISPY-RIPE-SALTED-PLANTAIN-CHIPS-2-3OZ",
+    brand: "Gonyek",
+    weight: "2.3 oz",
+    description:
+      "Salted ripe plantain chips with a crisp bite for vegetarian sweet-and-savory snacking.",
+    retailPrice: "1.99",
+    wholesalePrice: "1.40",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXsh6cnt8BPgeWNAZFXca6QzOIrykMCwxfuYho",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Burger Original Peanuts Snack",
+    slug: "burger-original-peanuts-snack-multipack",
+    sku: "BURGER-ORIGINAL-PEANUTS-SNACK-MULTIPACK",
+    brand: "Burger",
+    weight: "Multipack",
+    description:
+      "Original flavour peanut snack in a multipack, with crunchy coated peanuts for quick snacking.",
+    retailPrice: "4.99",
+    wholesalePrice: "3.75",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXWTY9XgvDXU3teM15G20Fg4pdAKNZElnSYsVo",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Newbisco Coasters Quality Biscuits",
+    slug: "newbisco-coasters-quality-biscuits",
+    sku: "NEWBISCO-COASTERS-QUALITY-BISCUITS",
+    brand: "Newbisco",
+    weight: "Bulk wrapped pieces",
+    description:
+      "Individually wrapped round coaster biscuits with a crisp texture for tea, sharing, and counter sales.",
+    retailPrice: "0.50",
+    wholesalePrice: "0.35",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNX1fTkfpD5eMVEqQchlkgbBUPnuW7drwAvzOa3",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+  {
+    name: "Amen Hot Spicy Sweet Plantain Chips",
+    slug: "amen-hot-spicy-sweet-plantain-chips-500g",
+    sku: "AMEN-HOT-SPICY-SWEET-PLANTAIN-CHIPS-500G",
+    brand: "Amen",
+    weight: "17.63 oz (500g)",
+    description:
+      "Sweet and spicy plantain chips in a large jar with a crunchy texture and peppery finish.",
+    retailPrice: "8.99",
+    wholesalePrice: "6.75",
+    imageUrls: [
+      "https://wqm5mupjsa.ufs.sh/f/wxknK72G9mNXoqSZFDWkq9CV2BFEf851QvjwOU3sI0c7yYt6",
+    ],
+    category: "Snacks, Breads & Confectionery",
+  },
+];
 function productData(categorySlug: string, product: SeedProduct) {
   return {
     category: {
