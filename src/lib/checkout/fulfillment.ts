@@ -2,6 +2,7 @@
 import "server-only";
 
 import type Stripe from "stripe";
+import { sendPaidOrderNotifications } from "@/src/lib/checkout/notifications";
 import { prisma } from "@/src/lib/prisma";
 
 class InventoryUnavailableError extends Error {
@@ -48,14 +49,14 @@ async function markPaidForInventoryReview(
     });
 
     if (!order) {
-      return null;
+      return { order: null, newlyPaid: false };
     }
 
     if (order.status !== "PENDING") {
-      return order;
+      return { order, newlyPaid: false };
     }
 
-    return tx.order.update({
+    const paidOrder = await tx.order.update({
       where: { id: order.id },
       data: {
         status: "PAID",
@@ -75,6 +76,8 @@ async function markPaidForInventoryReview(
       },
       include: { items: true },
     });
+
+    return { order: paidOrder, newlyPaid: true };
   });
 }
 
@@ -97,7 +100,7 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
   }
 
   try {
-    return await prisma.$transaction(async (tx) => {
+    const result = await prisma.$transaction(async (tx) => {
       const order = await tx.order.findUnique({
         where: { id: orderId },
         include: {
@@ -124,11 +127,11 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
       });
 
       if (!order) {
-        return null;
+        return { order: null, newlyPaid: false };
       }
 
       if (order.status !== "PENDING") {
-        return order;
+        return { order, newlyPaid: false };
       }
 
       const claimedOrder = await tx.order.updateMany({
@@ -142,7 +145,7 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
       });
 
       if (claimedOrder.count !== 1) {
-        return order;
+        return { order, newlyPaid: false };
       }
 
       const trackedItems = order.items.filter(
@@ -154,7 +157,7 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
       );
 
       if (unavailableItems.length) {
-        return tx.order.update({
+        const paidOrder = await tx.order.update({
           where: { id: order.id },
           data: {
             status: "PAID",
@@ -180,6 +183,8 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
           },
           include: { items: true },
         });
+
+        return { order: paidOrder, newlyPaid: true };
       }
 
       for (const item of trackedItems) {
@@ -229,7 +234,7 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
         }
       }
 
-      return tx.order.update({
+      const paidOrder = await tx.order.update({
         where: { id: order.id },
         data: {
           status: "PAID",
@@ -248,14 +253,42 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
         },
         include: { items: true },
       });
+
+      return { order: paidOrder, newlyPaid: true };
     });
+
+    if (result.newlyPaid && result.order) {
+      try {
+        await sendPaidOrderNotifications(result.order);
+      } catch (error) {
+        console.error("Paid order notifications failed", {
+          orderId: result.order.id,
+          error,
+        });
+      }
+    }
+
+    return result.order;
   } catch (error) {
     if (error instanceof InventoryUnavailableError) {
-      return markPaidForInventoryReview(
+      const result = await markPaidForInventoryReview(
         error.orderId,
         session,
         error.productNames,
       );
+
+      if (result.newlyPaid && result.order) {
+        try {
+          await sendPaidOrderNotifications(result.order);
+        } catch (notificationError) {
+          console.error("Paid order notifications failed", {
+            orderId: result.order.id,
+            error: notificationError,
+          });
+        }
+      }
+
+      return result.order;
     }
 
     throw error;
