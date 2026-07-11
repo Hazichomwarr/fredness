@@ -196,21 +196,21 @@ export async function sendQuoteConfirmationEmail(
 export async function sendQuoteOwnerNotificationEmail(
   payload: QuoteOwnerNotificationEmail,
 ) {
-  const ownerEmail = process.env.QUOTE_OWNER_EMAIL;
+  const adminEmail = process.env.QUOTE_ADMIN_EMAIL;
 
-  if (!ownerEmail) {
-    console.info("Quote owner notification skipped", {
+  if (!adminEmail) {
+    console.info("Quote admin notification skipped", {
       quoteId: payload.quoteId,
     });
     return { sent: false };
   }
 
   return sendResendEmail({
-    to: ownerEmail,
+    to: adminEmail,
     subject: `New wholesale quote request from ${payload.businessName}`,
     text: ownerSummaryText(payload),
     html: ownerSummaryHtml(payload),
-    logLabel: "Quote owner notification",
+    logLabel: "Quote admin notification",
     quoteId: payload.quoteId,
   });
 }
