@@ -9,7 +9,7 @@ export const dynamic = "force-dynamic";
 export default function Page() {
   return (
     <main>
-      {/* <Navbar /> */}
+      <Navbar />
       <Hero />
       <CategoryGrid />
       <FeaturedProducts />
