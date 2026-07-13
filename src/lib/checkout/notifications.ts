@@ -11,8 +11,7 @@ import {
 } from "@/src/emails/customer-order-confirmation";
 import { resend } from "@/src/lib/email/resend";
 
-const orderEmailFrom =
-  "Frednes Wholesale <orders@notifications.hm-digitalsolutions.com>";
+const orderEmailFrom = process.env.QUOTE_FROM_EMAIL!;
 
 type PaidOrderWithItems = Order & {
   items: OrderItem[];
