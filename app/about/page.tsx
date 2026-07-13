@@ -68,7 +68,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-2">
           <div className="relative aspect-5/4 overflow-hidden rounded-lg bg-gray-200">
             <Image
-              src="/images/fredness-yam.jpg"
+              src="/images/fred-story.jpg"
               alt="Fresh grocery products available at Frednes International Market"
               fill
               sizes="(min-width: 1024px) 50vw, 100vw"
