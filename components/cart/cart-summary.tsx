@@ -2,8 +2,13 @@
 "use client";
 
 import Link from "next/link";
+import { useState } from "react";
 import { CheckoutButton } from "@/components/checkout/checkout-button";
-import { cartItemId, useCartStore } from "@/src/stores/cart-store";
+import {
+  cartItemId,
+  type CartItem,
+  useCartStore,
+} from "@/src/stores/cart-store";
 
 function money(value: number) {
   return new Intl.NumberFormat("en-US", {
@@ -12,10 +17,99 @@ function money(value: number) {
   }).format(value);
 }
 
+function CartQuantityControl({ item }: { item: CartItem }) {
+  const itemId = cartItemId(item);
+  const removeItem = useCartStore((state) => state.removeItem);
+  const updateQuantity = useCartStore((state) => state.updateQuantity);
+  const [draftQuantity, setDraftQuantity] = useState<string | null>(null);
+
+  function restoreQuantity() {
+    setDraftQuantity(null);
+  }
+
+  function commitQuantity(value: string) {
+    const normalizedValue = value.trim();
+
+    if (!/^\d+$/.test(normalizedValue)) {
+      restoreQuantity();
+      return;
+    }
+
+    const nextQuantity = Number(normalizedValue);
+
+    if (!Number.isSafeInteger(nextQuantity)) {
+      restoreQuantity();
+      return;
+    }
+
+    if (nextQuantity === 0) {
+      removeItem(itemId);
+      return;
+    }
+
+    updateQuantity(itemId, nextQuantity);
+  }
+
+  function decrementQuantity() {
+    if (item.quantity === 1) {
+      removeItem(itemId);
+      return;
+    }
+
+    updateQuantity(itemId, item.quantity - 1);
+  }
+
+  return (
+    <div className="grid gap-1 text-sm font-medium text-gray-700">
+      <label htmlFor={`quantity-${itemId}`}>Quantity</label>
+      <div className="flex items-center">
+        <button
+          type="button"
+          aria-label={`Decrease quantity of ${item.name}`}
+          onClick={decrementQuantity}
+          className="h-10 w-10 rounded-l-lg border border-r-0 border-gray-300 text-lg hover:bg-gray-50"
+        >
+          &minus;
+        </button>
+        <input
+          id={`quantity-${itemId}`}
+          type="number"
+          inputMode="numeric"
+          min="0"
+          max={item.trackInventory ? item.inventory : undefined}
+          step="1"
+          aria-label={`Quantity of ${item.name}`}
+          value={draftQuantity ?? String(item.quantity)}
+          onFocus={() => setDraftQuantity(String(item.quantity))}
+          onChange={(event) => setDraftQuantity(event.target.value)}
+          onBlur={(event) => {
+            setDraftQuantity(null);
+            commitQuantity(event.target.value);
+          }}
+          onKeyDown={(event) => {
+            if (event.key === "Enter") {
+              event.preventDefault();
+              event.currentTarget.blur();
+            }
+          }}
+          className="h-10 w-16 border border-gray-300 px-2 text-center"
+        />
+        <button
+          type="button"
+          aria-label={`Increase quantity of ${item.name}`}
+          onClick={() => updateQuantity(itemId, item.quantity + 1)}
+          className="h-10 w-10 rounded-r-lg border border-l-0 border-gray-300 text-lg hover:bg-gray-50"
+        >
+          +
+        </button>
+      </div>
+    </div>
+  );
+}
+
 export function CartSummary() {
   const items = useCartStore((state) => state.items);
   const removeItem = useCartStore((state) => state.removeItem);
-  const updateQuantity = useCartStore((state) => state.updateQuantity);
   const clearCart = useCartStore((state) => state.clearCart);
   const subtotal = useCartStore((state) => state.subtotal());
   const totalItems = useCartStore((state) => state.totalItems());
@@ -78,19 +172,7 @@ export function CartSummary() {
                 ) : null}
               </div>
               <div className="grid gap-3 sm:justify-items-end">
-                <label className="grid gap-1 text-sm font-medium text-gray-700">
-                  Quantity
-                  <input
-                    type="number"
-                    min="1"
-                    max={item.trackInventory ? item.inventory : undefined}
-                    value={item.quantity}
-                    onChange={(event) =>
-                      updateQuantity(cartItemId(item), Number(event.target.value))
-                    }
-                    className="w-24 rounded-lg border border-gray-300 px-3 py-2"
-                  />
-                </label>
+                <CartQuantityControl item={item} />
                 <button
                   className="text-sm font-semibold text-red-700 hover:text-red-800"
                   onClick={() => removeItem(cartItemId(item))}

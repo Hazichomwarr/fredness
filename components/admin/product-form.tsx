@@ -281,9 +281,7 @@ export function ProductForm({ categories }: ProductFormProps) {
       <section className="grid gap-4 border-t border-neutral-200 pt-5">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <div>
-            <h2 className="text-lg font-semibold text-neutral-950">
-              Variants
-            </h2>
+            <h2 className="text-lg font-semibold text-neutral-950">Variants</h2>
             <p className="mt-1 text-sm text-neutral-600">
               Add Pack / Size options when this product has multiple package
               sizes.
