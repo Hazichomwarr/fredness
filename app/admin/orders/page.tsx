@@ -3,6 +3,12 @@ import { OrderStatus, Prisma } from "@prisma/client";
 import { updateOrderStatusAction } from "@/app/admin/orders/actions";
 import { requireAdmin } from "@/src/lib/auth/admin";
 import { prisma } from "@/src/lib/prisma";
+import {
+  dayAfter,
+  parseIsoDate,
+  STORE_TIME_ZONE,
+  storeLocalMidnightToUtc,
+} from "@/src/lib/store-time";
 
 type OrdersPageProps = {
   searchParams?: Promise<Record<string, string | string[] | undefined>>;
@@ -58,16 +64,22 @@ function previewText(value: string, length = 100) {
 function ordersHref({
   q,
   status,
+  from,
+  to,
   page,
 }: {
   q: string;
   status: string;
+  from: string;
+  to: string;
   page: number;
 }) {
   const params = new URLSearchParams();
 
   if (q) params.set("q", q);
   if (status) params.set("status", status);
+  if (from) params.set("from", from);
+  if (to) params.set("to", to);
   if (page > 1) params.set("page", String(page));
 
   const query = params.toString();
@@ -88,9 +100,40 @@ export default async function AdminOrdersPage({
     ? (statusParam as OrderStatus)
     : "";
   const page = Math.max(Number(firstParam(params.page) ?? "1") || 1, 1);
+  const rawFrom = firstParam(params.from)?.trim() ?? "";
+  const rawTo = firstParam(params.to)?.trim() ?? "";
+  const fromParts = rawFrom ? parseIsoDate(rawFrom) : null;
+  const toParts = rawTo ? parseIsoDate(rawTo) : null;
+  const validFrom = fromParts ? rawFrom : "";
+  const validTo = toParts ? rawTo : "";
+  const isReversedRange = Boolean(
+    fromParts &&
+      toParts &&
+      storeLocalMidnightToUtc(fromParts) > storeLocalMidnightToUtc(toParts),
+  );
+  const dateErrors = [
+    rawFrom && !fromParts ? "The From date is invalid and was ignored." : "",
+    rawTo && !toParts ? "The To date is invalid and was ignored." : "",
+    isReversedRange
+      ? "The From date must be on or before the To date. Date filtering was ignored."
+      : "",
+  ].filter(Boolean);
+  const createdAtFilter: Prisma.DateTimeFilter | undefined = isReversedRange
+    ? undefined
+    : {
+        ...(fromParts
+          ? { gte: storeLocalMidnightToUtc(fromParts) }
+          : {}),
+        ...(toParts
+          ? { lt: storeLocalMidnightToUtc(dayAfter(toParts)) }
+          : {}),
+      };
 
   const where: Prisma.OrderWhereInput = {
     ...(status ? { status } : {}),
+    ...(createdAtFilter && Object.keys(createdAtFilter).length
+      ? { createdAt: createdAtFilter }
+      : {}),
     ...(query
       ? {
           OR: [
@@ -152,30 +195,82 @@ export default async function AdminOrdersPage({
           </div>
         </div>
 
-        <form className="grid gap-3 rounded-lg border border-neutral-200 bg-white p-4 md:grid-cols-[1fr_220px_auto]">
-          <input
-            type="search"
-            name="q"
-            defaultValue={query}
-            placeholder="Search order, customer, email, product, SKU..."
-            className="rounded-md border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-950"
-          />
-          <select
-            name="status"
-            defaultValue={status}
-            className="rounded-md border border-neutral-300 px-3 py-2 text-sm outline-none focus:border-neutral-950"
-          >
-            <option value="">All statuses</option>
-            {orderStatuses.map((item) => (
-              <option key={item} value={item}>
-                {statusLabel(item)}
-              </option>
-            ))}
-          </select>
-          <button className="rounded-md bg-neutral-950 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800">
-            Search
-          </button>
-        </form>
+        <div className="grid gap-3 rounded-lg border border-neutral-200 bg-white p-4">
+          <form className="grid items-end gap-3 sm:grid-cols-2 lg:grid-cols-[minmax(260px,1fr)_180px_150px_150px_auto]">
+            <label className="grid gap-1 text-xs font-medium text-neutral-600 sm:col-span-2 lg:col-span-1">
+              Search
+              <input
+                type="search"
+                name="q"
+                defaultValue={query}
+                placeholder="Order, customer, email, product, SKU..."
+                className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm font-normal outline-none focus:border-neutral-950"
+              />
+            </label>
+            <label className="grid gap-1 text-xs font-medium text-neutral-600">
+              Status
+              <select
+                name="status"
+                defaultValue={status}
+                className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm font-normal outline-none focus:border-neutral-950"
+              >
+                <option value="">All statuses</option>
+                {orderStatuses.map((item) => (
+                  <option key={item} value={item}>
+                    {statusLabel(item)}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label className="grid gap-1 text-xs font-medium text-neutral-600">
+              From date
+              <input
+                type="date"
+                name="from"
+                defaultValue={validFrom}
+                className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm font-normal outline-none focus:border-neutral-950"
+              />
+            </label>
+            <label className="grid gap-1 text-xs font-medium text-neutral-600">
+              To date
+              <input
+                type="date"
+                name="to"
+                defaultValue={validTo}
+                className="min-h-10 rounded-md border border-neutral-300 px-3 py-2 text-sm font-normal outline-none focus:border-neutral-950"
+              />
+            </label>
+            <button className="min-h-10 rounded-md bg-neutral-950 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800">
+              Apply
+            </button>
+          </form>
+
+          <div className="flex flex-wrap items-center justify-between gap-3">
+            <p className="text-xs text-neutral-500">
+              Dates use the {STORE_TIME_ZONE} store timezone.
+            </p>
+            {rawFrom || rawTo ? (
+              <form action="/admin/orders">
+                {query ? <input type="hidden" name="q" value={query} /> : null}
+                {status ? (
+                  <input type="hidden" name="status" value={status} />
+                ) : null}
+                <button className="rounded-md border border-neutral-300 px-3 py-1.5 text-sm font-semibold text-neutral-700 hover:bg-neutral-50">
+                  Clear dates
+                </button>
+              </form>
+            ) : null}
+          </div>
+
+          {dateErrors.length ? (
+            <div
+              role="alert"
+              className="rounded-md border border-amber-200 bg-amber-50 px-3 py-2 text-sm text-amber-800"
+            >
+              {dateErrors.join(" ")}
+            </div>
+          ) : null}
+        </div>
 
         <section className="overflow-hidden rounded-lg border border-neutral-200 bg-white">
           <div className="overflow-x-auto">
@@ -214,7 +309,9 @@ export default async function AdminOrdersPage({
                           #{order.id.slice(-8).toUpperCase()}
                         </p>
                         <p className="mt-1 text-xs text-neutral-500">
-                          {order.createdAt.toLocaleDateString("en-US")}
+                          {order.createdAt.toLocaleDateString("en-US", {
+                            timeZone: STORE_TIME_ZONE,
+                          })}
                         </p>
                         {order.notes ? (
                           <details className="mt-3 max-w-56 text-xs text-amber-700">
@@ -372,7 +469,7 @@ export default async function AdminOrdersPage({
                       className="px-4 py-12 text-center text-neutral-500"
                       colSpan={6}
                     >
-                      No orders found.
+                      No orders found for the selected filters.
                     </td>
                   </tr>
                 )}
@@ -390,6 +487,8 @@ export default async function AdminOrdersPage({
               href={ordersHref({
                 q: query,
                 status,
+                from: isReversedRange ? "" : validFrom,
+                to: isReversedRange ? "" : validTo,
                 page: Math.max(1, page - 1),
               })}
               className={`rounded-md border border-neutral-300 px-3 py-2 font-semibold ${
@@ -402,6 +501,8 @@ export default async function AdminOrdersPage({
               href={ordersHref({
                 q: query,
                 status,
+                from: isReversedRange ? "" : validFrom,
+                to: isReversedRange ? "" : validTo,
                 page: Math.min(pageCount, page + 1),
               })}
               className={`rounded-md border border-neutral-300 px-3 py-2 font-semibold ${
