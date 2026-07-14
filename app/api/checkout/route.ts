@@ -195,9 +195,6 @@ export async function POST(request: Request) {
       metadata: {
         orderId: order.id,
       },
-      shipping_address_collection: {
-        allowed_countries: ["US"],
-      },
       line_items: orderItems.map(({ product, productName, quantity, unitPrice, sku }) => {
         const imageUrl = product.images[0]?.url;
 

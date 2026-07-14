@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ClearCartOnSuccess } from "@/components/checkout/clear-cart-on-success";
 import { prisma } from "@/src/lib/prisma";
+import { STORE_SETTINGS } from "@/src/lib/store-settings";
 import { getStripe } from "@/src/lib/stripe/server";
 
 type CheckoutSuccessPageProps = {
@@ -83,6 +84,55 @@ export default async function CheckoutSuccessPage({
           <h1 className="mt-2 text-3xl font-bold">Thanks for your order</h1>
           <p className="mt-3 text-gray-600">
             Order #{order.id.slice(-8).toUpperCase()} has been received.
+          </p>
+          <div className="mt-6 border-t border-gray-200 pt-6 text-gray-700">
+            <p>
+              Your order will be ready for pickup in approximately{" "}
+              <strong>
+                {STORE_SETTINGS.pickupPreparationMinutes} minutes.
+              </strong>
+            </p>
+            <p className="mt-2">
+              Please bring your order number when visiting the store.
+            </p>
+          </div>
+        </section>
+
+        <section className="rounded-xl border border-gray-200 bg-white p-5">
+          <h2 className="text-lg font-semibold">Pickup Information</h2>
+          <p className="mt-4 font-semibold text-green-700">Store Pickup</p>
+          <dl className="mt-4 grid gap-4 text-sm sm:grid-cols-2">
+            <div>
+              <dt className="font-medium text-gray-500">
+                Estimated preparation
+              </dt>
+              <dd className="mt-1 font-semibold text-gray-950">
+                {STORE_SETTINGS.pickupPreparationMinutes} minutes
+              </dd>
+            </div>
+            <div>
+              <dt className="font-medium text-gray-500">Store address</dt>
+              <dd className="mt-1 text-gray-950">
+                <a
+                  href={STORE_SETTINGS.mapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:text-green-700"
+                >
+                  {STORE_SETTINGS.address}
+                </a>
+              </dd>
+            </div>
+          </dl>
+          <p className="mt-5 border-t border-gray-100 pt-4 text-sm text-gray-600">
+            If you have questions about your order, please contact the store at{" "}
+            <a
+              href={STORE_SETTINGS.phone.href}
+              className="font-semibold text-green-700 hover:text-green-800"
+            >
+              {STORE_SETTINGS.phone.display}
+            </a>
+            .
           </p>
         </section>
 
