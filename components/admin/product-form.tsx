@@ -2,7 +2,7 @@
 "use client";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { useMemo, useRef, useState } from "react";
+import { useActionState, useMemo, useRef, useState } from "react";
 import { useFieldArray, useForm } from "react-hook-form";
 import { createProductAction } from "@/app/admin/products/actions";
 import { ProductImageUploader } from "@/components/admin/product-image-uploader";
@@ -38,6 +38,10 @@ const weightLabels = [
 export function ProductForm({ categories }: ProductFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const [validatedSubmit, setValidatedSubmit] = useState(false);
+  const [actionState, formAction, isPending] = useActionState(
+    createProductAction,
+    { error: null },
+  );
   const {
     control,
     getValues,
@@ -116,10 +120,16 @@ export function ProductForm({ categories }: ProductFormProps) {
   return (
     <form
       ref={formRef}
-      action={createProductAction}
+      action={formAction}
       onSubmit={handleSubmit}
       className="grid gap-5 rounded-lg border border-neutral-200 bg-white p-4"
     >
+      {actionState.error ? (
+        <div className="rounded-md border border-red-200 bg-red-50 px-4 py-3 text-sm font-medium text-red-700">
+          {actionState.error}
+        </div>
+      ) : null}
+
       <div className="grid gap-4 md:grid-cols-2">
         <label className="grid gap-1 text-sm font-medium text-neutral-700">
           Product name
@@ -415,9 +425,9 @@ export function ProductForm({ categories }: ProductFormProps) {
       <div>
         <button
           className="rounded-md bg-neutral-950 px-4 py-2 text-sm font-semibold text-white hover:bg-neutral-800"
-          disabled={!categories.length}
+          disabled={!categories.length || isPending}
         >
-          Create product
+          {isPending ? "Creating..." : "Create product"}
         </button>
       </div>
     </form>

@@ -9,8 +9,10 @@ const email = process.env.ADMIN_EMAIL?.trim().toLowerCase();
 const password = process.env.ADMIN_PASSWORD;
 const name = process.env.ADMIN_NAME?.trim() || "Frednes Owner";
 
-if (!process.env.DATABASE_URL) {
-  throw new Error("DATABASE_URL is required to seed the admin user.");
+const seedDatabaseUrl = process.env.DIRECT_URL ?? process.env.DATABASE_URL;
+
+if (!seedDatabaseUrl) {
+  throw new Error("DIRECT_URL or DATABASE_URL is required to seed the database.");
 }
 
 if (!email) {
@@ -23,7 +25,7 @@ if (!password || password.length < 12) {
 
 const adminEmail = email;
 const adminPassword = password;
-const adapter = new PrismaPg({ connectionString: process.env.DATABASE_URL });
+const adapter = new PrismaPg({ connectionString: seedDatabaseUrl });
 const prisma = new PrismaClient({ adapter });
 
 const categories = [

@@ -13,6 +13,10 @@ import {
   productVariantFormSchema,
 } from "@/src/lib/products/product-form-schema";
 
+export type CreateProductActionState = {
+  error: string | null;
+};
+
 const productUpdateSchema = z.object({
   id: z.string().min(1),
   name: z.string().trim().min(1, "Name is required"),
@@ -118,50 +122,128 @@ function parseProductForm(formData: FormData) {
   };
 }
 
-export async function createProductAction(formData: FormData) {
+function submittedFieldNames(formData: FormData) {
+  return Array.from(new Set(Array.from(formData.keys()))).sort();
+}
+
+function prismaErrorCode(error: unknown) {
+  return error instanceof Prisma.PrismaClientKnownRequestError
+    ? error.code
+    : undefined;
+}
+
+function prismaErrorMeta(error: unknown) {
+  return error instanceof Prisma.PrismaClientKnownRequestError
+    ? error.meta
+    : undefined;
+}
+
+function isDatabaseConnectionError(error: unknown) {
+  if (
+    error instanceof Prisma.PrismaClientInitializationError ||
+    error instanceof Prisma.PrismaClientRustPanicError
+  ) {
+    return true;
+  }
+
+  if (!(error instanceof Error)) {
+    return false;
+  }
+
+  return /connection|connect|timeout|terminated|closed|unavailable|ECONN|ENOTFOUND|ETIMEDOUT/i.test(
+    error.message,
+  );
+}
+
+function createProductErrorMessage(error: unknown) {
+  const code = prismaErrorCode(error);
+
+  if (code === "P2002") {
+    return "A product with this slug or SKU already exists.";
+  }
+
+  if (code === "P2003" || code === "P2025") {
+    return "The selected category no longer exists.";
+  }
+
+  if (isDatabaseConnectionError(error)) {
+    return "The database is temporarily unavailable. Please try again.";
+  }
+
+  if (error instanceof z.ZodError) {
+    return "Check the product form for missing or invalid fields.";
+  }
+
+  return "Unable to create product. Please review the form and try again.";
+}
+
+function logCreateProductError(error: unknown, formData: FormData) {
+  console.error("[ADMIN_PRODUCT_CREATE_ERROR]", {
+    errorName: error instanceof Error ? error.name : typeof error,
+    errorMessage: error instanceof Error ? error.message : String(error),
+    prismaCode: prismaErrorCode(error),
+    prismaMeta: prismaErrorMeta(error),
+    submittedFields: submittedFieldNames(formData),
+  });
+}
+
+export async function createProductAction(
+  _previousState: CreateProductActionState,
+  formData: FormData,
+): Promise<CreateProductActionState> {
   await requireAdmin();
 
-  const parsed = parseProductForm(formData);
+  try {
+    const parsed = parseProductForm(formData);
 
-  await prisma.product.create({
-    data: {
-      name: parsed.name,
-      slug: parsed.slug,
-      sku: parsed.sku,
-      categoryId: parsed.categoryId,
-      description: parsed.description,
-      brand: parsed.brand,
-      weight: parsed.weight,
-      retailPrice: new Prisma.Decimal(parsed.retailPrice),
-      wholesalePrice: parsed.wholesalePrice
-        ? new Prisma.Decimal(parsed.wholesalePrice)
-        : null,
-      minimumWholesaleQty: parsed.minimumWholesaleQty,
-      inventory: parsed.inventory,
-      trackInventory: parsed.trackInventory,
-      isActive: parsed.isActive,
-      images: {
-        create: parsed.imageUrls.map((url, index) => ({
-          url,
-          sortOrder: index,
-          altText: parsed.name,
-        })),
+    const retailPrice = new Prisma.Decimal(parsed.retailPrice);
+    const wholesalePrice = parsed.wholesalePrice
+      ? new Prisma.Decimal(parsed.wholesalePrice)
+      : null;
+
+    await prisma.product.create({
+      data: {
+        name: parsed.name,
+        slug: parsed.slug,
+        sku: parsed.sku,
+        categoryId: parsed.categoryId,
+        description: parsed.description,
+        brand: parsed.brand,
+        weight: parsed.weight,
+        retailPrice,
+        wholesalePrice,
+        minimumWholesaleQty: parsed.minimumWholesaleQty,
+        inventory: parsed.inventory,
+        trackInventory: parsed.trackInventory,
+        isActive: parsed.isActive,
+        images: {
+          create: parsed.imageUrls.map((url, index) => ({
+            url,
+            sortOrder: index,
+            altText: parsed.name,
+          })),
+        },
+        variants: {
+          create: parsed.variants.map((variant) => ({
+            label: variant.label,
+            sku: variant.sku,
+            retailPrice: new Prisma.Decimal(variant.retailPrice),
+            wholesalePrice: variant.wholesalePrice
+              ? new Prisma.Decimal(variant.wholesalePrice)
+              : null,
+            inventory: variant.inventory,
+            sortOrder: variant.sortOrder,
+            isActive: variant.isActive,
+          })),
+        },
       },
-      variants: {
-        create: parsed.variants.map((variant) => ({
-          label: variant.label,
-          sku: variant.sku,
-          retailPrice: new Prisma.Decimal(variant.retailPrice),
-          wholesalePrice: variant.wholesalePrice
-            ? new Prisma.Decimal(variant.wholesalePrice)
-            : null,
-          inventory: variant.inventory,
-          sortOrder: variant.sortOrder,
-          isActive: variant.isActive,
-        })),
-      },
-    },
-  });
+    });
+  } catch (error) {
+    logCreateProductError(error, formData);
+    return {
+      error: createProductErrorMessage(error),
+    };
+  }
 
   revalidatePath("/admin/products");
   redirect("/admin/products");
