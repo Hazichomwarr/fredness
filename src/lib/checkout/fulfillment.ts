@@ -61,10 +61,6 @@ async function markPaidForInventoryReview(
       data: {
         status: "PAID",
         customerName: session.customer_details?.name ?? order.customerName,
-        customerEmail:
-          session.customer_details?.email ??
-          session.customer_email ??
-          order.customerEmail,
         customerPhone: session.customer_details?.phone ?? order.customerPhone,
         stripePaymentIntent: paymentIntentId(session),
         shippingAddress: shippingAddress(session) ?? order.shippingAddress,
@@ -162,10 +158,6 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
           data: {
             status: "PAID",
             customerName: session.customer_details?.name ?? order.customerName,
-            customerEmail:
-              session.customer_details?.email ??
-              session.customer_email ??
-              order.customerEmail,
             customerPhone:
               session.customer_details?.phone ?? order.customerPhone,
             stripePaymentIntent: paymentIntentId(session),
@@ -239,10 +231,6 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
         data: {
           status: "PAID",
           customerName: session.customer_details?.name ?? order.customerName,
-          customerEmail:
-            session.customer_details?.email ??
-            session.customer_email ??
-            order.customerEmail,
           customerPhone: session.customer_details?.phone ?? order.customerPhone,
           stripePaymentIntent: paymentIntentId(session),
           shippingAddress: shippingAddress(session) ?? order.shippingAddress,

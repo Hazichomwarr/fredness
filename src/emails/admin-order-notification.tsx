@@ -4,7 +4,7 @@ import type { OrderEmailItem } from "@/src/emails/customer-order-confirmation";
 export type AdminOrderNotificationEmailProps = {
   orderId: string;
   customerName: string;
-  customerEmail: string;
+  customerEmail: string | null;
   customerPhone: string | null;
   shippingAddress: string | null;
   city: string | null;
@@ -62,7 +62,7 @@ export function adminOrderNotificationText(
     `Stripe payment ID: ${props.stripePaymentIntent ?? "Not available"}`,
     "",
     `Customer: ${props.customerName}`,
-    `Email: ${props.customerEmail}`,
+    `Email: ${props.customerEmail ?? "Not provided"}`,
     `Phone: ${props.customerPhone ?? "Not provided"}`,
     `Shipping address: ${
       formatShippingAddress(props) || "Not provided"
@@ -122,7 +122,7 @@ export function AdminOrderNotificationEmail(
             ["Order ID", props.orderId],
             ["Stripe payment ID", props.stripePaymentIntent ?? "Not available"],
             ["Customer", props.customerName],
-            ["Customer email", props.customerEmail],
+            ["Customer email", props.customerEmail ?? "Not provided"],
             ["Phone", props.customerPhone ?? "Not provided"],
             [
               "Shipping address",

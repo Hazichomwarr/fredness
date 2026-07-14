@@ -17,12 +17,15 @@ type PaidOrderWithItems = Order & {
   items: OrderItem[];
 };
 
-async function sendCustomerOrderConfirmation(order: PaidOrderWithItems) {
+async function sendCustomerOrderConfirmation(
+  order: PaidOrderWithItems,
+  customerEmail: string,
+) {
   const payload = orderEmailPayload(order);
 
   const result = await resend.emails.send({
     from: orderEmailFrom,
-    to: order.customerEmail,
+    to: customerEmail,
     subject: "Your Frednes Wholesale order has been received",
     react: CustomerOrderConfirmationEmail(payload),
     text: customerOrderConfirmationText(payload),
@@ -36,7 +39,7 @@ async function sendCustomerOrderConfirmation(order: PaidOrderWithItems) {
 }
 
 async function sendAdminOrderNotification(order: PaidOrderWithItems) {
-  const adminEmail = process.env.QUOTE_ADMIN_EMAIL;
+  const adminEmail = process.env.QUOTE_ADMIN_EMAIL?.trim();
 
   if (!adminEmail) {
     console.info("Admin notification email skipped", {
@@ -52,7 +55,7 @@ async function sendAdminOrderNotification(order: PaidOrderWithItems) {
     from: orderEmailFrom,
     to: adminEmail,
     subject: "New Paid Order",
-    replyTo: order.customerEmail,
+    replyTo: order.customerEmail?.trim() || undefined,
     react: AdminOrderNotificationEmail(payload),
     text: adminOrderNotificationText(payload),
   });
@@ -97,11 +100,14 @@ function logRejectedEmail(
 }
 
 export async function sendPaidOrderNotifications(order: PaidOrderWithItems) {
-  const [customerResult, adminResult] = await Promise.allSettled([
-    sendCustomerOrderConfirmation(order),
+  const customerEmail = order.customerEmail?.trim() || null;
+  const [adminResult, customerResult] = await Promise.allSettled([
     sendAdminOrderNotification(order),
+    customerEmail
+      ? sendCustomerOrderConfirmation(order, customerEmail)
+      : Promise.resolve(null),
   ]);
 
-  logRejectedEmail("Customer confirmation email", order.id, customerResult);
   logRejectedEmail("Admin notification email", order.id, adminResult);
+  logRejectedEmail("Customer confirmation email", order.id, customerResult);
 }

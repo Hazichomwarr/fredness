@@ -147,7 +147,7 @@ model BundleItem {
 model Order {
   id                    String      @id @default(cuid())
   customerName          String
-  customerEmail         String
+  customerEmail         String?
   customerPhone         String?
   notes                 String?
   status                OrderStatus @default(PENDING)

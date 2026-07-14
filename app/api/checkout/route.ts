@@ -2,24 +2,11 @@
 import { NextResponse } from "next/server";
 import { z } from "zod";
 import { Prisma } from "@prisma/client";
+import { checkoutSchema } from "@/src/lib/checkout/checkout-schema";
 import { prisma } from "@/src/lib/prisma";
 import { getStripe } from "@/src/lib/stripe/server";
 
 export const runtime = "nodejs";
-
-const checkoutSchema = z.object({
-  customerEmail: z.string().trim().email("Enter a valid email address"),
-  customerName: z.string().trim().optional(),
-  items: z
-    .array(
-      z.object({
-        productId: z.string().min(1),
-        variantId: z.string().min(1).optional().nullable(),
-        quantity: z.coerce.number().int().min(1),
-      }),
-    )
-    .min(1, "Cart is empty"),
-});
 
 function toCents(value: Prisma.Decimal) {
   return Math.round(Number(value) * 100);
@@ -37,8 +24,14 @@ export async function POST(request: Request) {
   const parsed = checkoutSchema.safeParse(await request.json());
 
   if (!parsed.success) {
+    const fieldErrors = z.flattenError(parsed.error).fieldErrors;
+
     return NextResponse.json(
-      { error: "Invalid checkout request" },
+      {
+        error:
+          fieldErrors.customerEmail?.[0] ?? "Invalid checkout request",
+        fieldErrors,
+      },
       { status: 400 },
     );
   }
@@ -161,7 +154,9 @@ export async function POST(request: Request) {
     const order = await prisma.order.create({
       data: {
         customerName:
-          parsed.data.customerName || parsed.data.customerEmail.split("@")[0],
+          parsed.data.customerName ||
+          parsed.data.customerEmail?.split("@")[0] ||
+          "Customer",
         customerEmail: parsed.data.customerEmail,
         status: "PENDING",
         subtotal: new Prisma.Decimal(subtotal),
@@ -194,7 +189,7 @@ export async function POST(request: Request) {
 
     const session = await stripe.checkout.sessions.create({
       mode: "payment",
-      customer_email: parsed.data.customerEmail,
+      customer_email: parsed.data.customerEmail ?? undefined,
       success_url: `${baseUrl}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
       cancel_url: `${baseUrl}/checkout/cancel?order=${order.id}`,
       metadata: {

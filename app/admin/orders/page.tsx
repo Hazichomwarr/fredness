@@ -336,12 +336,16 @@ export default async function AdminOrdersPage({
                           {order.customerName}
                         </p>
                         <div className="mt-2 grid gap-1 text-xs text-neutral-500">
-                          <a
-                            href={`mailto:${order.customerEmail}`}
-                            className="hover:text-emerald-700"
-                          >
-                            {order.customerEmail}
-                          </a>
+                          {order.customerEmail ? (
+                            <a
+                              href={`mailto:${order.customerEmail}`}
+                              className="hover:text-emerald-700"
+                            >
+                              {order.customerEmail}
+                            </a>
+                          ) : (
+                            <span>Email not provided</span>
+                          )}
                           {order.customerPhone ? (
                             <a
                               href={`tel:${order.customerPhone}`}

@@ -56,10 +56,9 @@ export function CheckoutButton() {
   return (
     <form className="grid gap-3" onSubmit={checkout}>
       <label className="grid gap-1 text-sm font-medium text-gray-700">
-        Email for receipt
+        Email for receipt (optional)
         <input
           type="email"
-          required
           value={customerEmail}
           onChange={(event) => setCustomerEmail(event.target.value)}
           className="rounded-lg border border-gray-300 px-3 py-2"
