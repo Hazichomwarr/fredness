@@ -24,6 +24,8 @@ export type AdminProductRow = {
   categorySlug: string;
   retailPrice: string;
   wholesalePrice: string | null;
+  minimumWholesaleQty: number | null;
+  wholesaleMinimumLabel: string | null;
   inventory: number;
   isActive: boolean;
   createdAt: string;
@@ -224,6 +226,32 @@ export function ProductsTable({
                       className="w-[80%] rounded-md border border-neutral-300 px-3 py-2 font-normal"
                       inputMode="decimal"
                     />
+                  </label>
+                </div>
+                <div className="grid gap-3 rounded-md border border-neutral-200 bg-neutral-50 p-3">
+                  <label className="grid gap-1 text-sm font-medium text-neutral-700">
+                    Minimum wholesale quantity
+                    <input
+                      name="minimumWholesaleQty"
+                      type="number"
+                      min="1"
+                      defaultValue={row.original.minimumWholesaleQty ?? ""}
+                      className="rounded-md border border-neutral-300 bg-white px-3 py-2 font-normal"
+                    />
+                  </label>
+                  <label className="grid gap-1 text-sm font-medium text-neutral-700">
+                    Wholesale minimum description
+                    <input
+                      name="wholesaleMinimumLabel"
+                      maxLength={120}
+                      defaultValue={row.original.wholesaleMinimumLabel ?? ""}
+                      className="rounded-md border border-neutral-300 bg-white px-3 py-2 font-normal"
+                      placeholder="Example: 2 bags — 100 lb total"
+                    />
+                    <span className="text-xs font-normal text-neutral-500">
+                      Explain what the minimum quantity represents: pieces,
+                      boxes, cases, bags, or total weight.
+                    </span>
                   </label>
                 </div>
                 <div className="grid grid-cols-[1fr_auto] items-end gap-3">

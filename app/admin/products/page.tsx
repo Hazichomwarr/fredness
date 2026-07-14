@@ -31,6 +31,8 @@ function toProductRow(product: {
   sku: string;
   retailPrice: Prisma.Decimal;
   wholesalePrice: Prisma.Decimal | null;
+  minimumWholesaleQty: number | null;
+  wholesaleMinimumLabel: string | null;
   inventory: number;
   isActive: boolean;
   createdAt: Date;
@@ -55,6 +57,8 @@ function toProductRow(product: {
     categorySlug: product.category.slug,
     retailPrice: product.retailPrice.toString(),
     wholesalePrice: product.wholesalePrice?.toString() ?? null,
+    minimumWholesaleQty: product.minimumWholesaleQty,
+    wholesaleMinimumLabel: product.wholesaleMinimumLabel,
     inventory: product.inventory,
     isActive: product.isActive,
     createdAt: product.createdAt.toISOString(),

@@ -61,6 +61,7 @@ export function ProductForm({ categories }: ProductFormProps) {
       retailPrice: "",
       wholesalePrice: "",
       minimumWholesaleQty: "",
+      wholesaleMinimumLabel: "",
       inventory: 0,
       trackInventory: true,
       isActive: true,
@@ -240,12 +241,31 @@ export function ProductForm({ categories }: ProductFormProps) {
           <input
             {...register("minimumWholesaleQty")}
             type="number"
-            min="0"
+            min="1"
             className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
           />
           {errors.minimumWholesaleQty ? (
             <span className="text-xs text-red-600">
               {errors.minimumWholesaleQty.message}
+            </span>
+          ) : null}
+        </label>
+
+        <label className="grid gap-1 text-sm font-medium text-neutral-700 md:col-span-2">
+          Wholesale minimum description
+          <input
+            {...register("wholesaleMinimumLabel")}
+            maxLength={120}
+            className="rounded-md border border-neutral-300 px-3 py-2 font-normal"
+            placeholder="Example: 2 bags — 100 lb total"
+          />
+          <span className="text-xs font-normal text-neutral-500">
+            Explain what the minimum quantity represents: pieces, boxes, cases,
+            bags, or total weight.
+          </span>
+          {errors.wholesaleMinimumLabel ? (
+            <span className="text-xs text-red-600">
+              {errors.wholesaleMinimumLabel.message}
             </span>
           ) : null}
         </label>

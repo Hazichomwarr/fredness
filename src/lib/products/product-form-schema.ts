@@ -24,7 +24,20 @@ const optionalInteger = z
   .trim()
   .optional()
   .transform((value) => (value ? Number(value) : null))
-  .pipe(z.number().int().min(0).nullable());
+  .pipe(
+    z
+      .number()
+      .int("Enter a whole number")
+      .min(1, "Minimum wholesale quantity must be at least 1")
+      .nullable(),
+  );
+
+const optionalWholesaleMinimumLabel = z
+  .string()
+  .trim()
+  .max(120, "Wholesale minimum description must be 120 characters or less")
+  .optional()
+  .transform((value) => (value ? value : null));
 
 const publicImagePath = z
   .string()
@@ -81,6 +94,7 @@ export const productFormSchema = z.object({
     .regex(/^\d+(\.\d{1,2})?$/, "Enter a valid price"),
   wholesalePrice: optionalPrice,
   minimumWholesaleQty: optionalInteger,
+  wholesaleMinimumLabel: optionalWholesaleMinimumLabel,
   inventory: z.coerce.number().int().min(0),
   trackInventory: z.boolean().default(true),
   isActive: z.boolean().default(true),

@@ -139,6 +139,7 @@ export default async function QuotePage({ searchParams }: QuotePageProps) {
         ? Number(product.wholesalePrice)
         : null,
       minimumWholesaleQty: product.minimumWholesaleQty,
+      wholesaleMinimumLabel: product.wholesaleMinimumLabel,
     }),
   );
 

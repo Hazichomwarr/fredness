@@ -229,6 +229,7 @@ export default async function ProductDetailsPage({
                 ? Number(product.wholesalePrice)
                 : null,
               minimumWholesaleQty: product.minimumWholesaleQty,
+              wholesaleMinimumLabel: product.wholesaleMinimumLabel,
               inventory: product.inventory,
               trackInventory: product.trackInventory,
             }}

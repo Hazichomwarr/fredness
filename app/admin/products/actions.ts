@@ -51,6 +51,22 @@ const productUpdateSchema = z.object({
         .regex(/^\d+(\.\d{1,2})?$/)
         .nullable(),
     ),
+  minimumWholesaleQty: z
+    .string()
+    .trim()
+    .transform((value) => (value ? Number(value) : null))
+    .pipe(
+      z
+        .number()
+        .int("Enter a whole number")
+        .min(1, "Minimum wholesale quantity must be at least 1")
+        .nullable(),
+    ),
+  wholesaleMinimumLabel: z
+    .string()
+    .trim()
+    .max(120, "Wholesale minimum description must be 120 characters or less")
+    .transform((value) => (value ? value : null)),
   inventory: z.coerce.number().int().min(0),
   isActive: z
     .string()
@@ -125,6 +141,7 @@ function parseProductForm(formData: FormData) {
     retailPrice: formData.get("retailPrice"),
     wholesalePrice: formData.get("wholesalePrice"),
     minimumWholesaleQty: formData.get("minimumWholesaleQty"),
+    wholesaleMinimumLabel: formData.get("wholesaleMinimumLabel"),
     inventory: formData.get("inventory"),
     trackInventory: parseBoolean(formData.get("trackInventory")),
     isActive: parseBoolean(formData.get("isActive")),
@@ -229,6 +246,7 @@ export async function createProductAction(
         retailPrice,
         wholesalePrice,
         minimumWholesaleQty: parsed.minimumWholesaleQty,
+        wholesaleMinimumLabel: parsed.wholesaleMinimumLabel,
         inventory: parsed.inventory,
         trackInventory: parsed.trackInventory,
         isActive: parsed.isActive,
@@ -276,6 +294,8 @@ export async function updateProductAction(formData: FormData) {
     sku: formData.get("sku"),
     retailPrice: formData.get("retailPrice"),
     wholesalePrice: formData.get("wholesalePrice"),
+    minimumWholesaleQty: formData.get("minimumWholesaleQty"),
+    wholesaleMinimumLabel: formData.get("wholesaleMinimumLabel"),
     inventory: formData.get("inventory"),
     isActive: formData.get("isActive"),
   });
@@ -290,6 +310,8 @@ export async function updateProductAction(formData: FormData) {
         wholesalePrice: parsed.wholesalePrice
           ? new Prisma.Decimal(parsed.wholesalePrice)
           : null,
+        minimumWholesaleQty: parsed.minimumWholesaleQty,
+        wholesaleMinimumLabel: parsed.wholesaleMinimumLabel,
         inventory: parsed.inventory,
         isActive: parsed.isActive,
       },

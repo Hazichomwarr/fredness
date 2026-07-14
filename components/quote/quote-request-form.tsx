@@ -20,6 +20,7 @@ export type QuoteRequestProduct = {
   imageUrl: string;
   wholesalePrice: number | null;
   minimumWholesaleQty: number | null;
+  wholesaleMinimumLabel: string | null;
 };
 
 type QuoteRequestFormProps = {
@@ -212,8 +213,10 @@ export function QuoteRequestForm({
                     className="w-28 rounded-lg border border-gray-300 px-3 py-2"
                   />
                   {product.minimumWholesaleQty ? (
-                    <span className="text-xs font-normal text-gray-500">
-                      Min {product.minimumWholesaleQty}
+                    <span className="max-w-52 text-xs font-normal text-gray-500 sm:text-right">
+                      Minimum wholesale order:{" "}
+                      {product.wholesaleMinimumLabel ??
+                        `${product.minimumWholesaleQty} units`}
                     </span>
                   ) : null}
                 </label>

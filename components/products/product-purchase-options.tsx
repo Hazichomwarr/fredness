@@ -25,6 +25,7 @@ type ProductPurchaseOptionsProps = {
     retailPrice: number;
     wholesalePrice: number | null;
     minimumWholesaleQty: number | null;
+    wholesaleMinimumLabel: string | null;
     inventory: number;
     trackInventory: boolean;
   };
@@ -75,12 +76,16 @@ export function ProductPurchaseOptions({
             {money(displayPrice)}
           </p>
           {displayWholesalePrice ? (
-            <p className="mt-1 text-sm text-gray-600">
-              Wholesale pricing from {money(displayWholesalePrice)}
-              {product.minimumWholesaleQty
-                ? ` at ${product.minimumWholesaleQty}+ units`
-                : ""}
-            </p>
+            <div className="mt-1 grid gap-0.5 text-sm text-gray-600">
+              <p>Wholesale price: {money(displayWholesalePrice)}</p>
+              {product.minimumWholesaleQty ? (
+                <p>
+                  Minimum wholesale order:{" "}
+                  {product.wholesaleMinimumLabel ??
+                    `${product.minimumWholesaleQty} units`}
+                </p>
+              ) : null}
+            </div>
           ) : null}
         </div>
         <span
