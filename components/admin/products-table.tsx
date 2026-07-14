@@ -14,6 +14,7 @@ import {
   updateProductAction,
 } from "@/app/admin/products/actions";
 import { ProductImageUploader } from "@/components/admin/product-image-uploader";
+import { ProductVariantFields } from "@/components/admin/product-variant-fields";
 
 export type AdminProductRow = {
   id: string;
@@ -113,6 +114,7 @@ export function ProductsTable({
   const pathname = usePathname();
   const searchParams = useSearchParams();
   const pageCount = Math.max(1, Math.ceil(total / pageSize));
+  const [successMessage, setSuccessMessage] = useState<string | null>(null);
 
   function setParam(updates: Record<string, string | number>) {
     const params = new URLSearchParams(searchParams);
@@ -247,118 +249,19 @@ export function ProductsTable({
                     Active
                   </label>
                 </div>
-                <div className="grid gap-3 border-t border-neutral-200 pt-3">
-                  <div>
-                    <p className="text-sm font-semibold text-neutral-950">
-                      Variants
-                    </p>
-                    <p className="mt-1 text-xs text-neutral-500">
-                      Use Pack / Size labels. Leave new rows blank to ignore
-                      them.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {(row.original.categorySlug === "drinks"
+                <ProductVariantFields
+                  key={row.original.variants
+                    .map((variant) => variant.id)
+                    .join(":")}
+                  productId={row.original.id}
+                  variants={row.original.variants}
+                  suggestedLabels={
+                    row.original.categorySlug === "drinks"
                       ? drinkLabels
                       : weightLabels
-                    ).map((label) => (
-                      <span
-                        key={label}
-                        className="rounded-full border border-neutral-200 px-2 py-1 text-xs text-neutral-600"
-                      >
-                        {label}
-                      </span>
-                    ))}
-                  </div>
-                  {[...row.original.variants, null, null, null].map(
-                    (variant, index) => (
-                      <div
-                        key={variant?.id ?? `new-${index}`}
-                        className="grid gap-3 rounded-md border border-neutral-200 bg-neutral-50 p-3 sm:grid-cols-2 xl:grid-cols-4"
-                      >
-                        <input
-                          type="hidden"
-                          name={`variants.${index}.id`}
-                          value={variant?.id ?? ""}
-                        />
-                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
-                          Pack / Size
-                          <input
-                            name={`variants.${index}.label`}
-                            defaultValue={variant?.label ?? ""}
-                            list={`edit-variant-labels-${row.original.id}-${index}`}
-                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
-                          />
-                          <datalist
-                            id={`edit-variant-labels-${row.original.id}-${index}`}
-                          >
-                            {(row.original.categorySlug === "drinks"
-                              ? drinkLabels
-                              : weightLabels
-                            ).map((label) => (
-                              <option key={label} value={label} />
-                            ))}
-                          </datalist>
-                        </label>
-                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
-                          SKU
-                          <input
-                            name={`variants.${index}.sku`}
-                            defaultValue={variant?.sku ?? ""}
-                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
-                          />
-                        </label>
-                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
-                          Retail
-                          <input
-                            name={`variants.${index}.retailPrice`}
-                            defaultValue={variant?.retailPrice ?? ""}
-                            inputMode="decimal"
-                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
-                          />
-                        </label>
-                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
-                          Wholesale
-                          <input
-                            name={`variants.${index}.wholesalePrice`}
-                            defaultValue={variant?.wholesalePrice ?? ""}
-                            inputMode="decimal"
-                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
-                          />
-                        </label>
-                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
-                          Inventory
-                          <input
-                            name={`variants.${index}.inventory`}
-                            type="number"
-                            min="0"
-                            defaultValue={variant?.inventory ?? 0}
-                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
-                          />
-                        </label>
-                        <label className="grid gap-1 text-xs font-medium text-neutral-700">
-                          Sort
-                          <input
-                            name={`variants.${index}.sortOrder`}
-                            type="number"
-                            min="0"
-                            defaultValue={variant?.sortOrder ?? index}
-                            className="rounded-md border border-neutral-300 px-2 py-1.5 font-normal"
-                          />
-                        </label>
-                        <label className="flex items-center gap-2 text-xs font-medium text-neutral-700">
-                          <input
-                            name={`variants.${index}.isActive`}
-                            type="checkbox"
-                            defaultChecked={variant?.isActive ?? true}
-                            className="h-4 w-4"
-                          />
-                          Active
-                        </label>
-                      </div>
-                    ),
-                  )}
-                </div>
+                  }
+                  onDeleted={setSuccessMessage}
+                />
                 <button className="rounded-md bg-neutral-950 px-3 py-2 text-sm font-semibold text-white hover:bg-neutral-700 cursor-pointer">
                   Save product
                 </button>
@@ -394,6 +297,22 @@ export function ProductsTable({
 
   return (
     <div className="overflow-hidden rounded-lg border border-neutral-200 bg-white">
+      {successMessage ? (
+        <div
+          role="status"
+          className="flex items-center justify-between gap-4 border-b border-emerald-200 bg-emerald-50 px-4 py-3 text-sm font-medium text-emerald-800"
+        >
+          <span>{successMessage}</span>
+          <button
+            type="button"
+            aria-label="Dismiss success message"
+            onClick={() => setSuccessMessage(null)}
+            className="text-emerald-900 hover:text-emerald-950"
+          >
+            &times;
+          </button>
+        </div>
+      ) : null}
       <div className="overflow-x-auto">
         <table className="w-full min-w-225 border-collapse text-left text-sm">
           <thead className="bg-neutral-50 text-xs uppercase tracking-wide text-neutral-500">

@@ -17,6 +17,22 @@ export type CreateProductActionState = {
   error: string | null;
 };
 
+export type DeleteProductVariantResult =
+  | {
+      success: true;
+      message: string;
+    }
+  | {
+      success: false;
+      message: string;
+      fieldErrors?: Record<string, string[]>;
+    };
+
+const deleteProductVariantSchema = z.object({
+  productId: z.string().trim().min(1, "Product is required."),
+  variantId: z.string().trim().min(1, "Variant is required."),
+});
+
 const productUpdateSchema = z.object({
   id: z.string().min(1),
   name: z.string().trim().min(1, "Name is required"),
@@ -364,4 +380,107 @@ export async function hideProductAction(formData: FormData) {
   });
 
   revalidatePath("/admin/products");
+}
+
+export async function deleteProductVariantAction(input: {
+  productId: string;
+  variantId: string;
+}): Promise<DeleteProductVariantResult> {
+  await requireAdmin();
+
+  const parsed = deleteProductVariantSchema.safeParse(input);
+
+  if (!parsed.success) {
+    return {
+      success: false,
+      message: "The variant deletion request is invalid.",
+      fieldErrors: z.flattenError(parsed.error).fieldErrors,
+    };
+  }
+
+  try {
+    const variant = await prisma.productVariant.findFirst({
+      where: {
+        id: parsed.data.variantId,
+        productId: parsed.data.productId,
+      },
+      select: {
+        id: true,
+        product: {
+          select: {
+            slug: true,
+          },
+        },
+        _count: {
+          select: {
+            orderItems: true,
+          },
+        },
+      },
+    });
+
+    if (!variant) {
+      return {
+        success: false,
+        message: "Variant not found. It may have already been deleted.",
+      };
+    }
+
+    if (variant._count.orderItems > 0) {
+      return {
+        success: false,
+        message:
+          "This variant is used by historical orders and cannot be deleted. Mark it inactive instead.",
+      };
+    }
+
+    await prisma.productVariant.delete({
+      where: {
+        id: variant.id,
+      },
+    });
+
+    revalidatePath("/admin/products");
+    revalidatePath("/");
+    revalidatePath("/categories");
+    revalidatePath("/products");
+    revalidatePath(`/products/${variant.product.slug}`);
+
+    return {
+      success: true,
+      message: "Variant deleted successfully.",
+    };
+  } catch (error) {
+    const code = prismaErrorCode(error);
+
+    if (code === "P2025") {
+      return {
+        success: false,
+        message: "Variant not found. It may have already been deleted.",
+      };
+    }
+
+    if (code === "P2003") {
+      return {
+        success: false,
+        message:
+          "This variant is still referenced by historical data and cannot be deleted. Mark it inactive instead.",
+      };
+    }
+
+    console.error("[ADMIN_PRODUCT_VARIANT_DELETE_ERROR]", {
+      errorName: error instanceof Error ? error.name : typeof error,
+      errorMessage: error instanceof Error ? error.message : String(error),
+      prismaCode: code,
+      productId: parsed.data.productId,
+      variantId: parsed.data.variantId,
+    });
+
+    return {
+      success: false,
+      message: isDatabaseConnectionError(error)
+        ? "The database is temporarily unavailable. Please try again."
+        : "Unable to delete the variant. Please try again.",
+    };
+  }
 }
