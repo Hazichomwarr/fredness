@@ -25,7 +25,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[1.05fr_0.95fr]">
           <div className="relative aspect-4/3 overflow-hidden rounded-lg bg-gray-200 shadow-sm">
             <Image
-              src="/images/fredness-rice.jpeg"
+              src="/images/store-award.png"
               alt="Frednes International Market grocery selection"
               fill
               priority
@@ -80,24 +80,51 @@ export default function AboutPage() {
             <p className="text-sm font-semibold uppercase tracking-wide text-green-700">
               The Story
             </p>
+
             <h2 className="mt-2 text-3xl font-bold tracking-tight">
               Built for families, restaurants, and local businesses.
             </h2>
+
             <div className="mt-5 space-y-4 text-base leading-8 text-gray-700">
               <p>
-                Frednes International Market was created to provide authentic
-                African and Caribbean foods to families, restaurants, and local
-                businesses throughout New Jersey.
+                Frednes International Market was founded with a simple mission:
+                to bring authentic African, Caribbean, and international foods
+                closer to the communities that call New Jersey home.
               </p>
+
               <p>
-                What started as a neighborhood grocery store has grown into a
-                trusted source for rice, yam, spices, beverages, frozen
-                products, and wholesale supplies.
+                From a neighborhood grocery store, Frednes has grown into a
+                trusted destination serving families, restaurants, caterers,
+                churches, and small businesses with thousands of carefully
+                selected products—from everyday pantry essentials to specialty
+                ingredients that are often difficult to find elsewhere.
               </p>
+
               <p>
-                We believe customers should have access to quality products,
-                fair pricing, and friendly service under one roof.
+                The market's steady growth and commitment to serving
+                multicultural communities have also been recognized beyond its
+                customers. Frednes was featured by{" "}
+                <strong>The New Jersey Farmer</strong>, which highlighted the
+                company's expansion and its role in providing authentic foods to
+                the region's growing African and Caribbean communities.
               </p>
+
+              <p>
+                Today, we continue that same commitment by offering quality
+                products, competitive wholesale pricing, and friendly
+                service—whether you're shopping for your family or stocking your
+                business.
+              </p>
+
+              <a
+                href="https://americanfarm.com/articles/the-new-jersey-farmer/frednes-african-international-market-growing-quickly/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center font-semibold text-green-700 hover:text-green-800"
+              >
+                Read the feature in{" "}
+                <em className="ml-1">The New Jersey Farmer</em> →
+              </a>
             </div>
           </div>
         </div>
@@ -107,7 +134,7 @@ export default function AboutPage() {
         <div className="mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[0.9fr_1.1fr]">
           <div className="relative aspect-4/5 overflow-hidden rounded-lg bg-green-900">
             <Image
-              src="/images/fredness-malt2.jpg"
+              src="/images/meet-owners.png"
               alt="Frednes International Market products"
               fill
               sizes="(min-width: 1024px) 40vw, 100vw"
@@ -117,16 +144,16 @@ export default function AboutPage() {
 
           <div>
             <p className="text-sm font-semibold uppercase tracking-wide text-green-200">
-              Meet the Owner
+              Meet the Owners
             </p>
             <h2 className="mt-2 text-3xl font-bold tracking-tight">
-              Meet Mr. Frednes
+              Meet Mr. Fred & Mrs. Agnes
             </h2>
             <p className="mt-2 text-green-100">Owner & Founder</p>
             <p className="mt-5 max-w-2xl text-lg leading-8 text-green-50">
-              As the owner of Frednes International Market, Frednes is committed
-              to helping families, restaurants, and retailers find the products
-              they need at competitive prices.
+              As the owners of Frednes International Market, Frednes is
+              committed to helping families, restaurants, and retailers find the
+              products they need at competitive prices.
             </p>
             <p className="mt-4 max-w-2xl text-lg leading-8 text-green-50">
               His goal is simple: provide quality products, build lasting
