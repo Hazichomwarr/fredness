@@ -43,7 +43,7 @@ export default function Navbar() {
             <span className="text-lg font-extrabold tracking-wide text-green-800">
               FREDNES
             </span>
-            <span className="hidden sm:block text-[11px] font-medium uppercase tracking-[0.25em] text-gray-500">
+            <span className="text-xs sm:text-[11px] font-medium sm:uppercase tracking-[0.25em] text-gray-500">
               International Market
             </span>
           </div>
