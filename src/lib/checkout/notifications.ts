@@ -21,33 +21,38 @@ async function sendCustomerOrderConfirmation(
   order: PaidOrderWithItems,
   customerEmail: string,
 ) {
-  const payload = orderEmailPayload(order);
-  const result = await resend.emails.send({
-    from: orderEmailFrom,
-    to: customerEmail,
-    subject: "Your Frednes Wholesale order has been received",
-    react: CustomerOrderConfirmationEmail(payload),
-    text: customerOrderConfirmationText(payload),
-  });
+  try {
+    const payload = orderEmailPayload(order);
 
-  console.log("ORDER_CUSTOMER_RESEND_RESULT", {
-    orderId: order.id,
-    checkoutSessionId: order.stripeCheckoutSession,
-    resendEmailId: result.data?.id ?? null,
-    error: result.error
-      ? {
-          name: result.error.name,
-          message: result.error.message,
-          statusCode: result.error.statusCode,
-        }
-      : null,
-  });
+    const result = await resend.emails.send({
+      from: orderEmailFrom,
+      to: customerEmail,
+      subject: "Your Frednes Wholesale order has been received",
+      react: CustomerOrderConfirmationEmail(payload),
+      text: customerOrderConfirmationText(payload),
+    });
 
-  if (result.error) {
-    throw new Error(result.error.message);
+    console.log("ORDER_CUSTOMER_RESEND_RESULT", {
+      orderId: order.id,
+      checkoutSessionId: order.stripeCheckoutSession,
+      resendEmailId: result.data?.id ?? null,
+      error: result.error,
+    });
+
+    if (result.error) {
+      throw new Error(result.error.message);
+    }
+
+    return result.data;
+  } catch (error) {
+    console.error("ORDER_CUSTOMER_RESEND_EXCEPTION", {
+      orderId: order.id,
+      checkoutSessionId: order.stripeCheckoutSession,
+      error: serializeError(error),
+    });
+
+    throw error;
   }
-
-  return result.data;
 }
 
 async function sendAdminOrderNotification(order: PaidOrderWithItems) {
@@ -131,7 +136,39 @@ export async function sendPaidOrderNotifications(order: PaidOrderWithItems) {
 
   console.log("ORDER_NOTIFICATION_RESULTS", {
     orderId: order.id,
-    admin: adminResult.status,
-    customer: customerResult.status,
+    admin:
+      adminResult.status === "fulfilled"
+        ? {
+            status: "fulfilled",
+            resendEmailId: adminResult.value?.id ?? null,
+          }
+        : {
+            status: "rejected",
+            reason: serializeError(adminResult.reason),
+          },
+    customer:
+      customerResult.status === "fulfilled"
+        ? {
+            status: "fulfilled",
+            resendEmailId: customerResult.value?.id ?? null,
+          }
+        : {
+            status: "rejected",
+            reason: serializeError(customerResult.reason),
+          },
   });
+}
+
+function serializeError(error: unknown) {
+  if (error instanceof Error) {
+    return {
+      name: error.name,
+      message: error.message,
+      stack: error.stack,
+    };
+  }
+
+  return {
+    message: String(error),
+  };
 }
