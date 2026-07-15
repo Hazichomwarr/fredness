@@ -5,6 +5,10 @@ export const STORE_SETTINGS = {
     display: "(862) 224-1499",
     href: "tel:+18622241499",
   },
+  phone2: {
+    display: "(862) 224-1628",
+    href: "tel:+18622241628",
+  },
   mapsUrl:
     "https://www.google.com/maps/search/?api=1&query=Frednes+International+Market+Orange+NJ",
 } as const;

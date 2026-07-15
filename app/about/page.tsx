@@ -1,3 +1,4 @@
+import { STORE_SETTINGS } from "@/src/lib/store-settings";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -218,16 +219,16 @@ export default function AboutPage() {
               <h3 className="font-semibold">Phone</h3>
               <div className="mt-2 space-y-2 text-gray-700">
                 <a
-                  className="block hover:text-green-700"
-                  href="tel:+19736724566"
+                  className="block hover:text-green-700 hover:underline"
+                  href={STORE_SETTINGS.phone.href}
                 >
-                  (973) 672-4566
+                  {STORE_SETTINGS.phone.display}
                 </a>
                 <a
-                  className="block hover:text-green-700"
-                  href="tel:+18625203114"
+                  className="block hover:text-green-700 hover:underline"
+                  href={STORE_SETTINGS.phone2.href}
                 >
-                  (862) 520-3114
+                  {STORE_SETTINGS.phone2.display}
                 </a>
               </div>
             </div>

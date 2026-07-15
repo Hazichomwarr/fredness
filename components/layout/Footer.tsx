@@ -1,5 +1,6 @@
 // components/Footer.tsx
 
+import { STORE_SETTINGS } from "@/src/lib/store-settings";
 import Link from "next/link";
 
 export default function Footer() {
@@ -61,9 +62,25 @@ export default function Footer() {
           <div>
             <h4 className="font-semibold text-white">Contact</h4>
             <ul className="mt-4 space-y-2 text-sm">
-              <li>📍 51 Park St, Orange, NJ</li>
-              <li>📞 (862) 224-1499</li>
-              <li>📞 (862) 224-1628</li>
+              <li>
+                <a
+                  href={STORE_SETTINGS.mapsUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                >
+                  📍 51 Park St, Orange, NJ
+                </a>
+              </li>
+              <li>
+                <a href={STORE_SETTINGS.phone.href}>
+                  📞 {STORE_SETTINGS.phone.display}
+                </a>
+              </li>
+              <li>
+                <a href={STORE_SETTINGS.phone2.href}>
+                  📞 {STORE_SETTINGS.phone2.display}
+                </a>
+              </li>
             </ul>
 
             <a

@@ -27,23 +27,35 @@ export default function Navbar() {
         {/* LOGO */}
         <Link
           href="/"
-          className="min-w-0 text-xl font-bold text-green-800"
+          className="flex items-center gap-3 min-w-0"
           onClick={closeMenu}
         >
           <Image
             src="/images/fred_logo.png"
-            alt="African Best"
+            alt="Frednes International Market"
             width={0}
             height={0}
             sizes="100vw"
-            className="h-12 w-auto"
+            className="h-12 w-auto shrink-0"
           />
-        </Link>
 
+          <div className="flex flex-col leading-none">
+            <span className="text-lg font-extrabold tracking-wide text-green-800">
+              FREDNES
+            </span>
+            <span className="hidden sm:block text-[11px] font-medium uppercase tracking-[0.25em] text-gray-500">
+              International Market
+            </span>
+          </div>
+        </Link>
         {/* NAV LINKS */}
         <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-gray-700">
           {navLinks.map((link) => (
-            <Link key={link.href} href={link.href} className="hover:text-green-700">
+            <Link
+              key={link.href}
+              href={link.href}
+              className="hover:text-green-700"
+            >
               {link.label}
             </Link>
           ))}
@@ -75,7 +87,9 @@ export default function Navbar() {
           <button
             type="button"
             className="inline-flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 text-gray-700 transition hover:bg-gray-50 md:hidden"
-            aria-label={isMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+            aria-label={
+              isMenuOpen ? "Close navigation menu" : "Open navigation menu"
+            }
             aria-expanded={isMenuOpen}
             aria-controls="mobile-navigation"
             onClick={() => setIsMenuOpen((open) => !open)}
