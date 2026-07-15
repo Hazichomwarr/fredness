@@ -35,6 +35,10 @@ async function sendCustomerOrderConfirmation(
     throw result.error;
   }
 
+  console.info("[ORDER_CUSTOMER_EMAIL_SENT]", {
+    orderId: order.id,
+  });
+
   return result.data;
 }
 
@@ -42,7 +46,7 @@ async function sendAdminOrderNotification(order: PaidOrderWithItems) {
   const adminEmail = process.env.QUOTE_ADMIN_EMAIL?.trim();
 
   if (!adminEmail) {
-    console.info("Admin notification email skipped", {
+    console.info("[ORDER_ADMIN_EMAIL_SKIPPED]", {
       orderId: order.id,
       reason: "QUOTE_ADMIN_EMAIL is not configured",
     });
@@ -63,6 +67,10 @@ async function sendAdminOrderNotification(order: PaidOrderWithItems) {
   if (result.error) {
     throw result.error;
   }
+
+  console.info("[ORDER_ADMIN_EMAIL_SENT]", {
+    orderId: order.id,
+  });
 
   return result.data;
 }
@@ -92,7 +100,8 @@ function logRejectedEmail(
   result: PromiseSettledResult<unknown>,
 ) {
   if (result.status === "rejected") {
-    console.error(`${label} failed`, {
+    console.error("[ORDER_EMAIL_FAILED]", {
+      delivery: label,
       orderId,
       error: result.reason,
     });
@@ -101,6 +110,14 @@ function logRejectedEmail(
 
 export async function sendPaidOrderNotifications(order: PaidOrderWithItems) {
   const customerEmail = order.customerEmail?.trim() || null;
+
+  if (!customerEmail) {
+    console.info("[ORDER_CUSTOMER_EMAIL_SKIPPED]", {
+      orderId: order.id,
+      reason: "customer_email_missing",
+    });
+  }
+
   const [adminResult, customerResult] = await Promise.allSettled([
     sendAdminOrderNotification(order),
     customerEmail

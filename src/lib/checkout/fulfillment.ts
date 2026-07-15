@@ -79,6 +79,11 @@ async function markPaidForInventoryReview(
 
 export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
   if (session.payment_status !== "paid") {
+    console.info("[CHECKOUT_FULFILLMENT_SKIPPED]", {
+      sessionId: session.id,
+      reason: "payment_not_paid",
+      paymentStatus: session.payment_status,
+    });
     return null;
   }
 
@@ -92,8 +97,17 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
     )?.id;
 
   if (!orderId) {
+    console.error("[CHECKOUT_FULFILLMENT_SKIPPED]", {
+      sessionId: session.id,
+      reason: "order_not_found",
+    });
     return null;
   }
+
+  console.info("[CHECKOUT_FULFILLMENT_STARTED]", {
+    sessionId: session.id,
+    orderId,
+  });
 
   try {
     const result = await prisma.$transaction(async (tx) => {
@@ -256,6 +270,14 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
       }
     }
 
+    console.info("[CHECKOUT_FULFILLMENT_COMPLETED]", {
+      sessionId: session.id,
+      orderId,
+      orderStatus: result.order?.status ?? null,
+      newlyPaid: result.newlyPaid,
+      duplicate: !result.newlyPaid,
+    });
+
     return result.order;
   } catch (error) {
     if (error instanceof InventoryUnavailableError) {
@@ -275,6 +297,15 @@ export async function fulfillCheckoutSession(session: Stripe.Checkout.Session) {
           });
         }
       }
+
+      console.info("[CHECKOUT_FULFILLMENT_COMPLETED]", {
+        sessionId: session.id,
+        orderId: error.orderId,
+        orderStatus: result.order?.status ?? null,
+        newlyPaid: result.newlyPaid,
+        duplicate: !result.newlyPaid,
+        inventoryReviewRequired: true,
+      });
 
       return result.order;
     }
