@@ -21,49 +21,36 @@ async function sendCustomerOrderConfirmation(
   order: PaidOrderWithItems,
   customerEmail: string,
 ) {
-  try {
-    const payload = orderEmailPayload(order);
+  const payload = orderEmailPayload(order);
+  const result = await resend.emails.send({
+    from: orderEmailFrom,
+    to: customerEmail,
+    subject: "Your Frednes Wholesale order has been received",
+    react: CustomerOrderConfirmationEmail(payload),
+    text: customerOrderConfirmationText(payload),
+  });
 
-    const result = await resend.emails.send({
-      from: orderEmailFrom,
-      to: customerEmail,
-      subject: "Your Frednes Wholesale order has been received",
-      react: CustomerOrderConfirmationEmail(payload),
-      text: customerOrderConfirmationText(payload),
-    });
-
-    console.log("ORDER_CUSTOMER_RESEND_RESULT", {
+  if (result.error) {
+    console.error("Order email failed", {
       orderId: order.id,
-      checkoutSessionId: order.stripeCheckoutSession,
-      resendEmailId: result.data?.id ?? null,
+      recipient: "customer",
       error: result.error,
     });
-
-    if (result.error) {
-      throw new Error(result.error.message);
-    }
-
-    return result.data;
-  } catch (error) {
-    console.error("ORDER_CUSTOMER_RESEND_EXCEPTION", {
-      orderId: order.id,
-      checkoutSessionId: order.stripeCheckoutSession,
-      error: serializeError(error),
-    });
-
-    throw error;
+    throw new Error(result.error.message);
   }
+
+  console.info("Customer order confirmation sent", {
+    orderId: order.id,
+    resendEmailId: result.data?.id,
+  });
+
+  return result.data;
 }
 
 async function sendAdminOrderNotification(order: PaidOrderWithItems) {
   const adminEmail = process.env.QUOTE_ADMIN_EMAIL?.trim();
 
   if (!adminEmail) {
-    console.info("ORDER_ADMIN_RESEND_SKIPPED", {
-      orderId: order.id,
-      checkoutSessionId: order.stripeCheckoutSession,
-      reason: "QUOTE_ADMIN_EMAIL is not configured",
-    });
     return null;
   }
 
@@ -77,22 +64,19 @@ async function sendAdminOrderNotification(order: PaidOrderWithItems) {
     text: adminOrderNotificationText(payload),
   });
 
-  console.log("ORDER_ADMIN_RESEND_RESULT", {
-    orderId: order.id,
-    checkoutSessionId: order.stripeCheckoutSession,
-    resendEmailId: result.data?.id ?? null,
-    error: result.error
-      ? {
-          name: result.error.name,
-          message: result.error.message,
-          statusCode: result.error.statusCode,
-        }
-      : null,
-  });
-
   if (result.error) {
+    console.error("Order email failed", {
+      orderId: order.id,
+      recipient: "admin",
+      error: result.error,
+    });
     throw new Error(result.error.message);
   }
+
+  console.info("Admin order notification sent", {
+    orderId: order.id,
+    resendEmailId: result.data?.id,
+  });
 
   return result.data;
 }
@@ -119,56 +103,10 @@ function orderEmailPayload(order: PaidOrderWithItems) {
 export async function sendPaidOrderNotifications(order: PaidOrderWithItems) {
   const customerEmail = order.customerEmail?.trim() || null;
 
-  if (!customerEmail) {
-    console.info("ORDER_CUSTOMER_RESEND_SKIPPED", {
-      orderId: order.id,
-      checkoutSessionId: order.stripeCheckoutSession,
-      reason: "Customer email missing",
-    });
-  }
-
-  const [adminResult, customerResult] = await Promise.allSettled([
+  await Promise.allSettled([
     sendAdminOrderNotification(order),
     customerEmail
       ? sendCustomerOrderConfirmation(order, customerEmail)
       : Promise.resolve(null),
   ]);
-
-  console.log("ORDER_NOTIFICATION_RESULTS", {
-    orderId: order.id,
-    admin:
-      adminResult.status === "fulfilled"
-        ? {
-            status: "fulfilled",
-            resendEmailId: adminResult.value?.id ?? null,
-          }
-        : {
-            status: "rejected",
-            reason: serializeError(adminResult.reason),
-          },
-    customer:
-      customerResult.status === "fulfilled"
-        ? {
-            status: "fulfilled",
-            resendEmailId: customerResult.value?.id ?? null,
-          }
-        : {
-            status: "rejected",
-            reason: serializeError(customerResult.reason),
-          },
-  });
-}
-
-function serializeError(error: unknown) {
-  if (error instanceof Error) {
-    return {
-      name: error.name,
-      message: error.message,
-      stack: error.stack,
-    };
-  }
-
-  return {
-    message: String(error),
-  };
 }
