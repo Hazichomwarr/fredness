@@ -212,5 +212,15 @@ export async function POST(request: Request) {
 }
 
 export async function GET(request: Request) {
-  return POST(request);
+  const result = await POST(request);
+  const body = await result.text();
+  const escapedBody = body
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;");
+
+  return new Response(`<!doctype html><pre>${escapedBody}</pre>`, {
+    status: result.status,
+    headers: { "Content-Type": "text/html; charset=utf-8" },
+  });
 }
