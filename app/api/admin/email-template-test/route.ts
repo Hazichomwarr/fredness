@@ -9,6 +9,7 @@ import {
   CustomerOrderConfirmationEmail,
   customerOrderConfirmationText,
 } from "@/src/emails/customer-order-confirmation";
+import { getAdminSession } from "@/src/lib/auth/admin";
 import { orderEmailPayload } from "@/src/lib/checkout/notifications";
 import { resend } from "@/src/lib/email/resend";
 import { prisma } from "@/src/lib/prisma";
@@ -130,12 +131,14 @@ async function testTemplate({
 
 export async function POST(request: Request) {
   const diagnosticSecret = request.headers.get("x-diagnostic-secret");
+  const secretAuthorized = Boolean(
+    process.env.AUTH_SECRET &&
+      diagnosticSecret &&
+      diagnosticSecret === process.env.AUTH_SECRET,
+  );
+  const adminSession = secretAuthorized ? null : await getAdminSession();
 
-  if (
-    !process.env.AUTH_SECRET ||
-    !diagnosticSecret ||
-    diagnosticSecret !== process.env.AUTH_SECRET
-  ) {
+  if (!secretAuthorized && !adminSession) {
     return Response.json({ error: "Unauthorized" }, { status: 401 });
   }
 
