@@ -97,7 +97,7 @@ async function sendAdminOrderNotification(order: PaidOrderWithItems) {
   return result.data;
 }
 
-export function orderEmailPayload(order: PaidOrderWithItems) {
+function orderEmailPayload(order: PaidOrderWithItems) {
   return {
     orderId: order.id,
     customerName: order.customerName,
